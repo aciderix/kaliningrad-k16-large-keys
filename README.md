@@ -27,6 +27,7 @@ Même protocole que `dagapeyeff/docs/PROTOCOLE.md`. Choix de la cible : `docs/00
 | K14 double transposition, grandes clés | Übchi (même clé 10-15) ; deux clés différentes 10-20 ? | Übchi **non** (contrôles 9/10, réel = nuls) ; deux clés différentes longues : **hors de portée** (sans puissance, non interprété) |
 | K15 blocs à clé commune | même clé pour les 6 blocs (routes, colonnes, Übchi, grille tournante), scores additionnés, ± substitution ? | **non** (contrôles 7-10/10 ; un score apparemment élevé — grille tournante MI 0,84 — égalé par les lettres mélangées) ; colonnes+substitution et double par bloc : sans puissance |
 | K16 double transposition, clés 10–20 | double transposition allemande à deux permutations différentes ? | **aucun clair retrouvé** ; la recherche GitHub 15–20 a examiné les 36 paires en environ 6 minutes, mais les contrôles de puissance ne réussissent que 3/10 : résultat négatif non concluant |
+| **K17 profil invariant** (≈ 1 s, sans clé) | le décompte des lettres peut-il être celui d'un texte allemand transposé ? | **non, quelle que soit la clé** : f + w = 82 contre 59 au plus dans 3 259 fenêtres allemandes ; décompte hors de toutes les fenêtres ; pas de substitution (lettres absentes = j q x y, identité 0/100 000). Les recherches K16 ne pouvaient pas aboutir |
 
 Synthèse d'étape : [`docs/02_synthese.md`](docs/02_synthese.md).
 
