@@ -1,4 +1,4 @@
-name: K16 large-key controls
+name: K16 parallel bottle scan
 
 on:
   workflow_dispatch:
@@ -7,127 +7,119 @@ permissions:
   contents: read
 
 jobs:
-  controls:
-    name: Control ${{ matrix.control }} search ${{ matrix.replica }}
+  scan:
+    name: Width pair ${{ matrix.w1 }}×${{ matrix.w2 }}
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       max-parallel: 20
       matrix:
-        control: [63520, 63521, 63522, 63523, 63524, 63525, 63526, 63527, 63528, 63529]
-        replica: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+        include:
+          - { w1: 15, w2: 15 }
+          - { w1: 15, w2: 16 }
+          - { w1: 15, w2: 17 }
+          - { w1: 15, w2: 18 }
+          - { w1: 15, w2: 19 }
+          - { w1: 15, w2: 20 }
+          - { w1: 16, w2: 15 }
+          - { w1: 16, w2: 16 }
+          - { w1: 16, w2: 17 }
+          - { w1: 16, w2: 18 }
+          - { w1: 16, w2: 19 }
+          - { w1: 16, w2: 20 }
+          - { w1: 17, w2: 15 }
+          - { w1: 17, w2: 16 }
+          - { w1: 17, w2: 17 }
+          - { w1: 17, w2: 18 }
+          - { w1: 17, w2: 19 }
+          - { w1: 17, w2: 20 }
+          - { w1: 18, w2: 15 }
+          - { w1: 18, w2: 16 }
+          - { w1: 18, w2: 17 }
+          - { w1: 18, w2: 18 }
+          - { w1: 18, w2: 19 }
+          - { w1: 18, w2: 20 }
+          - { w1: 19, w2: 15 }
+          - { w1: 19, w2: 16 }
+          - { w1: 19, w2: 17 }
+          - { w1: 19, w2: 18 }
+          - { w1: 19, w2: 19 }
+          - { w1: 19, w2: 20 }
+          - { w1: 20, w2: 15 }
+          - { w1: 20, w2: 16 }
+          - { w1: 20, w2: 17 }
+          - { w1: 20, w2: 18 }
+          - { w1: 20, w2: 19 }
+          - { w1: 20, w2: 20 }
     env:
-      OMP_NUM_THREADS: 4
+      OMP_NUM_THREADS: 2
       OMP_DYNAMIC: FALSE
       K14_T2A: 0.02
       K14_T2B: 0.001
     steps:
-      - name: Check out the dedicated K16 project
+      - name: Check out K16 project
         uses: actions/checkout@v4
 
-      - name: Compile the parallel solver
+      - name: Compile solver
         run: gcc -std=c11 -O3 -march=native -flto -fopenmp -o k16 tools/k16_double_ct2.c -lm
 
-      - name: Run one independent full-width search
+      - name: Search this pair on the real 979-letter ciphertext
         env:
-          CONTROL_SEED: ${{ matrix.control }}
-          REPLICA: ${{ matrix.replica }}
+          W1: ${{ matrix.w1 }}
+          W2: ${{ matrix.w2 }}
+          RUN_SEED: ${{ github.run_number }}
         run: |
           mkdir -p results
           set -o pipefail
-          SEARCH_SEED=$((CONTROL_SEED * 100 + REPLICA + 70000))
-          ./k16 ctrlrep data/models/qg_de.bin data/heldout/de.txt \
-            15 20 12 200000 5 20000 "$CONTROL_SEED" "$SEARCH_SEED" \
-            | tee "results/control-${CONTROL_SEED}-replica-${REPLICA}.log"
+          ./k16 solvepair data/models/qg_de.bin data/ciphertext_979.txt \
+            "$W1" "$W2" 12 200000 5 20000 "$((RUN_SEED * 100 + W1 * 10 + W2))" \
+            | tee "results/pair-$W1-$W2.log"
 
-      - name: Preserve this run's log
+      - name: Preserve candidate and keys
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: k16-control-${{ matrix.control }}-${{ matrix.replica }}
-          path: results/control-${{ matrix.control }}-replica-${{ matrix.replica }}.log
+          name: k16-pair-${{ matrix.w1 }}-${{ matrix.w2 }}
+          path: results/pair-${{ matrix.w1 }}-${{ matrix.w2 }}.log
           if-no-files-found: warn
           retention-days: 30
 
   summary:
-    name: Summarize the best of twenty searches per control
+    name: Rank candidate plaintexts
     if: always()
-    needs: controls
+    needs: scan
     runs-on: ubuntu-latest
-    outputs:
-      power_pass: ${{ steps.evaluate.outputs.power_pass }}
     steps:
-      - name: Download control logs
+      - name: Download pair results
         uses: actions/download-artifact@v4
         with:
-          pattern: k16-control-*
+          pattern: k16-pair-*
           path: results
           merge-multiple: true
 
-      - name: Report the pass rate
-        id: evaluate
+      - name: Rank candidate scores
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import os, re
-          records = {}
-          pattern = re.compile(r"CTRL control_seed=(\d+) search_seed=(\d+) planted=(\d+,\d+) found=(\d+,\d+) score=([-\d.]+) contacts=(\d+)/978")
-          for path in Path("results").glob("control-*.log"):
-              m = pattern.search(path.read_text(errors="replace"))
-              if not m:
-                  continue
-              control, search = int(m.group(1)), int(m.group(2))
-              rec = {"search": search, "planted": m.group(3), "found": m.group(4), "score": float(m.group(5)), "contacts": int(m.group(6))}
-              if control not in records or rec["score"] > records[control]["score"]:
-                  records[control] = rec
-          passed = 0
-          lines = []
-          for control in sorted(records):
-              r = records[control]
-              ok = r["contacts"] >= 881
-              passed += ok
-              lines.append(f"- {control}: {'PASS' if ok else 'FAIL'}; best search {r['search']}; widths planted {r['planted']}, found {r['found']}; score {r['score']:.4f}; contacts {r['contacts']}/978")
-          total = len(records)
-          result = f"**Contrôles fixes terminés : {total}/10; réussites : {passed}/10. Chaque contrôle a jusqu’à 20 recherches indépendantes; le meilleur est choisi par score allemand.**\n\n" + "\n".join(lines)
-          print(result)
-          Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text(result + "\n")
-          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
-              output.write(f"power_pass={'true' if total == 10 and passed == 10 else 'false'}\n")
-          if total != 10:
-              raise SystemExit(f"Only {total} distinct control logs were collected")
+          rows = []
+          for p in Path("results").glob("pair-*.log"):
+              text = p.read_text(errors="replace")
+              m = re.search(r"PAIR w1=(\d+) w2=(\d+) score=([-\d.]+)", text)
+              candidate = re.search(r"TEXT ([a-z]+)", text)
+              if m:
+                  rows.append((float(m.group(3)), int(m.group(1)), int(m.group(2)),
+                               candidate.group(1) if candidate else ""))
+          rows.sort(reverse=True)
+          lines = ["# K16 candidate ranking", "",
+                   f"Completed pairs: {len(rows)}/36. One standard search per pair; not a validated 10/10 decryption.", "",
+                   "| Rank | Widths | German quadgram score | Candidate opening |",
+                   "|---:|:---:|---:|---|"]
+          for i, (score, w1, w2, candidate) in enumerate(rows[:12], 1):
+              lines.append(f"| {i} | {w1}×{w2} | {score:.4f} | `{candidate[:48]}` |")
+          lines.extend(["", "Full candidate texts and keys are in the per-pair artifacts.",
+                        "A strong score is only a lead; inspect the complete text and test it against controls."])
+          Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text("\n".join(lines) + "\n")
+          print("\n".join(lines))
           PY
-
-  bottle-search:
-    name: Explore the bottle after the power gate
-    if: needs.summary.outputs.power_pass == 'true'
-    needs: summary
-    runs-on: ubuntu-latest
-    timeout-minutes: 360
-    env:
-      OMP_NUM_THREADS: 4
-      OMP_DYNAMIC: FALSE
-      K14_T2A: 0.02
-      K14_T2B: 0.001
-    steps:
-      - name: Check out the dedicated K16 project
-        uses: actions/checkout@v4
-      - name: Compile the parallel solver
-        run: gcc -std=c11 -O3 -march=native -flto -fopenmp -o k16 tools/k16_double_ct2.c -lm
-      - name: Prepare the preregistered cipher stream
-        run: python3 tools/prepare_cipher.py
-      - name: Search widths 15–20
-        run: |
-          mkdir -p results
-          set -o pipefail
-          ./k16 solve data/models/qg_de.bin data/ciphertext_979.txt \
-            15 20 12 200000 5 20000 20261001 \
-            | tee results/bottle-search.log
-      - name: Save the search result
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: k16-bottle-search
-          path: results/bottle-search.log
-          if-no-files-found: warn
-          retention-days: 30

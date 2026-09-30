@@ -143,6 +143,50 @@ static double stage2(const int *c, int n, int w1, int w2, int R, int I, int *bk2
     free(temps);
     return best;
 }
+
+/* Greedy K2 search: spend evaluations on full neighborhoods instead of long
+   random annealing walks. This is a fast diagnostic/optimization variant. */
+static void slide_one(int *k, int w, int from, int to) {
+    int v = k[from];
+    if (from < to) { memmove(k + from, k + from + 1, sizeof(int) * (to - from)); k[to] = v; }
+    else if (from > to) { memmove(k + to + 1, k + to, sizeof(int) * (from - to)); k[to] = v; }
+}
+static double stage2_greedy(const int *c, int n, int w1, int w2, int R, int I, int *bk2) {
+    (void)I;
+    double global_best = -1e18;
+    unsigned long long base_seed = rs;
+    #pragma omp parallel for schedule(static) if(R > 1)
+    for (int r = 0; r < R; r++) {
+        rs = seed_for(base_seed + (unsigned long long)r * 0x9e3779b97f4a7c15ULL);
+        int k[64], candidate[64], t[2048];
+        randperm(k, w2);
+        undo(c, n, w2, k, t);
+        double current = idp(t, n, w1);
+        for (int pass = 0; pass < 200; pass++) {
+            double next = current;
+            int next_key[64]; memcpy(next_key, k, sizeof(int) * w2);
+            for (int a = 0; a < w2; a++) for (int b = a + 1; b < w2; b++) {
+                memcpy(candidate, k, sizeof(int) * w2);
+                int x = candidate[a]; candidate[a] = candidate[b]; candidate[b] = x;
+                undo(c, n, w2, candidate, t);
+                double s = idp(t, n, w1);
+                if (s > next) { next = s; memcpy(next_key, candidate, sizeof(int) * w2); }
+            }
+            for (int a = 0; a < w2; a++) for (int b = 0; b < w2; b++) if (a != b) {
+                memcpy(candidate, k, sizeof(int) * w2); slide_one(candidate, w2, a, b);
+                undo(c, n, w2, candidate, t);
+                double s = idp(t, n, w1);
+                if (s > next) { next = s; memcpy(next_key, candidate, sizeof(int) * w2); }
+            }
+            if (next <= current + 1e-12) break;
+            current = next; memcpy(k, next_key, sizeof(int) * w2);
+        }
+        #pragma omp critical(k16_stage2_greedy_best)
+        if (current > global_best) { global_best = current; memcpy(bk2, k, sizeof(int) * w2); }
+    }
+    rs = seed_for(base_seed ^ 0x243f6a8885a308d3ULL);
+    return global_best;
+}
 static double stage1(const int *t, int n, int w1, int R, int I, int *bk1, int *out) {
     double best = -1e18; int best_r = INT_MAX; unsigned long long base_seed = rs;
     double *temps = malloc(sizeof(double) * (size_t)I);
@@ -164,6 +208,42 @@ static double stage1(const int *t, int n, int w1, int R, int I, int *bk1, int *o
     rs = seed_for(base_seed ^ 0x13198a2e03707344ULL);
     free(temps);
     return best;
+}
+
+/* Finalize K2 against the recovered K1, as in the published divide-and-conquer
+   attack. Test whole-key swaps and single-column slides using the plaintext score. */
+static double plaintext_score_k12(const int *c, int n, int w1, const int *k1,
+                                  int w2, const int *k2, int *plain) {
+    int t[2048], pos[2048];
+    undo(c, n, w2, k2, t);
+    mapping(n, w1, k1, pos);
+    for (int i = 0; i < n; i++) plain[i] = t[pos[i]];
+    return quad(plain, n);
+}
+static double polish_k2(const int *c, int n, int w1, int w2,
+                        const int *k1, int *k2, int *plain) {
+    int candidate[64], candidate_plain[2048];
+    double current = plaintext_score_k12(c, n, w1, k1, w2, k2, plain);
+    for (int pass = 0; pass < 100; pass++) {
+        double next = current;
+        int next_key[64], next_plain[2048];
+        memcpy(next_key, k2, sizeof(int) * w2);
+        memcpy(next_plain, plain, sizeof(int) * n);
+        for (int a = 0; a < w2; a++) for (int b = a + 1; b < w2; b++) {
+            memcpy(candidate, k2, sizeof(int) * w2);
+            int x = candidate[a]; candidate[a] = candidate[b]; candidate[b] = x;
+            double s = plaintext_score_k12(c, n, w1, k1, w2, candidate, candidate_plain);
+            if (s > next) { next = s; memcpy(next_key, candidate, sizeof(int) * w2); memcpy(next_plain, candidate_plain, sizeof(int) * n); }
+        }
+        for (int a = 0; a < w2; a++) for (int b = 0; b < w2; b++) if (a != b) {
+            memcpy(candidate, k2, sizeof(int) * w2); slide_one(candidate, w2, a, b);
+            double s = plaintext_score_k12(c, n, w1, k1, w2, candidate, candidate_plain);
+            if (s > next) { next = s; memcpy(next_key, candidate, sizeof(int) * w2); memcpy(next_plain, candidate_plain, sizeof(int) * n); }
+        }
+        if (next <= current + 1e-12) break;
+        current = next; memcpy(k2, next_key, sizeof(int) * w2); memcpy(plain, next_plain, sizeof(int) * n);
+    }
+    return current;
 }
 
 /* recherche sur les paires de largeurs. Mode criblage (K16_SCREEN=Rs,Is,top) : passage rapide sur toutes les paires, puis
@@ -201,9 +281,15 @@ static double full(const int *c, int n, int wmin, int wmax, int kw1, int kw2, in
         rs = candidate_seed;
         int w1 = pw1[i], w2 = pw2[i];
         int k1[64], k2[64], t[2048], out[2048];
-        stage2(c, n, w1, w2, R2, I2, k2); undo(c, n, w2, k2, t);
+        if (getenv("K16_IDP_GREEDY")) stage2_greedy(c, n, w1, w2, R2, I2, k2);
+        else stage2(c, n, w1, w2, R2, I2, k2);
+        undo(c, n, w2, k2, t);
         rs = seed_for(candidate_seed ^ 0xa4093822299f31d0ULL);
         double s = stage1(t, n, w1, R1, I1, k1, out);
+        if (getenv("K16_K2_POLISH")) {
+            double polished = polish_k2(c, n, w1, w2, k1, k2, out);
+            if (polished > s) s = polished;
+        }
         #pragma omp critical(k16_best)
         if (s > best || (s == best && i < best_i)) { best = s; best_i = i; *bw1 = w1; *bw2 = w2; memcpy(bk1, k1, sizeof k1); memcpy(bk2, k2, sizeof k2); memcpy(bout, out, sizeof(int) * n); }
     }
@@ -215,6 +301,17 @@ static int load_letters(const char *s, int *out, int max) {
     int n = 0; for (; *s && n < max; s++) if (*s >= 'a' && *s <= 'z') out[n++] = *s - 'a'; else if (*s >= 'A' && *s <= 'Z') out[n++] = *s - 'A';
     return n;
 }
+static int load_letters_file(const char *path, int *out, int max) {
+    FILE *f = fopen(path, "rb");
+    if (!f) { perror(path); return -1; }
+    int n = 0, ch;
+    while ((ch = fgetc(f)) != EOF && n < max) {
+        if (ch >= 'a' && ch <= 'z') out[n++] = ch - 'a';
+        else if (ch >= 'A' && ch <= 'Z') out[n++] = ch - 'A';
+    }
+    fclose(f);
+    return n;
+}
 
 int main(int argc, char **argv) {
     if (argc < 4) return 1;
@@ -222,6 +319,23 @@ int main(int argc, char **argv) {
     QG = malloc(sizeof(float) * 456976); FILE *fp = fopen(argv[2], "rb");
     if (!fp || fread(QG, sizeof(float), 456976, fp) != 456976) { fprintf(stderr, "qg ?\n"); return 1; } fclose(fp);
     for (int a = 0; a < 26; a++) for (int b = 0; b < 26; b++) { double s = 0; for (int c = 0; c < 676; c++) s += exp(QG[(a * 26 + b) * 676 + c]); BG[a][b] = log(s); }
+    if (!strcmp(argv[1], "solvepair")) {
+        if (argc < 11) { fprintf(stderr, "solvepair: model cipher w1 w2 R2 I2 R1 I1 seed\n"); return 1; }
+        int c[2048], n = load_letters_file(argv[3], c, 2048);
+        if (n < 4) { fprintf(stderr, "cipher file unreadable or too short\n"); return 1; }
+        int w1 = atoi(argv[4]), w2 = atoi(argv[5]);
+        int R2 = atoi(argv[6]), I2 = atoi(argv[7]), R1 = atoi(argv[8]), I1 = atoi(argv[9]);
+        rs = strtoull(argv[10], 0, 10) * 2654435761ULL + 43;
+        int bw1, bw2, k1[64], k2[64], out[2048];
+        double score = full(c, n, w1, w1, w1, w2, R2, I2, R1, I1, &bw1, &bw2, k1, k2, out);
+        printf("PAIR w1=%d w2=%d score=%.6f\nTEXT ", w1, w2, score);
+        for (int i = 0; i < n; i++) putchar('a' + out[i]);
+        putchar('\n');
+        printf("K1"); for (int i = 0; i < w1; i++) printf(" %d", k1[i]);
+        printf("\nK2"); for (int i = 0; i < w2; i++) printf(" %d", k2[i]);
+        putchar('\n');
+        return 0;
+    }
     if (!strcmp(argv[1], "ctrlpair")) {
         if (argc < 12) { fprintf(stderr, "ctrlpair: model plain n w1 w2 R2 I2 R1 I1 seed\n"); return 1; }
         fp = fopen(argv[3], "rb"); if (!fp) { fprintf(stderr, "plain ?\n"); return 1; }
@@ -237,6 +351,9 @@ int main(int argc, char **argv) {
             int o = rint_(M - n); memcpy(p, txt + o, sizeof(int) * n);
             randperm(k1, w1); randperm(k2, w2); encrypt2(p, n, w1, k1, w2, k2, c);
             double s = full(c, n, w1, w1, w1, w2, R2, I2, R1, I1, &bw1, &bw2, b1, b2, out);
+            int match1 = 0, match2 = 0; for (int j = 0; j < w1; j++) match1 += b1[j] == k1[j];
+            for (int j = 0; j < w2; j++) match2 += b2[j] == k2[j];
+            undo(c, n, w2, k2, t); double true_idp = idp(t, n, w1);
             for (int i = 0; i < n; i++) idx[i] = i;
             encrypt2(idx, n, w1, k1, w2, k2, cidx); undo(cidx, n, bw2, b2, t); mapping(n, bw1, b1, pos);
             for (int i = 0; i < n; i++) oidx[i] = t[pos[i]];
@@ -244,6 +361,7 @@ int main(int argc, char **argv) {
             int k2ok = bw2 == w2; for (int j = 0; j < w2 && k2ok; j++) if (b2[j] != k2[j]) k2ok = 0;
             ok += good >= 0.9 * (n - 1);
             printf("essai %d : w=%d,%d K2 %s score=%.4f (vrai %.4f) contacts=%d/%d\n", e, w1, w2, k2ok ? "exacte" : "fausse", s, quad(p, n), good, n - 1);
+            printf("  K2 exact-position matches=%d/%d; K1=%d/%d; IDP true=%.6f\n", match2, w2, match1, w1, true_idp);
             fflush(stdout);
         }
         printf("SUCCES %d/%d (w=%d,%d, R2=%d I2=%d R1=%d I1=%d)\n", ok, ne, w1, w2, R2, I2, R1, I1);
@@ -301,7 +419,8 @@ int main(int argc, char **argv) {
         }
         printf("SUCCES %d/%d (w=%d..%d, largeurs %s, R2=%d I2=%d R1=%d I1=%d)\n", ok, ne, wmin, wmax, known ? "connues" : "cherchées", R2, I2, R1, I1);
     } else {
-        int c[2048], n = load_letters(argv[3], c, 2048), isnull = !strcmp(argv[1], "null"), a = isnull ? 5 : 4;
+        int c[2048], n = load_letters_file(argv[3], c, 2048), isnull = !strcmp(argv[1], "null"), a = isnull ? 5 : 4;
+        if (n < 4) { fprintf(stderr, "cipher file unreadable or too short\n"); return 1; }
         int nn = isnull ? atoi(argv[4]) : 1, wmin = atoi(argv[a]), wmax = atoi(argv[a + 1]);
         int R2 = atoi(argv[a + 2]), I2 = atoi(argv[a + 3]), R1 = atoi(argv[a + 4]), I1 = atoi(argv[a + 5]); rs = strtoull(argv[a + 6], 0, 10) * 2654435761ULL + 43;
         for (int k = 0; k < nn; k++) {
@@ -309,7 +428,7 @@ int main(int argc, char **argv) {
             if (isnull) for (int i = n - 1; i > 0; i--) { int j = rint_(i + 1), x = cc[i]; cc[i] = cc[j]; cc[j] = x; }
             double s = full(cc, n, wmin, wmax, 0, 0, R2, I2, R1, I1, &bw1, &bw2, b1, b2, out);
             printf("%s %d score=%.4f w=%d,%d ", isnull ? "NUL" : "REEL", k, s, bw1, bw2);
-            for (int i = 0; i < n && i < 160; i++) putchar('a' + out[i]);
+            for (int i = 0; i < n; i++) putchar('a' + out[i]);
             putchar('\n'); fflush(stdout);
         }
     }
