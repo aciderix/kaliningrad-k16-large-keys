@@ -93,3 +93,28 @@ L'anomalie n'est pas due aux lignes douteuses : elle est aussi forte sur la page
 blocs** a trop de f + w (tous sous 4 %). Les blocs 2, 3 et 5 passent le test global seulement faute de puissance
 (169 lettres), pas parce qu'ils ressembleraient à l'allemand. Aucune portion du texte n'est un meilleur candidat
 qu'une autre ; les transpositions par bloc ont par ailleurs déjà été testées (K03, K05, K06, K13, K15).
+
+## Complément : russe translittéré ou dialecte ? (exploration)
+
+Références : articles Wikipédia tirés au hasard (≈ 20–65 000 lettres par langue, API publique, 2026-09-30) ; russe
+converti avec quatre translittérations (allemande avec в = w, polonaise, anglaise, française). Même statistique G que
+T1 ; « fenêtres ≥ » = fenêtres de 979 lettres de la langue elle-même aussi loin que la bouteille.
+
+| Langue | G bouteille | fenêtres ≥ | o % | a % | f+w % | e+n % |
+|---|---:|---:|---:|---:|---:|---:|
+| **bouteille** | | | 1,9 | 4,0 | 8,4 | 31,2 |
+| allemand standard (T1) | 123 | 0 | 2,5 | 5,8 | 3,2 | 27,6 |
+| luxembourgeois | 221 | 0/57 | 4,0 | 7,9 | 2,7 | 26,4 |
+| palatin | 223 | 0/27 | 3,6 | 8,8 | 3,7 | 21,1 |
+| allemand de Pennsylvanie | 225 | 0/91 | 4,0 | 8,1 | 3,5 | 21,9 |
+| bas-allemand | 282 | 0/97 | 5,4 | 8,2 | 2,2 | 24,6 |
+| frison, ripuaire, bavarois, limbourgeois, flamand | 323–384 | 0 | 5–7 | 6–14 | 2–4 | 18–28 |
+| russe, translit. allemande (в = w) | 703 | 0/57 | 9,5 | 9,9 | 4,5 | 13,2 |
+| russe, translit. polonaise / anglaise / française | 780–1 216 | 0 | 10–12 | 10 | 0,5–4,7 | 13–14 |
+| haut-sorabe, kachoube, estonien, letton, lituanien | 696–1 189 | 0 | 4–11 | 8–16 | 0,2–5 | 13–16 |
+
+Le russe est exclu quelle que soit la translittération : le o y fait 10–12 % des lettres, contre 1,9 % dans la
+bouteille (et e + n y font 13 %, contre 31 %). Aucun dialecte allemand ou néerlandais testé ne fait mieux que
+l'allemand standard ; tous ont plus de a et de o et moins de f + w que la bouteille. Le yiddish (écriture hébraïque,
+translittérations multiples) et le bas-prussien / plautdietsch (pas de corpus librement disponible ici) ne sont
+pas testés.
