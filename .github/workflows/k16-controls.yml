@@ -1,0 +1,123 @@
+name: K16 large-key controls
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  controls:
+    name: Control seed ${{ matrix.seed }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        seed: [61520, 61521, 61522, 61523, 61524, 61525, 61526, 61527, 61528, 61529]
+    env:
+      OMP_NUM_THREADS: 4
+      OMP_DYNAMIC: FALSE
+      K16_SCREEN: 3,60000,8
+      K14_T2A: 0.02
+      K14_T2B: 0.001
+    steps:
+      - name: Check out the dedicated K16 project
+        uses: actions/checkout@v4
+
+      - name: Compile the parallel solver
+        run: gcc -std=c11 -O3 -march=native -flto -fopenmp -o k16 tools/k16_double_ct2.c -lm
+
+      - name: Run one independent held-out control
+        run: |
+          mkdir -p results
+          set -o pipefail
+          ./k16 ctrl data/models/qg_de.bin data/heldout/de.txt \
+            1 15 20 0 12 200000 5 20000 "${{ matrix.seed }}" \
+            | tee "results/control-${{ matrix.seed }}.log"
+
+      - name: Preserve this run's log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k16-control-${{ matrix.seed }}
+          path: results/control-${{ matrix.seed }}.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  summary:
+    name: Summarize all controls
+    if: always()
+    needs: controls
+    runs-on: ubuntu-latest
+    outputs:
+      power_pass: ${{ steps.evaluate.outputs.power_pass }}
+    steps:
+      - name: Download control logs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: k16-control-*
+          path: results
+          merge-multiple: true
+
+      - name: Report the pass rate
+        id: evaluate
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import os
+          import re
+
+          logs = sorted(Path("results").glob("control-*.log"))
+          successes = []
+          for path in logs:
+              text = path.read_text(errors="replace")
+              match = re.search(r"SUCCES\s+(\d+)/1", text)
+              if match:
+                  successes.append(int(match.group(1)))
+          passed = sum(successes)
+          total = len(successes)
+          result = f"**Contrôles terminés : {total}/10; réussites : {passed}/10.**"
+          print(result)
+          Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text(result + "\n")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write(f"power_pass={'true' if total == 10 and passed >= 8 else 'false'}\n")
+          if total != 10:
+              raise SystemExit(f"Only {total} of 10 control logs were collected")
+          PY
+
+  bottle-search:
+    name: Explore the bottle after the power gate
+    if: needs.summary.outputs.power_pass == 'true'
+    needs: summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      OMP_NUM_THREADS: 4
+      OMP_DYNAMIC: FALSE
+      K16_SCREEN: 3,60000,8
+      K14_T2A: 0.02
+      K14_T2B: 0.001
+    steps:
+      - name: Check out the dedicated K16 project
+        uses: actions/checkout@v4
+      - name: Compile the parallel solver
+        run: gcc -std=c11 -O3 -march=native -flto -fopenmp -o k16 tools/k16_double_ct2.c -lm
+      - name: Prepare the preregistered cipher stream
+        run: python3 tools/prepare_cipher.py
+      - name: Search widths 15–20
+        run: |
+          mkdir -p results
+          set -o pipefail
+          ./k16 solve data/models/qg_de.bin data/ciphertext_979.txt \
+            15 20 12 200000 5 20000 20261001 \
+            | tee results/bottle-search.log
+      - name: Save the search result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k16-bottle-search
+          path: results/bottle-search.log
+          if-no-files-found: warn
+          retention-days: 30
