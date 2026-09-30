@@ -52,3 +52,23 @@ et notées au quadrigramme allemand (allemand réel ≈ −9 à −10 ; hasard �
 (−16,0), finales (−15,3), deuxièmes lettres (−15,2), lettres des abréviations `rsfdcfrlbsncrbndszrntdnrn` (−18,4),
 lettres portant une apostrophe (−18,3 ; uniquement des consonnes), mots d'une lettre `eêiiêiiiii`, lettres
 soulignées `epennn`. **Aucune n'est lisible** ; aucune couche simple de l'habillage ne porte un texte allemand.
+
+## Complément : allemand avec quelques lettres échangées ou confondues ? (exploration)
+
+Dernière échappatoire : un clair allemand dont l'auteur aurait échangé ou confondu quelques lettres avant de le
+mélanger. On cherche les échanges (puis les fusions de lettres) qui rapprochent le plus la bouteille de l'allemand,
+et on applique **la même optimisation** à des fenêtres allemandes pour calibrer (sinon l'optimisation seule
+fabrique de l'accord).
+
+| Échanges optimaux | Bouteille (G) | Fenêtres allemandes aussi loin après la même optimisation |
+|---|---|---|
+| 0 | 123,2 | 0/300 (max 90,8) |
+| 1 (c↔f) | 83,0 | 0/300 (max 66,7) |
+| 2 (+ g↔w) | 65,8 | 0/300 (max 54,9) |
+| 3 (+ a↔c) | 57,0 | 0/300 (max 51,1) |
+| 4 (+ a↔d) | 52,6 | 0/300 (max 49,2) |
+
+Fusions de lettres (une lettre allemande écrite avec le signe d'une autre, 1 à 4 fusions) : G ≥ 112, 0/200 fenêtres.
+Échanges ou fusions de quelques lettres ne rendent donc pas un profil allemand ; une substitution complète est déjà
+défavorisée par T2. Il n'existe pas de transformation lettre à lettre simple qui ramène le flux à de l'allemand,
+et donc pas de flux « corrigé » sur lequel relancer utilement le solveur K16.
