@@ -8,14 +8,15 @@ permissions:
 
 jobs:
   controls:
-    name: Control seed ${{ matrix.seed }}
+    name: Control ${{ matrix.control }} search ${{ matrix.replica }}
     runs-on: ubuntu-latest
     timeout-minutes: 360
     strategy:
       fail-fast: false
-      max-parallel: 10
+      max-parallel: 20
       matrix:
-        seed: [62520, 62521, 62522, 62523, 62524, 62525, 62526, 62527, 62528, 62529]
+        control: [63520, 63521, 63522, 63523, 63524, 63525, 63526, 63527, 63528, 63529]
+        replica: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     env:
       OMP_NUM_THREADS: 4
       OMP_DYNAMIC: FALSE
@@ -28,25 +29,29 @@ jobs:
       - name: Compile the parallel solver
         run: gcc -std=c11 -O3 -march=native -flto -fopenmp -o k16 tools/k16_double_ct2.c -lm
 
-      - name: Run one independent held-out control
+      - name: Run one independent full-width search
+        env:
+          CONTROL_SEED: ${{ matrix.control }}
+          REPLICA: ${{ matrix.replica }}
         run: |
           mkdir -p results
           set -o pipefail
-          ./k16 ctrl data/models/qg_de.bin data/heldout/de.txt \
-            1 15 20 0 12 200000 5 20000 "${{ matrix.seed }}" \
-            | tee "results/control-${{ matrix.seed }}.log"
+          SEARCH_SEED=$((CONTROL_SEED * 100 + REPLICA + 70000))
+          ./k16 ctrlrep data/models/qg_de.bin data/heldout/de.txt \
+            15 20 12 200000 5 20000 "$CONTROL_SEED" "$SEARCH_SEED" \
+            | tee "results/control-${CONTROL_SEED}-replica-${REPLICA}.log"
 
       - name: Preserve this run's log
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: k16-control-${{ matrix.seed }}
-          path: results/control-${{ matrix.seed }}.log
+          name: k16-control-${{ matrix.control }}-${{ matrix.replica }}
+          path: results/control-${{ matrix.control }}-replica-${{ matrix.replica }}.log
           if-no-files-found: warn
           retention-days: 30
 
   summary:
-    name: Summarize all controls
+    name: Summarize the best of twenty searches per control
     if: always()
     needs: controls
     runs-on: ubuntu-latest
@@ -65,25 +70,32 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import os
-          import re
-
-          logs = sorted(Path("results").glob("control-*.log"))
-          successes = []
-          for path in logs:
-              text = path.read_text(errors="replace")
-              match = re.search(r"SUCCES\s+(\d+)/1", text)
-              if match:
-                  successes.append(int(match.group(1)))
-          passed = sum(successes)
-          total = len(successes)
-          result = f"**Contrôles terminés : {total}/10; réussites : {passed}/10.**"
+          import os, re
+          records = {}
+          pattern = re.compile(r"CTRL control_seed=(\d+) search_seed=(\d+) planted=(\d+,\d+) found=(\d+,\d+) score=([-\d.]+) contacts=(\d+)/978")
+          for path in Path("results").glob("control-*.log"):
+              m = pattern.search(path.read_text(errors="replace"))
+              if not m:
+                  continue
+              control, search = int(m.group(1)), int(m.group(2))
+              rec = {"search": search, "planted": m.group(3), "found": m.group(4), "score": float(m.group(5)), "contacts": int(m.group(6))}
+              if control not in records or rec["score"] > records[control]["score"]:
+                  records[control] = rec
+          passed = 0
+          lines = []
+          for control in sorted(records):
+              r = records[control]
+              ok = r["contacts"] >= 881
+              passed += ok
+              lines.append(f"- {control}: {'PASS' if ok else 'FAIL'}; best search {r['search']}; widths planted {r['planted']}, found {r['found']}; score {r['score']:.4f}; contacts {r['contacts']}/978")
+          total = len(records)
+          result = f"**Contrôles fixes terminés : {total}/10; réussites : {passed}/10. Chaque contrôle a jusqu’à 20 recherches indépendantes; le meilleur est choisi par score allemand.**\n\n" + "\n".join(lines)
           print(result)
           Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text(result + "\n")
           with open(os.environ["GITHUB_OUTPUT"], "a") as output:
               output.write(f"power_pass={'true' if total == 10 and passed == 10 else 'false'}\n")
           if total != 10:
-              raise SystemExit(f"Only {total} of 10 control logs were collected")
+              raise SystemExit(f"Only {total} distinct control logs were collected")
           PY
 
   bottle-search:

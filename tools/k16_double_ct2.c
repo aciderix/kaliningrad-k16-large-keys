@@ -249,6 +249,33 @@ int main(int argc, char **argv) {
         printf("SUCCES %d/%d (w=%d,%d, R2=%d I2=%d R1=%d I1=%d)\n", ok, ne, w1, w2, R2, I2, R1, I1);
         return 0;
     }
+    if (!strcmp(argv[1], "ctrlrep")) {
+        if (argc < 12) { fprintf(stderr, "ctrlrep: model plain wmin wmax R2 I2 R1 I1 control_seed search_seed\n"); return 1; }
+        fp = fopen(argv[3], "rb"); if (!fp) { fprintf(stderr, "plain ?\n"); return 1; }
+        fseek(fp, 0, SEEK_END); long L = ftell(fp); fseek(fp, 0, SEEK_SET);
+        char *tx = malloc(L + 1); if (fread(tx, 1, L, fp) != (size_t)L) return 2; tx[L] = 0; fclose(fp);
+        int *txt = malloc(sizeof(int) * (L + 1)); int M = load_letters(tx, txt, L);
+        int wmin = atoi(argv[4]), wmax = atoi(argv[5]);
+        int R2 = atoi(argv[6]), I2 = atoi(argv[7]), R1 = atoi(argv[8]), I1 = atoi(argv[9]);
+        unsigned long long control_seed = strtoull(argv[10], 0, 10), search_seed = strtoull(argv[11], 0, 10);
+        int n = 979, p[2048], c[2048], k1[64], k2[64], b1[64], b2[64], out[2048], bw1, bw2;
+        rs = control_seed * 2654435761ULL + 41;
+        int o = rint_(M - n); memcpy(p, txt + o, sizeof(int) * n);
+        int w1 = wmin + rint_(wmax - wmin + 1), w2 = wmin + rint_(wmax - wmin + 1);
+        randperm(k1, w1); randperm(k2, w2); encrypt2(p, n, w1, k1, w2, k2, c);
+        rs = search_seed * 2654435761ULL + 53;
+        double s = full(c, n, wmin, wmax, 0, 0, R2, I2, R1, I1, &bw1, &bw2, b1, b2, out);
+        int idx[2048], cidx[2048], t[2048], pos[2048], oidx[2048];
+        for (int i = 0; i < n; i++) idx[i] = i;
+        encrypt2(idx, n, w1, k1, w2, k2, cidx); undo(cidx, n, bw2, b2, t); mapping(n, bw1, b1, pos);
+        int good = 0; for (int i = 0; i < n; i++) oidx[i] = t[pos[i]];
+        for (int i = 0; i + 1 < n; i++) good += oidx[i + 1] == oidx[i] + 1 || oidx[i + 1] == oidx[i] - 1;
+        int ok = good >= 0.9 * (n - 1);
+        printf("CTRL control_seed=%llu search_seed=%llu planted=%d,%d found=%d,%d score=%.4f contacts=%d/%d\n",
+               control_seed, search_seed, w1, w2, bw1, bw2, s, good, n - 1);
+        printf("SUCCES %d/1 (w=%d..%d, R2=%d I2=%d R1=%d I1=%d)\n", ok, wmin, wmax, R2, I2, R1, I1);
+        return 0;
+    }
     if (!strcmp(argv[1], "ctrl")) {
         fp = fopen(argv[3], "rb"); fseek(fp, 0, SEEK_END); long L = ftell(fp); fseek(fp, 0, SEEK_SET);
         char *tx = malloc(L + 1); if (fread(tx, 1, L, fp) != (size_t)L) return 2; tx[L] = 0; fclose(fp);
