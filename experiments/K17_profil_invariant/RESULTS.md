@@ -44,3 +44,11 @@ tchèque 1 431, finnois 1 820…). Aucune langue testée ne rend compte du déco
    voisines, puis habillé en mots. C'est le portrait de l'hypothèse B (pseudo-texte « à l'allemande »), ou d'un clair
    dans une orthographe non standard qui reste à identifier. Les recherches de clés longues ne sont pas la bonne
    voie tant qu'un clair compatible avec T1 n'est pas proposé.
+
+## Complément : message caché dans l'habillage ? (exploration, `tools/k17_couches.py`, `logs/couches.out`)
+
+Si le flux n'est pas un allemand transposé, le message pourrait être porté par la mise en forme. Séquences extraites
+et notées au quadrigramme allemand (allemand réel ≈ −9 à −10 ; hasard ≈ −14 à −16) : initiales des 194 mots
+(−16,0), finales (−15,3), deuxièmes lettres (−15,2), lettres des abréviations `rsfdcfrlbsncrbndszrntdnrn` (−18,4),
+lettres portant une apostrophe (−18,3 ; uniquement des consonnes), mots d'une lettre `eêiiêiiiii`, lettres
+soulignées `epennn`. **Aucune n'est lisible** ; aucune couche simple de l'habillage ne porte un texte allemand.
