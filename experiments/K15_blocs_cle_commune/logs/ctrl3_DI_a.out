@@ -1,0 +1,6 @@
+essai 0 : vrai w=7,8 v=0 | trouvé w=7,8 v=0 score=0.9966 (vrai 0.9966) contacts=973/973
+essai 1 : vrai w=13,8 v=0 | trouvé w=13,13 v=0 score=0.4764 (vrai 1.0513) contacts=11/973
+essai 2 : vrai w=5,10 v=0 | trouvé w=5,10 v=0 score=0.9183 (vrai 0.9183) contacts=973/973
+essai 3 : vrai w=11,13 v=0 | trouvé w=13,13 v=0 score=0.4778 (vrai 0.9856) contacts=7/973
+essai 4 : vrai w=6,11 v=0 | trouvé w=13,13 v=0 score=0.4690 (vrai 0.9971) contacts=7/973
+SUCCES 2/5 (fam=D score=I R=6 I=40000)

@@ -1,0 +1,3 @@
+essai 0 : vrai w=3,7 | trouvé w=3,7 MI=1.0210 (vrai 1.0198) contacts=977/978
+essai 1 : vrai w=6,3 | trouvé w=6,3 MI=1.1112 (vrai 1.1112) contacts=978/978
+SUCCES 2/2 (n=979, w=3..9, R=3, I=40000, largeurs cherchées)

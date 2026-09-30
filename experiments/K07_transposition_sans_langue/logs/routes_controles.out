@@ -1,0 +1,33 @@
+  n=169 essai 0: vrai (37, 'rowzz01', 'lire') | trouvé (37, 'rowzz00', 'lire') MI=1.576 (vrai 1.547) ÉCHEC
+  n=169 essai 1: vrai (52, 'spir10', 'lire') | trouvé (33, 'spir10', 'lire') MI=1.583 (vrai 1.530) ÉCHEC
+  n=169 essai 2: vrai (48, 'colzz10', 'lire') | trouvé (48, 'colzz00', 'lire') MI=1.734 (vrai 1.734) OK
+  n=169 essai 3: vrai (7, 'spir21', 'inverse') | trouvé (7, 'spir21', 'inverse') MI=1.756 (vrai 1.756) OK
+  n=169 essai 4: vrai (44, 'spir11', 'lire') | trouvé (62, 'spir00', 'inverse') MI=1.649 (vrai 1.603) ÉCHEC
+  n=169 essai 5: vrai (73, 'col00', 'lire') | trouvé (74, 'diaganti00', 'lire') MI=1.663 (vrai 1.653) ÉCHEC
+  n=169 essai 6: vrai (22, 'diaganti00', 'inverse') | trouvé (22, 'diaganti00', 'inverse') MI=1.602 (vrai 1.602) OK
+  n=169 essai 7: vrai (79, 'col00', 'inverse') | trouvé (79, 'diaganti01', 'inverse') MI=1.597 (vrai 1.597) ÉCHEC
+  n=169 essai 8: vrai (10, 'spir31', 'lire') | trouvé (10, 'spir31', 'lire') MI=1.688 (vrai 1.688) OK
+  n=169 essai 9: vrai (72, 'diaganti11', 'inverse') | trouvé (71, 'diagmain10', 'inverse') MI=1.667 (vrai 1.658) ÉCHEC
+n=169 : 4/10
+  n=144 essai 0: vrai (28, 'col01', 'lire') | trouvé (29, 'diaganti01', 'lire') MI=1.832 (vrai 1.805) ÉCHEC
+  n=144 essai 1: vrai (18, 'diagmain01', 'inverse') | trouvé (18, 'diagmain01', 'inverse') MI=1.887 (vrai 1.887) OK
+  n=144 essai 2: vrai (5, 'spir20', 'lire') | trouvé (5, 'spir00', 'lire') MI=1.777 (vrai 1.751) ÉCHEC
+  n=144 essai 3: vrai (50, 'rowzz11', 'lire') | trouvé (50, 'rowzz10', 'lire') MI=1.761 (vrai 1.731) ÉCHEC
+  n=144 essai 4: vrai (23, 'colzz11', 'inverse') | trouvé (23, 'colzz11', 'inverse') MI=1.523 (vrai 1.523) OK
+  n=144 essai 5: vrai (48, 'spir01', 'lire') | trouvé (42, 'spir10', 'lire') MI=1.605 (vrai 1.574) ÉCHEC
+  n=144 essai 6: vrai (50, 'spir01', 'inverse') | trouvé (50, 'spir01', 'inverse') MI=1.918 (vrai 1.918) OK
+  n=144 essai 7: vrai (72, 'rowzz00', 'inverse') | trouvé (41, 'spir11', 'lire') MI=1.553 (vrai 1.529) ÉCHEC
+  n=144 essai 8: vrai (60, 'diaganti11', 'lire') | trouvé (60, 'diaganti00', 'lire') MI=1.984 (vrai 1.984) OK
+  n=144 essai 9: vrai (50, 'diagmain11', 'inverse') | trouvé (50, 'col10', 'inverse') MI=1.857 (vrai 1.827) ÉCHEC
+n=144 : 4/10
+  n=979 essai 0: vrai (419, 'col11', 'lire') | trouvé (419, 'col00', 'lire') MI=0.927 (vrai 0.927) OK
+  n=979 essai 1: vrai (156, 'spir01', 'lire') | trouvé (156, 'spir01', 'lire') MI=0.923 (vrai 0.923) OK
+  n=979 essai 2: vrai (485, 'diagmain11', 'lire') | trouvé (487, 'diaganti00', 'lire') MI=1.050 (vrai 1.044) ÉCHEC
+  n=979 essai 3: vrai (428, 'rowzz01', 'inverse') | trouvé (428, 'rowzz00', 'lire') MI=0.939 (vrai 0.937) ÉCHEC
+  n=979 essai 4: vrai (111, 'diaganti00', 'lire') | trouvé (111, 'diaganti11', 'lire') MI=0.944 (vrai 0.944) OK
+  n=979 essai 5: vrai (113, 'spir00', 'lire') | trouvé (113, 'spir00', 'lire') MI=0.947 (vrai 0.947) OK
+  n=979 essai 6: vrai (329, 'diaganti01', 'inverse') | trouvé (329, 'diaganti01', 'inverse') MI=1.010 (vrai 1.010) OK
+  n=979 essai 7: vrai (253, 'diagmain11', 'lire') | trouvé (253, 'diagmain11', 'lire') MI=0.986 (vrai 0.986) OK
+  n=979 essai 8: vrai (245, 'rowzz11', 'inverse') | trouvé (245, 'rowzz11', 'inverse') MI=1.035 (vrai 1.035) OK
+  n=979 essai 9: vrai (145, 'diagmain01', 'lire') | trouvé (145, 'diagmain01', 'lire') MI=0.969 (vrai 0.969) OK
+n=979 : 8/10

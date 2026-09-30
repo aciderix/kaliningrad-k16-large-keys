@@ -1,0 +1,6 @@
+essai 0 : vrai w=11 v=0 | trouvé w=11 v=0 score=1.0263 (vrai 1.0263) contacts=978/978
+essai 1 : vrai w=13 v=0 | trouvé w=13 v=0 score=0.9322 (vrai 0.9322) contacts=978/978
+essai 2 : vrai w=12 v=0 | trouvé w=12 v=0 score=0.9710 (vrai 0.9710) contacts=978/978
+essai 3 : vrai w=10 v=0 | trouvé w=10 v=0 score=0.9583 (vrai 0.9583) contacts=978/978
+essai 4 : vrai w=8 v=0 | trouvé w=8 v=0 score=0.9430 (vrai 0.9406) contacts=977/978
+SUCCES 5/5 (fam=M score=I n=979 R=8 I=20000)

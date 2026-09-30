@@ -26,50 +26,5 @@ Même protocole que `dagapeyeff/docs/PROTOCOLE.md`. Choix de la cible : `docs/00
 | K13 transpositions restantes | nihiliste (blocs), Myszkowski (5-15), AMSCO (3-12), ± substitution ? | **non** (contrôles 8-10/10 ; aucun résultat n'approche un niveau de langue) |
 | K14 double transposition, grandes clés | Übchi (même clé 10-15) ; deux clés différentes 10-20 ? | Übchi **non** (contrôles 9/10, réel = nuls) ; deux clés différentes longues : **hors de portée** (sans puissance, non interprété) |
 | K15 blocs à clé commune | même clé pour les 6 blocs (routes, colonnes, Übchi, grille tournante), scores additionnés, ± substitution ? | **non** (contrôles 7-10/10 ; un score apparemment élevé — grille tournante MI 0,84 — égalé par les lettres mélangées) ; colonnes+substitution et double par bloc : sans puissance |
-| K16 double transposition, clés 10–20 | double transposition allemande à deux permutations différentes ? | **aucun clair retrouvé** ; la recherche GitHub 15–20 a examiné les 36 paires en environ 6 minutes, mais les contrôles de puissance ne réussissent que 3/10 : résultat négatif non concluant |
 
 Synthèse d'étape : [`docs/02_synthese.md`](docs/02_synthese.md).
-
-## Dépôt complet et reproductibilité
-
-Ce dépôt rassemble désormais le rapport initial, les transcriptions, les cellules
-K01–K16, leurs préinscriptions, résultats et journaux, ainsi que les outils des
-analyses K01–K15 et le solveur K16. Les échanges Claude qui documentent le transfert
-du travail sont dans [`docs/claude-transcripts/`](docs/claude-transcripts/); les
-formes de jetons sont masquées avant publication.
-
-Le détail des résultats K16 se trouve dans
-[`experiments/K16_double_lasry/RESULTS.md`](experiments/K16_double_lasry/RESULTS.md).
-Le dépôt Actions dédié et ses artefacts restent accessibles dans
-[le run de recherche 15–20](https://github.com/aciderix/kaliningrad-k16-large-keys/actions/runs/36733015575).
-
-### Recherche K16 sur GitHub
-
-Dans GitHub, ouvrir **Actions → K16 parallel bottle scan → Run workflow**. Le
-workflow effectue une recherche standard sur chaque paire de largeurs 15–20, jusqu'à
-20 runners en parallèle. Il conserve le candidat complet et les deux clés dans
-chaque artefact, puis classe les scores allemands. Un score élevé reste un indice à
-vérifier, pas une résolution sans contrôle du texte et de la puissance.
-
-### Outils et données
-
-- `data/transcription_v1.txt` : transcription retenue de la bouteille.
-- `data/transcription_v0.txt` et `data/transcription_corsair_2015.txt` : variantes
-  conservées pour comparer les lectures.
-- `data/controle_de_kant_6343.txt` : texte de contrôle utilisé dans les analyses.
-- `data/ciphertext_979.txt` : flux de 979 lettres préparé pour K16.
-- `data/models/qg_de.bin` : modèle de quadrigrammes allemands.
-- `data/heldout/de.txt` : texte indépendant du modèle, réservé aux contrôles.
-- `tools/` : scripts et sources C de K01–K16.
-
-Les commandes K16 `solve` et `null` prennent le chemin du fichier chiffré en
-troisième argument. Le chargeur corrigé lit le contenu du fichier; `solve` affiche
-le texte candidat complet. Pour exécuter localement :
-
-```sh
-gcc -std=c11 -O3 -march=native -flto -fopenmp -o k16 tools/k16_double_ct2.c -lm
-OMP_NUM_THREADS=8 ./k16 solve data/models/qg_de.bin data/ciphertext_979.txt 10 14 3 40000 5 20000 20260930
-```
-
-Le mode `K16_IDP_GREEDY=1 K16_K2_POLISH=1` est expérimental et sert au tri rapide;
-il ne remplace pas les contrôles de puissance.

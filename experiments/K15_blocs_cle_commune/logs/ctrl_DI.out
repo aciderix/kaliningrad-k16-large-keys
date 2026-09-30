@@ -1,0 +1,5 @@
+essai 0 : vrai w=13,6 v=0 | trouvé w=13,6 v=0 score=1.0548 (vrai 1.0548) contacts=973/973
+essai 1 : vrai w=13,8 v=0 | trouvé w=11,13 v=0 score=0.4661 (vrai 1.0029) contacts=5/973
+essai 2 : vrai w=12,9 v=0 | trouvé w=13,13 v=0 score=0.4853 (vrai 1.0370) contacts=12/973
+essai 3 : vrai w=6,6 v=0 | trouvé w=6,6 v=0 score=0.9525 (vrai 0.9525) contacts=973/973
+essai 4 : vrai w=7,13 v=0 | trouvé w=13,13 v=0 score=0.4878 (vrai 1.0331) contacts=6/973

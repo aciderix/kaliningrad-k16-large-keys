@@ -1,0 +1,33 @@
+  n=169 essai 0: vrai (10, 'colzz11', 'lire') rev=1 | trouvé (10, 'colzz01', 'lire') rev=0 score=-9.310 OK
+  n=169 essai 1: vrai (65, 'diaganti10', 'lire') rev=1 | trouvé (65, 'diaganti01', 'lire') rev=0 score=-8.894 OK
+  n=169 essai 2: vrai (68, 'diaganti00', 'lire') rev=1 | trouvé (68, 'diaganti00', 'lire') rev=1 score=-9.035 OK
+  n=169 essai 3: vrai (25, 'spir30', 'lire') rev=0 | trouvé (25, 'spir30', 'lire') rev=0 score=-9.051 OK
+  n=169 essai 4: vrai (46, 'colzz01', 'inverse') rev=0 | trouvé (46, 'colzz01', 'inverse') rev=0 score=-9.064 OK
+  n=169 essai 5: vrai (50, 'diagmain11', 'lire') rev=1 | trouvé (50, 'diagmain00', 'lire') rev=0 score=-8.674 OK
+  n=169 essai 6: vrai (16, 'col11', 'lire') rev=1 | trouvé (16, 'col00', 'lire') rev=0 score=-8.982 OK
+  n=169 essai 7: vrai (62, 'spir00', 'lire') rev=0 | trouvé (62, 'spir00', 'lire') rev=0 score=-8.860 OK
+  n=169 essai 8: vrai (33, 'rowzz10', 'lire') rev=0 | trouvé (33, 'rowzz00', 'lire') rev=1 score=-10.053 OK
+  n=169 essai 9: vrai (33, 'rowzz11', 'inverse') rev=0 | trouvé (33, 'rowzz11', 'inverse') rev=0 score=-9.306 OK
+n=169 : 10/10 retrouvés ; catalogue = 4648 lectures (×2 sens)
+  n=144 essai 0: vrai (33, 'rowzz11', 'inverse') rev=1 | trouvé (33, 'rowzz11', 'inverse') rev=1 score=-8.567 OK
+  n=144 essai 1: vrai (48, 'spir10', 'inverse') rev=1 | trouvé (48, 'spir10', 'inverse') rev=1 score=-9.544 OK
+  n=144 essai 2: vrai (56, 'spir31', 'inverse') rev=0 | trouvé (56, 'spir31', 'inverse') rev=0 score=-9.435 OK
+  n=144 essai 3: vrai (66, 'spir30', 'inverse') rev=1 | trouvé (66, 'spir30', 'inverse') rev=1 score=-9.415 OK
+  n=144 essai 4: vrai (2, 'col01', 'lire') rev=0 | trouvé (2, 'col01', 'lire') rev=0 score=-9.297 OK
+  n=144 essai 5: vrai (41, 'colzz00', 'inverse') rev=1 | trouvé (41, 'colzz00', 'inverse') rev=1 score=-9.500 OK
+  n=144 essai 6: vrai (28, 'diagmain00', 'inverse') rev=1 | trouvé (28, 'diagmain00', 'inverse') rev=1 score=-9.567 OK
+  n=144 essai 7: vrai (28, 'colzz11', 'inverse') rev=0 | trouvé (28, 'colzz11', 'inverse') rev=0 score=-9.005 OK
+  n=144 essai 8: vrai (25, 'spir00', 'lire') rev=1 | trouvé (25, 'spir00', 'lire') rev=1 score=-8.832 OK
+  n=144 essai 9: vrai (25, 'spir01', 'lire') rev=1 | trouvé (25, 'spir01', 'lire') rev=1 score=-9.540 OK
+n=144 : 10/10 retrouvés ; catalogue = 3976 lectures (×2 sens)
+  n=984 essai 0: vrai (293, 'diagmain00', 'lire') rev=0 | trouvé (293, 'diagmain00', 'lire') rev=0 score=-9.233 OK
+  n=984 essai 1: vrai (57, 'diagmain11', 'lire') rev=1 | trouvé (57, 'diagmain00', 'lire') rev=0 score=-9.045 OK
+  n=984 essai 2: vrai (479, 'spir11', 'lire') rev=1 | trouvé (479, 'spir31', 'lire') rev=1 score=-9.171 ÉCHEC
+  n=984 essai 3: vrai (15, 'spir20', 'inverse') rev=0 | trouvé (15, 'spir20', 'inverse') rev=0 score=-9.341 OK
+  n=984 essai 4: vrai (30, 'colzz10', 'inverse') rev=1 | trouvé (30, 'colzz10', 'inverse') rev=1 score=-9.075 OK
+  n=984 essai 5: vrai (429, 'colzz00', 'inverse') rev=0 | trouvé (429, 'colzz00', 'inverse') rev=0 score=-9.147 OK
+  n=984 essai 6: vrai (35, 'spir21', 'lire') rev=1 | trouvé (35, 'spir21', 'lire') rev=1 score=-9.175 OK
+  n=984 essai 7: vrai (15, 'spir21', 'lire') rev=0 | trouvé (15, 'spir21', 'lire') rev=0 score=-8.952 OK
+  n=984 essai 8: vrai (319, 'colzz01', 'inverse') rev=0 | trouvé (319, 'colzz01', 'inverse') rev=0 score=-9.111 OK
+  n=984 essai 9: vrai (423, 'diaganti00', 'inverse') rev=1 | trouvé (423, 'diaganti00', 'inverse') rev=1 score=-9.206 OK
+n=984 : 9/10 retrouvés ; catalogue = 27496 lectures (×2 sens)

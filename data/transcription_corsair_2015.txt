@@ -1,0 +1,65 @@
+# Transcription de Corsair_nv, commentaire du 14/07/2015 sur d3.ru (simple_life, post 784251), recopiée telle quelle (source : API publique d3.ru).
+# Note : la ligne correspondant à notre L24 manque (saut de ligne du transcripteur).
+en'ifvn d't'öhn'fdê elhrikiracel etê deluwrs
+ured ganunt' lnenên'lf r.s.f.d. fruustr d'e astf'
+uesr cfefdrr helcnunde uwsesd danunhhs c.f.
+d'enac s'eara efn' ruhncfoiw m'am'mt. f.t.'f. wmet't'cef
+dludn hro aul lel nenet'se. emnh mwie eiie iael'es
+esmdesrnt rnorunt' er relfd' r.l.b. scihss ne in'nw htouk
+sans eighcin möwidgn lw'ir'e örbns'n hran'ê uwesgnen'n
+ei sêk dloer'n'ua zn'el'et'ff s.n.c. lnee eradn' wue
+êfht'iesn'n'f wrdihs zêusrs rf'uaf'np. ihr död'e srunrca
+e wehsnhdn' mne fu oenin'f iftt' kt't'set' wr'sfue ede ê
+ue er'rn dde eshse i an'er'e nunw tmnisen't' miabdhhncs
+r.b.n. fneezt' rande hehrt'wr he ehfs mid'a ue inlg
+ft'eaveidn' t'oa iuegnnz'w ngwsaetme. lel hul retn'h'
+dien' i nelct' eweas hlen'sr' wiê ê eisr'e eomn'f
+glniftha usrualhseen ed'irt'n'l' t'nifn'tn' smwallssn d.s.z.r.
+d'repc r'l'iwt' srehui i iufiee ihnrl n'ecnn' hiuen ênfi
+sengnet'snr' hgênww hn'ein' üdnalgs' eamdemn. lba wof'u
+i mud'n r'nuaht' sêas'gnn bzereenn f'err di eg tnein
+erdsz'i isr'sn'n n'hee rêt iöe dhi ewgwt'mk n.t.d. mze
+i eir' fnö r'eseeon' ferisen'lcr't' hrhu l'nhu ewt'
+öfenuinrwe wen wertss cidi kereelrn". sn'ehd'en i
+aind' n'aêain. Albot'l f'laefdln' m'n'eev s'e eedn'a
+tekezwn nie eenn'mn ndew giunn' rferss i sr'ee ide
+ai'fefend'e wn'êd dresmrde gon'it' iwêrw wurieheu.
+eimat..........
+
+Несколько символов были неразборчивыми, мог слегка ошибиться.
+
+Вот вам частотный анализ:
+a : 3.01
+b : 0.54
+c : 1.31
+d : 3.94
+e : 11.65
+f : 3.32
+g : 1.23
+h : 3.24
+i : 5.25
+j : 0.0
+k : 0.54
+l : 3.01
+m : 1.85
+n : 9.88
+o : 0.93
+p : 0.15
+q : 0.0
+r : 5.56
+s : 4.94
+t : 3.63
+u : 3.16
+v : 0.23
+w : 2.78
+x : 0.0
+y : 0.0
+z : 0.69
+A : 0.08
+ê : 1.31
+ö : 0.54
+ü : 0.08
+' : 9.34
+" : 0.08
+_ : 14.43
+. : 3.32

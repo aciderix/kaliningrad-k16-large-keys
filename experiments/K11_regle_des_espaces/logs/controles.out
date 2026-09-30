@@ -1,0 +1,41 @@
+[planté int 0] G_int = +17.63 (nul moy -1.23, p = 0.005) ; G'_int = +15.32 (nul moy -1.46, p = 0.005) ; G_fen = -5.66 (nul moy -2.84, p = 0.766) ; G_pos = -0.32 (nul moy -0.84, p = 0.478)
+[planté int 1] G_int = +13.66 (nul moy -1.54, p = 0.005) ; G'_int = +14.44 (nul moy -1.90, p = 0.005) ; G_fen = -2.83 (nul moy -3.46, p = 0.522) ; G_pos = -1.08 (nul moy -0.83, p = 0.582)
+[planté int 2] G_int = +18.64 (nul moy -0.07, p = 0.005) ; G'_int = +16.52 (nul moy -0.20, p = 0.005) ; G_fen = -3.06 (nul moy -2.89, p = 0.607) ; G_pos = -2.37 (nul moy -1.19, p = 0.716)
+[planté int 3] G_int = +31.29 (nul moy +3.61, p = 0.005) ; G'_int = +30.03 (nul moy +2.77, p = 0.005) ; G_fen = -0.11 (nul moy -2.55, p = 0.279) ; G_pos = -4.27 (nul moy -0.97, p = 0.900)
+[planté int 4] G_int = +20.78 (nul moy +1.74, p = 0.005) ; G'_int = +25.09 (nul moy +2.69, p = 0.005) ; G_fen = -6.71 (nul moy -1.56, p = 0.876) ; G_pos = -3.09 (nul moy -0.59, p = 0.871)
+[planté int 5] G_int = +31.07 (nul moy -0.73, p = 0.005) ; G'_int = +31.52 (nul moy -1.13, p = 0.005) ; G_fen = +2.71 (nul moy -0.76, p = 0.229) ; G_pos = -4.73 (nul moy -0.76, p = 0.935)
+[planté int 6] G_int = +20.37 (nul moy -0.03, p = 0.005) ; G'_int = +17.63 (nul moy -0.70, p = 0.005) ; G_fen = -6.56 (nul moy -3.16, p = 0.861) ; G_pos = +0.28 (nul moy -0.95, p = 0.323)
+[planté int 7] G_int = +21.01 (nul moy +0.37, p = 0.005) ; G'_int = +16.83 (nul moy +0.18, p = 0.005) ; G_fen = -7.88 (nul moy -3.10, p = 0.886) ; G_pos = -7.77 (nul moy -0.62, p = 0.985)
+[planté int 8] G_int = +34.55 (nul moy -0.09, p = 0.005) ; G'_int = +36.89 (nul moy -0.14, p = 0.005) ; G_fen = +2.71 (nul moy -0.10, p = 0.279) ; G_pos = +1.59 (nul moy -0.51, p = 0.129)
+[planté int 9] G_int = +14.96 (nul moy -0.30, p = 0.005) ; G'_int = +15.89 (nul moy -0.69, p = 0.005) ; G_fen = +2.99 (nul moy +5.67, p = 0.771) ; G_pos = -2.56 (nul moy -0.32, p = 0.856)
+==> règle planté 'int' : G_int p < 0,01 dans 10/10
+[planté add 0] G_int = -2.73 (nul moy -1.72, p = 0.731) ; G'_int = -3.83 (nul moy -2.21, p = 0.746) ; G_fen = -1.23 (nul moy -2.52, p = 0.423) ; G_pos = -3.86 (nul moy -0.40, p = 0.960)
+[planté add 1] G_int = -1.26 (nul moy -1.55, p = 0.507) ; G'_int = -0.07 (nul moy -2.22, p = 0.194) ; G_fen = +0.82 (nul moy -3.35, p = 0.090) ; G_pos = +6.01 (nul moy -0.86, p = 0.005)
+[planté add 2] G_int = -0.80 (nul moy -1.55, p = 0.463) ; G'_int = -0.88 (nul moy -1.99, p = 0.383) ; G_fen = -0.13 (nul moy -3.84, p = 0.124) ; G_pos = +0.10 (nul moy -0.63, p = 0.383)
+[planté add 3] G_int = -0.03 (nul moy -1.04, p = 0.398) ; G'_int = -0.67 (nul moy -1.06, p = 0.537) ; G_fen = -15.64 (nul moy -1.81, p = 0.995) ; G_pos = +0.08 (nul moy -0.87, p = 0.378)
+[planté add 4] G_int = -1.09 (nul moy -1.43, p = 0.522) ; G'_int = -0.59 (nul moy -1.71, p = 0.343) ; G_fen = -5.05 (nul moy -3.47, p = 0.711) ; G_pos = -1.76 (nul moy -0.66, p = 0.741)
+[planté add 5] G_int = +0.64 (nul moy -2.07, p = 0.075) ; G'_int = +0.16 (nul moy -2.52, p = 0.114) ; G_fen = +1.65 (nul moy +0.59, p = 0.433) ; G_pos = -3.45 (nul moy -1.00, p = 0.876)
+[planté add 6] G_int = -0.02 (nul moy -1.15, p = 0.303) ; G'_int = -3.42 (nul moy -1.75, p = 0.801) ; G_fen = -11.08 (nul moy -3.97, p = 0.955) ; G_pos = +1.68 (nul moy -0.85, p = 0.149)
+[planté add 7] G_int = +1.65 (nul moy -1.22, p = 0.060) ; G'_int = +2.16 (nul moy -1.46, p = 0.055) ; G_fen = -5.84 (nul moy -4.57, p = 0.701) ; G_pos = +0.16 (nul moy -1.12, p = 0.313)
+[planté add 8] G_int = -1.87 (nul moy -1.51, p = 0.687) ; G'_int = -3.22 (nul moy -1.94, p = 0.771) ; G_fen = -1.12 (nul moy -3.19, p = 0.393) ; G_pos = -5.07 (nul moy -0.38, p = 0.965)
+[planté add 9] G_int = -4.21 (nul moy -1.49, p = 0.886) ; G'_int = -4.69 (nul moy -2.01, p = 0.881) ; G_fen = +2.13 (nul moy -3.12, p = 0.030) ; G_pos = -1.65 (nul moy -0.76, p = 0.736)
+==> règle planté 'add' : G_int p < 0,01 dans 0/10
+[de_6343.txt fenêtre 0] G_int = +9.67 (nul moy +5.80, p = 0.164) ; G'_int = +3.07 (nul moy +1.33, p = 0.303) ; G_fen = +35.25 (nul moy +37.11, p = 0.682) ; G_pos = +2.11 (nul moy -1.32, p = 0.060)
+[de_6343.txt fenêtre 1] G_int = +3.62 (nul moy +4.80, p = 0.557) ; G'_int = -0.34 (nul moy +0.53, p = 0.617) ; G_fen = +19.96 (nul moy +29.83, p = 0.975) ; G_pos = +1.93 (nul moy -1.26, p = 0.065)
+[de_6343.txt fenêtre 2] G_int = +8.73 (nul moy +6.00, p = 0.209) ; G'_int = +2.78 (nul moy +0.05, p = 0.169) ; G_fen = +34.06 (nul moy +35.40, p = 0.612) ; G_pos = -1.62 (nul moy -1.34, p = 0.642)
+[de_6343.txt fenêtre 3] G_int = +7.68 (nul moy +5.12, p = 0.244) ; G'_int = +6.63 (nul moy +5.42, p = 0.338) ; G_fen = +11.40 (nul moy +8.77, p = 0.264) ; G_pos = +2.97 (nul moy -1.00, p = 0.055)
+[de_6343.txt fenêtre 4] G_int = +2.37 (nul moy +2.56, p = 0.483) ; G'_int = +2.64 (nul moy +3.66, p = 0.597) ; G_fen = +19.69 (nul moy +22.62, p = 0.771) ; G_pos = -3.45 (nul moy -0.82, p = 0.851)
+[de_6343.txt fenêtre 5] G_int = -4.35 (nul moy +10.05, p = 0.990) ; G'_int = -8.99 (nul moy +6.25, p = 0.995) ; G_fen = +24.17 (nul moy +22.48, p = 0.378) ; G_pos = -5.81 (nul moy -1.12, p = 0.950)
+[de_6343.txt fenêtre 6] G_int = +8.04 (nul moy +4.35, p = 0.169) ; G'_int = +4.49 (nul moy +3.34, p = 0.358) ; G_fen = +23.30 (nul moy +24.78, p = 0.647) ; G_pos = -1.20 (nul moy -1.01, p = 0.632)
+[de_6343.txt fenêtre 7] G_int = -1.69 (nul moy +5.71, p = 0.965) ; G'_int = -4.10 (nul moy +3.25, p = 0.960) ; G_fen = +14.54 (nul moy +27.04, p = 0.980) ; G_pos = +2.31 (nul moy -1.23, p = 0.060)
+[de_6343.txt fenêtre 8] G_int = +3.36 (nul moy +4.07, p = 0.552) ; G'_int = -0.01 (nul moy -0.30, p = 0.443) ; G_fen = +15.84 (nul moy +18.67, p = 0.706) ; G_pos = -3.79 (nul moy -1.10, p = 0.871)
+[de_6343.txt fenêtre 9] G_int = -4.84 (nul moy +4.65, p = 1.000) ; G'_int = -6.93 (nul moy -0.03, p = 0.990) ; G_fen = +38.79 (nul moy +31.43, p = 0.070) ; G_pos = -2.82 (nul moy -1.19, p = 0.791)
+==> de_6343.txt : G_int au niveau du nul (p > 0,01) dans 10/10
+Traceback (most recent call last):
+  File "/home/user/kryptos-research-handoff/kaliningrad/tools/k11_espaces.py", line 168, in <module>
+    for t, lines in enumerate(real_windows(f)):
+                              ^^^^^^^^^^^^^^^
+  File "/home/user/kryptos-research-handoff/kaliningrad/tools/k11_espaces.py", line 148, in real_windows
+    while n < nlet: ws.append((words[k], False)); n += len(words[k]); k += 1
+                               ~~~~~^^^
+IndexError: list index out of range

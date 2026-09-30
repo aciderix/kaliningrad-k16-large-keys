@@ -1,0 +1,929 @@
+"Les contrôles de la dernière famille de K15, la double transposition par bloc (deux clés communes aux 6 blocs), sont terminés. Ils ne passent pas : 6/10 avec le score en allemand et 4/10 avec le score qui tolère une substitution, sous le seuil de 7/10. Selon notre règle, un résultat négatif sur la bouteille ne peut donc pas l'exclure.
+
+J'ai quand même lancé la bouteille à titre exploratoire, déclaré comme tel. Sur les faux messages, même quand le programme ne retrouve pas tout, il laisse souvent un signal partiel visible (−11,5 à −12,2, contre environ −14,5 au hasard). La bouteille obtient −14,39, au niveau du hasard, sans aucune trace de ce signal partiel. Rien ne pointe vers cette famille, mais elle n'est pas formellement exclue.
+
+Bilan de K15 (même clé pour les 6 blocs) :
+
+Exclus : routes, colonnes à clé de 5 à 20, même clé appliquée deux fois (Übchi), grille tournante. Ces quatre procédés sont exclus avec les lettres intactes ; les routes, l'Übchi et la grille tournante le sont aussi avec des lettres remplacées.
+Non testables avec nos outils : colonnes avec lettres remplacées, et double transposition par bloc (où la bouteille ne montre de toute façon aucun signal).
+C'est ajouté à kaliningrad/experiments/K15_blocs_cle_commune/RESULTS.md et poussé sur la branche.
+
+
+A modifié 4 fichiers
++319
+-0
+
+PREREGISTRATION.md
++28
+-0
+
+k15_blocs.c
++190
+-0
+
+k15_routes.py
++68
+-0
+
+Afficher 1 de plus
+Si problème d'outils créer ou trouver plus puissants
+
+Bonne idée : avant de réinventer, je cherche d'abord les outils de référence existants. George Lasry, l'auteur de la méthode qui a cassé le défi de double transposition de Leiberich, a publié du code, et CrypTool 2 intègre ses algorithmes. Je vérifie ce qui est accessible depuis ici.
+
+A recherché sur le web
+George Lasry double transposition solver source code github
+Le code de référence est intégré à CrypTool 2, qui est open source. Je tente d'accéder à son code et à l'article de Lasry, pour reproduire fidèlement la méthode qui a réellement marché.
+
+Probed access to CrypTool 2 source
+Le README de CrypTool 2 est accessible, mais pas l'arborescence du dépôt. Je demande l'accès au dépôt public de CrypTool 2 (lecture seule), pour y lire l'implémentation de l'attaque de Lasry.
+
+Utilisé Claude Code Remote: add repo
+Le dépôt public est accessible en lecture. Il est volumineux : je le clone sans le contenu des fichiers pour repérer d'abord l'implémentation de la double transposition.
+
+
+Exécuté 2 commandes
+Blobless clone of CrypTool 2 and list transposition files
+mkdir -p /home/user/cryptoolproject && cd /home/user/cryptoolproject && GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 --filter=blob:none --no-checkout https://github.com/CrypToolProject/cryptool-2 cryptool-2 2>&1 | tail -2; cd cryptool-2 && git ls-tree -r HEAD --name-only | grep -iE "doubl|transpos" | grep -iE "\.cs$" | head -40
+Cloning into 'cryptool-2'...
+CrypPlugins/ADFGVXAnalyzer/common/Transposition.cs
+CrypPlugins/ADFGVXAnalyzer/common/TranspositionTransformations.cs
+CrypPlugins/ChaCha/Helper/Converter/DoubleToPercentage.cs
+CrypPlugins/Transposition/Properties/AssemblyInfo.cs
+CrypPlugins/Transposition/Properties/Resources.Designer.cs
+CrypPlugins/Transposition/Properties/Resources.de.Designer.cs
+CrypPlugins/Transposition/Transposition.cs
+CrypPlugins/Transposition/TranspositionPresentation.xaml.cs
+CrypPlugins/Transposition/TranspositionSettings.cs
+CrypPlugins/TranspositionAnalyser/HighscoreList.cs
+CrypPlugins/TranspositionAnalyser/PermutationGenerator.cs
+CrypPlugins/TranspositionAnalyser/Properties/AssemblyInfo.cs
+CrypPlugins/TranspositionAnalyser/Properties/Resources.Designer.cs
+CrypPlugins/TranspositionAnalyser/Properties/Resources.de.Designer.cs
+CrypPlugins/TranspositionAnalyser/TranspositionAnalyser.cs
+CrypPlugins/TranspositionAnalyser/TranspositionAnalyserQuickWatchPresentation.xaml.cs
+CrypPlugins/TranspositionAnalyser/TranspositionAnalyserSettings.cs
+CrypPlugins/TranspositionAnalyser/ValueKey.cs
+LibSource/ACACiphersLib/CompleteColumnarTranspositionAlgorithm.cs
+LibSource/PacketDotNet/MiscUtil/Conversion/DoubleConverter.cs
+UnitTests/TranspositionTest.cs
+Shell cwd was reset to /home/user/kryptos-research-handoff
+Searched for double columnar analyzer files
+cd /home/user/cryptoolproject/cryptool-2 && git ls-tree -r HEAD --name-only | grep -iE "columnar|dct|lasry|idp|doublecol|DoubleCol|Column" | head -30; git ls-tree -d HEAD CrypPlugins/ --name-only | grep -iE "colum|transp|doubl|dct" 
+CrypPlugins/IDPAttack/DetailedDescription/doc.xml
+CrypPlugins/IDPAttack/HighscoreList.cs
+CrypPlugins/IDPAttack/IDPAnalyser.cs
+CrypPlugins/IDPAttack/IDPAnalyser.csproj
+CrypPlugins/IDPAttack/IDPAnalyserQuickWatchPresentation.xaml
+CrypPlugins/IDPAttack/IDPAnalyserQuickWatchPresentation.xaml.cs
+CrypPlugins/IDPAttack/IDPAnalyserSettings.cs
+CrypPlugins/IDPAttack/Properties/AssemblyInfo.cs
+CrypPlugins/IDPAttack/Properties/Resources.Designer.cs
+CrypPlugins/IDPAttack/Properties/Resources.de.Designer.cs
+CrypPlugins/IDPAttack/Properties/Resources.de.resx
+CrypPlugins/IDPAttack/Properties/Resources.resx
+CrypPlugins/IDPAttack/ValueKey.cs
+CrypPlugins/IDPAttack/icon.png
+CrypPlugins/PlayfairAnalyzer/Converters/GridViewColumnVisibilityConverter.cs
+CrypPlugins/WatermarkCreator/watermark/DCT.cs
+LibSource/ACACiphersLib/CompleteColumnarTranspositionAlgorithm.cs
+Templates/Cryptanalysis/Classic/IDPAttack.cwm
+Templates/Cryptanalysis/Classic/IDPAttack.png
+Templates/Cryptanalysis/Classic/IDPAttack.xml
+Templates/Cryptography/Classic/Double Columnar Transposition.cwm
+Templates/Cryptography/Classic/Double Columnar Transposition.xml
+Util/CT2Translate/CT2Translate/ListViewColumnSorter.cs
+CrypPlugins/Transposition
+CrypPlugins/TranspositionAnalyser
+Shell cwd was reset to /home/user/kryptos-research-handoff
+J'ai trouvé le module IDPAttack de CrypTool 2, correspondant à l'attaque de Lasry par indice de potentiel digraphique sur la double transposition. Je récupère son code source pour comparer sa méthode à la mienne.
+
+
+Exécuté une commande, lu IDPAnalyser.cs
+Sparse checkout IDPAttack sources and skim
+cd /home/user/cryptoolproject/cryptool-2 && git sparse-checkout init --no-cone 2>/dev/null; git sparse-checkout set "CrypPlugins/IDPAttack/*.cs" "CrypPlugins/IDPAttack/DetailedDescription/*" "LibSource/ACACiphersLib/CompleteColumnarTranspositionAlgorithm.cs" 2>&1 | tail -1; git checkout 2>&1 | tail -1; wc -l CrypPlugins/IDPAttack/*.cs; grep -n "IDP\|double\|Hill\|Swap\|Slide\|Score" CrypPlugins/IDPAttack/IDPAnalyser.cs | head -60
+Your branch is up to date with 'origin/main'.
+   97 CrypPlugins/IDPAttack/HighscoreList.cs
+  971 CrypPlugins/IDPAttack/IDPAnalyser.cs
+   43 CrypPlugins/IDPAttack/IDPAnalyserQuickWatchPresentation.xaml.cs
+  175 CrypPlugins/IDPAttack/IDPAnalyserSettings.cs
+   77 CrypPlugins/IDPAttack/ValueKey.cs
+ 1363 total
+30:namespace IDPAnalyser
+33:    [PluginInfo("IDPAnalyser.Properties.Resources", "PluginCaption", "PluginTooltip", "IDPAnalyser/DetailedDescription/doc.xml", "IDPAnalyser/icon.png")]
+35:    public class IDPAnalyser : ICrypComponent
+44:        private readonly IDPAnalyserSettings _settings;
+45:        private readonly IDPAnalyserQuickWatchPresentation _presentation;
+80:        public IDPAnalyser()
+82:            _settings = new IDPAnalyserSettings();
+83:            _presentation = new IDPAnalyserQuickWatchPresentation();
+164:                case 1: GuiLogMessage("Starting Hill Climbing Analysis", NotificationLevel.Info); HillClimbingAnalysis(); break;
+211:        public void ProgressChanged(double value, double max)
+229:            double totalSeconds = elapsedtime.TotalSeconds;
+239:            double secstodo;
+241:            double keysPerSec = doneKeys / totalSeconds;
+255:            ((IDPAnalyserQuickWatchPresentation)Presentation).Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+437:                        vk.score = EvalIDPKey2(vk.plaintext, key1size);
+457:        #region Hill Climbing
+459:        private void HillClimbingAnalysis()
+514:                                    Swap(key, _random.Next(key.Length), _random.Next(key.Length));
+524:                                    BlockSwap(key, f, t, l);
+542:                            vk.score = EvalIDPKey2(vk.plaintext, key1size);
+610:        /// The core algorithm for IDP (index of Digraphic Potential)
+615:        public double EvalIDPKey2(int[] ciphertext, int keylen)
+617:            double[,] p1p2Best = new double[keylen, keylen];
+637:                        double sum = 0;
+654:                double[] base_ = new double[fullRows + keylen];
+676:                        double best = 0;
+680:                            double sum = 0;
+687:                                double val = base_[i] = ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+711:                            double sum = 0;
+718:                                double val = base_[i] = ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+744:            return GetMatrixScore(p1p2Best);
+747:        private static double GetMatrixScore(double[,] matrix)
+759:            double sum = 0;
+763:                double best = 0;
+844:        private void Swap(byte[] arr, int i, int j)
+849:        private void BlockSwap(byte[] arr, int f, int t, int l)
+853:                Swap(arr, (f + i) % arr.Length, (t + i) % arr.Length);
+891:                Swap(result, _random.Next(length), _random.Next(length));
+947:        public double Value { get; set; }
+Shell cwd was reset to /home/user/kryptos-research-handoff
+Lu
+IDPAnalyser.cs
+(455–794, 794–893)
+/home/user/cryptoolproject/cryptool-2/CrypPlugins/IDPAttack/
+IDPAnalyser.cs
+        #endregion
+
+        #region Hill Climbing
+
+        private void HillClimbingAnalysis()
+        {
+            if (_settings.Iterations < 2)
+            {
+                GuiLogMessage("Check iterations.", NotificationLevel.Error);
+                return;
+            }
+
+            DateTime startTime = DateTime.Now;
+            DateTime nextUpdate = DateTime.Now.AddMilliseconds(100);
+
+            ulong keycombinations = (ulong)((_settings.Key1Max - _settings.Key1Min + 1) * (_settings.Key2Max - _settings.Key2Min + 1));
+            ulong totalKeys = (ulong)_settings.Repeatings * (ulong)_settings.Iterations * keycombinations;
+            ulong doneKeys = 0;
+            HighscoreList ROUNDLIST = new HighscoreList(_valueKeyComparer, 10);
+            stop = false;
+
+            for (int key1size = _settings.Key1Min; key1size <= _settings.Key1Max; key1size++)
+            {
+                ComputeKey1MinMaxColEnding(_input.Length, key1size);
+
+                for (int key2size = _settings.Key2Min; key2size <= _settings.Key2Max; key2size++)
+                {
+
+                    ComputeKey1MinMaxColEnding(_input.Length, key1size);
+                    int[] mybuffer = new int[_input.Length];
+                    ValueKey vk = new ValueKey();
+                    int[] ciphertext = MapTextIntoNumberSpace(_input, LATIN_ALPHABET);
+
+                    for (int repeating = 0; repeating < _settings.Repeatings; repeating++)
+                    {
+                        if (stop)
+                        {
+                            break;
+                        }
+
+                        ROUNDLIST.Clear();
+
+                        byte[] key = RandomArray(key2size);
+                        byte[] oldkey = new byte[key2size];
+
+                        for (int iteration = 0; iteration < _settings.Iterations; iteration++)
+                        {
+                            if (stop)
+                            {
+                                break;
+                            }
+
+                            Array.Copy(key, oldkey, key.Length);
+
+                            int r = _random.Next(100);
+                            if (r < 50)
+                            {
+                                for (int i = 0; i < _random.Next(10); i++)
+                                {
+                                    Swap(key, _random.Next(key.Length), _random.Next(key.Length));
+                                }
+                            }
+                            else if (r < 70)
+                            {
+                                for (int i = 0; i < _random.Next(3); i++)
+                                {
+                                    int l = _random.Next(key.Length - 1) + 1;
+                                    int f = _random.Next(key.Length);
+                                    int t = (f + l + _random.Next(key.Length - l)) % key.Length;
+                                    BlockSwap(key, f, t, l);
+                                }
+                            }
+                            else if (r < 90)
+                            {
+                                int l = 1 + _random.Next(key.Length - 1);
+                                int f = _random.Next(key.Length);
+                                int t = (f + 1 + _random.Next(key.Length - 1)) % key.Length;
+                                Blockshift(key, f, t, l);
+                            }
+                            else
+                            {
+                                Pivot(key, _random.Next(key.Length - 1) + 1);
+                            }
+
+                            vk.key = key;
+                            Decrypt2(vk.key, vk.key.Length, ciphertext, _input.Length, mybuffer);
+                            vk.plaintext = mybuffer;
+                            vk.score = EvalIDPKey2(vk.plaintext, key1size);
+                            vk.keyphrase = getKeywordFromKey(vk.key);
+
+                            if (ROUNDLIST.Add(vk))
+                            {
+                                if (_highscoreList.isBetter(vk))
+                                {
+                                    _highscoreList.Add(vk);
+                                }
+                            }
+                            else
+                            {
+                                Array.Copy(oldkey, key, key.Length);
+                            }
+
+                            doneKeys++;
+
+                            if (DateTime.Now >= nextUpdate)
+                            {
+                                _highscoreList.Merge(ROUNDLIST);
+                                UpdatePresentationList(totalKeys, doneKeys, startTime);
+                                nextUpdate = DateTime.Now.AddMilliseconds(1000);
+                            }
+                        }
+                    }
+                    _highscoreList.Merge(ROUNDLIST);
+                    UpdatePresentationList(totalKeys, doneKeys, startTime);
+                }
+            }
+        }
+
+        private void ComputeKey1MinMaxColEnding(int ciphertextLength, int keylength)
+        {
+            _key1MinColEnd = new int[keylength];
+            _key1MaxColEnd = new int[keylength];
+
+            int fullRows = ciphertextLength / keylength;
+            int numberOfLongColumns = ciphertextLength % keylength;
+
+            for (int i = 0; i < keylength; i++)
+            {
+                _key1MinColEnd[i] = fullRows * (i + 1) - 1;
+                if (i < numberOfLongColumns)
+                {
+                    _key1MaxColEnd[i] = fullRows * (i + 1) + i;
+                }
+                else
+                {
+                    _key1MaxColEnd[i] = _key1MinColEnd[i] + numberOfLongColumns;
+                }
+            }
+
+            for (int i = 0; i < keylength; i++)
+            {
+                int index = keylength - 1 - i;
+                _key1MaxColEnd[index] = Math.Min(_key1MaxColEnd[index], ciphertextLength - 1 - fullRows * i);
+                if (i < numberOfLongColumns)
+                {
+                    _key1MinColEnd[index] = Math.Max(_key1MinColEnd[index], ciphertextLength - 1 - fullRows * i - i);
+                }
+                else
+                {
+                    _key1MinColEnd[index] = Math.Max(_key1MinColEnd[index], _key1MaxColEnd[index] - numberOfLongColumns);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The core algorithm for IDP (index of Digraphic Potential)
+        /// </summary>
+        /// <param name="ciphertext"></param>
+        /// <param name="keylen"></param>
+        /// <returns></returns>
+        public double EvalIDPKey2(int[] ciphertext, int keylen)
+        {
+            double[,] p1p2Best = new double[keylen, keylen];
+
+            // CCT: All columns always start at multiples of nrows. No need to sweep for different
+            // ending positions
+            if ((ciphertext.Length % keylen) == 0)
+            {
+                int fullRows = ciphertext.Length / keylen;
+
+                for (int c1 = 0; c1 < keylen; c1++)
+                {
+                    for (int c2 = 0; c2 < keylen; c2++)
+                    {
+                        if (c1 == c2)
+                        {
+                            continue;
+                        }
+
+                        int p1 = _key1MinColEnd[c1];
+                        int p2 = _key1MinColEnd[c2];
+
+                        double sum = 0;
+
+                        for (int l = 0; l < fullRows; l++)
+                        {
+                            sum += ((Bigrams)_grams).Frequencies[ciphertext[p1 - l], ciphertext[p2 - l]];
+                        }
+
+                        p1p2Best[c1, c2] = sum / fullRows;
+                    }
+                }
+            }
+            else if ((ciphertext.Length % keylen) != 0)
+            {
+                // ICT - we sweep all possible C1-C2-C3 combinations as well
+                // as all posible ending positions (P1, P2, P3).
+
+                int fullRows = ciphertext.Length / keylen;
+                double[] base_ = new double[fullRows + keylen];
+
+                for (int c1 = 0; c1 < keylen; c1++)
+                {
+                    int minP1 = _key1MinColEnd[c1];
+                    int maxP1 = _key1MaxColEnd[c1];
+
+                    for (int c2 = 0; c2 < keylen; c2++)
+                    {
+                        if (c1 == c2)
+                        {
+                            continue;
+                        }
+
+                        int minP2 = _key1MinColEnd[c2];
+                        int maxP2 = _key1MaxColEnd[c2];
+
+                        int offset1 = maxP1 - minP1;
+                        int offset2 = maxP2 - minP2;
+
+                        int start1 = minP1 - fullRows + 1;
+                        int start2 = minP2 - fullRows + 1;
+                        double best = 0;
+
+                        for (int offset = 0; offset <= offset2; offset++)
+                        {
+                            double sum = 0;
+
+                            int p1 = start1;
+                            int p2 = start2 + offset;
+
+                            for (int i = 0; i < fullRows; i++)
+                            {
+                                double val = base_[i] = ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+                                sum += val;
+                            }
+
+                            if (best < sum)
+                            {
+                                best = sum;
+                            }
+
+                            int iMinusFullRows = 0;
+                            while ((p1 <= maxP1) && (p2 <= maxP2))
+                            {
+                                sum -= base_[iMinusFullRows++];
+                                sum += ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+                                if (best < sum)
+                                {
+                                    best = sum;
+                                }
+                            }
+                        }
+
+                        // we test only once with offset = 0;
+                        for (int offset = 1; offset <= offset1; offset++)
+                        {
+                            double sum = 0;
+
+                            int p1 = start1 + offset;
+                            int p2 = start2;
+
+                            for (int i = 0; i < fullRows; i++)
+                            {
+                                double val = base_[i] = ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+                                sum += val;
+                            }
+
+                            if (best < sum)
+                            {
+                                best = sum;
+                            }
+
+                            int iMinusFullRows = 0;
+                            while ((p1 <= maxP1) && (p2 <= maxP2))
+                            {
+                                sum -= base_[iMinusFullRows++];
+                                sum += ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+                                if (best < sum)
+                                {
+                                    best = sum;
+                                }
+                            }
+                        }
+
+                        p1p2Best[c1, c2] = best / fullRows;
+                    }
+                }
+            }
+
+            return GetMatrixScore(p1p2Best);
+        }
+
+        private static double GetMatrixScore(double[,] matrix)
+        {
+            int dimension = matrix.GetLength(0);
+
+            int[] left = new int[dimension];
+            int[] right = new int[dimension];
+
+            for (int i = 0; i < dimension; i++)
+            {
+                left[i] = right[i] = -1;
+            }
+
+            double sum = 0;
+
+            for (int i = 1; i <= dimension; i++)
+            {
+                double best = 0;
+                int bestP1 = -1;
+                int bestP2 = -1;
+
+                for (int p1 = 0; p1 < dimension; p1++)
+                {
+                    if (right[p1] != -1)
+                    {
+                        continue;
+                    }
+
+                    bool[] inP1LeftCycle = new bool[dimension];
+
+                    if (i != dimension)
+                    {
+                        int curr = p1;
+                        while (left[curr] != -1)
+                        {
+                            curr = left[curr];
+                            inP1LeftCycle[curr] = true;
+                        }
+                    }
+
+                    for (int p2 = 0; p2 < dimension; p2++)
+                    {
+                        if (left[p2] != -1)
+                        {
+                            continue;
+                        }
+
+                        if (inP1LeftCycle[p2])
+                        {
+/home/user/cryptoolproject/cryptool-2/CrypPlugins/IDPAttack/
+IDPAnalyser.cs
+                        {
+                            continue;
+                        }
+
+                        if (p1 == p2)
+                        {
+                            continue;
+                        }
+
+                        if (best < matrix[p1, p2])
+                        {
+                            best = matrix[p1, p2];
+                            bestP1 = p1;
+                            bestP2 = p2;
+                        }
+                    }
+                }
+
+                sum += best;
+                if (bestP1 != -1)
+                {
+                    left[bestP2] = bestP1;
+                    right[bestP1] = bestP2;
+                }
+            }
+
+            return sum / dimension;
+        }
+
+        public static void Decrypt2(byte[] key, int keylen, int[] ciphertext, int ciphertextLength, int[] plaintext)
+        {
+            int[] invkey = new int[keylen];
+
+            for (int i = 0; i < keylen; i++)
+            {
+                invkey[key[i]] = i;
+            }
+
+            int c = 0;
+            for (int trcol = 0; trcol < keylen; trcol++)
+            {
+                for (int p = invkey[trcol]; p < ciphertextLength; p += keylen)
+                {
+                    plaintext[p] = ciphertext[c++];
+                }
+            }
+        }
+
+        #endregion
+
+        private void Swap(byte[] arr, int i, int j)
+        {
+            byte tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+        }
+
+        private void BlockSwap(byte[] arr, int f, int t, int l)
+        {
+            for (int i = 0; i < l; i++)
+            {
+                Swap(arr, (f + i) % arr.Length, (t + i) % arr.Length);
+            }
+        }
+
+        private void Pivot(byte[] arr, int p)
+        {
+            byte[] tmp = new byte[arr.Length];
+            Array.Copy(arr, tmp, arr.Length);
+            Array.Copy(tmp, p, arr, 0, arr.Length - p);
+            Array.Copy(tmp, 0, arr, arr.Length - p, p);
+        }
+
+        private void Blockshift(byte[] arr, int f, int t, int l)
+        {
+            byte[] tmp = new byte[arr.Length];
+            Array.Copy(arr, tmp, arr.Length);
+
+            int t0 = (t - f + arr.Length) % arr.Length;
+            int n = (t0 + l) % arr.Length;
+
+            for (int i = 0; i < n; i++)
+            {
+                int ff = (f + i) % arr.Length;
+                int tt = (((t0 + i) % n) + f) % arr.Length;
+                arr[tt] = tmp[ff];
+            }
+        }
+
+        private byte[] RandomArray(int length)
+        {
+            byte[] result = new byte[length];
+            for (int i = 0; i < length; i++)
+            {
+                result[i] = (byte)i;
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                Swap(result, _random.Next(length), _random.Next(length));
+            }
+J'ai identifié trois différences clés avec mon implémentation : le calcul exact des limites de colonnes plutôt qu'une estimation, une chaîne de voisinage cohérente au lieu de correspondances bruitées, et des mouvements de recherche plus riches (échanges multiples, blocs, rotation de clé). Je vais maintenant vérifier ses fréquences de bigrammes puis porter fidèlement cette méthode en C.
+
+
+Exécuté 2 commandes
+Found bigram statistics definition
+cd /home/user/cryptoolproject/cryptool-2 && git ls-tree -r HEAD --name-only | grep -iE "Bigrams\.cs|LanguageStatistics.*Grams" | head; grep -n "_grams\s*=\|new Bigrams\|Frequencies\|LanguageStatistics" CrypPlugins/IDPAttack/IDPAnalyser.cs | head
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs
+LibSource/LanguageStatisticsLib/Grams/Grams.cs
+LibSource/LanguageStatisticsLib/Grams/GramsType.cs
+LibSource/LanguageStatisticsLib/Grams/Hexagrams.cs
+LibSource/LanguageStatisticsLib/Grams/Pentagrams.cs
+LibSource/LanguageStatisticsLib/Grams/Tetragrams.cs
+LibSource/LanguageStatisticsLib/Grams/Trigrams.cs
+LibSource/LanguageStatisticsLib/Grams/Unigrams.cs
+Util/LanguageStatisticsConverter/DeprecatedGrams.cs
+21:using LanguageStatisticsLib;
+47:        private Grams _grams = null;
+141:            _grams = LanguageStatistics.CreateGrams(_settings.Language, DirectoryHelper.DirectoryLanguageStatistics, (GramsType)2, false);
+641:                            sum += ((Bigrams)_grams).Frequencies[ciphertext[p1 - l], ciphertext[p2 - l]];
+687:                                double val = base_[i] = ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+700:                                sum += ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+718:                                double val = base_[i] = ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+731:                                sum += ((Bigrams)_grams).Frequencies[ciphertext[p1++], ciphertext[p2++]];
+Shell cwd was reset to /home/user/kryptos-research-handoff
+Inspected CT2 bigram frequency definition
+cd /home/user/cryptoolproject/cryptool-2 && git sparse-checkout add "LibSource/LanguageStatisticsLib/Grams/*.cs" 2>&1|tail -1; git checkout 2>&1|tail -1; grep -n "Frequencies\|Log\|Normalize\|useSpaces\|double\[" LibSource/LanguageStatisticsLib/Grams/Bigrams.cs LibSource/LanguageStatisticsLib/Grams/Grams.cs | head -30
+Your branch is up to date with 'origin/main'.
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs:24:        public float[,] Frequencies;
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs:26:        public Bigrams(string language, string languageStatisticsDirectory, bool useSpaces = false) : base(language, languageStatisticsDirectory, useSpaces)
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs:33:            Frequencies = (float[,])file.LoadFrequencies(2);
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs:36:            foreach (float value in Frequencies)
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs:74:                value += Frequencies[a, b];
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs:113:                value += Frequencies[a, b];
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs:123:        public override void Normalize(float maxValue)
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs:125:            base.Normalize(maxValue);
+LibSource/LanguageStatisticsLib/Grams/Bigrams.cs:131:                    Frequencies[a, b] = adjustValue / Frequencies[a, b];
+LibSource/LanguageStatisticsLib/Grams/Grams.cs:32:        public bool IsNormalized { get; private set; }
+LibSource/LanguageStatisticsLib/Grams/Grams.cs:34:        public Grams(string language, string languageStatisticsDirectory, bool useSpaces)
+LibSource/LanguageStatisticsLib/Grams/Grams.cs:36:            string filename = string.Format("{0}-{1}gram-nocs{2}.gz", language, GramSize(), useSpaces ? "-sp" : "");
+LibSource/LanguageStatisticsLib/Grams/Grams.cs:43:                throw new Exception(string.Format("Did not find the specified language statistics file for language={0} and useSpaces={1}: {2}", language, useSpaces, filename), fileNotFoundException);
+LibSource/LanguageStatisticsLib/Grams/Grams.cs:133:        /// Normalizes this Unigrams between 0 and maxValue
+LibSource/LanguageStatisticsLib/Grams/Grams.cs:136:        public virtual void Normalize(float maxValue)
+LibSource/LanguageStatisticsLib/Grams/Grams.cs:138:            if (IsNormalized)
+LibSource/LanguageStatisticsLib/Grams/Grams.cs:142:            IsNormalized = true;
+Shell cwd was reset to /home/user/kryptos-research-handoff
+Je porte la méthode de CrypTool 2 en C, avec fins de colonnes exactes, score en chaîne et mouvements de recherche. Ensuite je testerai sa puissance sur les mêmes faux messages qui avaient fait échouer ma première version.
+
+Port CT2 IDP into C and test at known widths
+Bash
+python3 - <<'E'
+src=open('kaliningrad/tools/k14_double_idp.c').read()
+# 1) remplacer la fonction idp par la version CrypTool 2 (fins de colonnes exactes + chaîne gloutonne)
+start=src.index('/* potentiel de juxtaposition'); end=src.index('static void randperm')
+new_idp=r'''/* IDP, portage fidèle de CrypTool 2 (IDPAnalyser.cs, Lasry) : plages exactes de fin de colonne, fenêtre glissante,
+   puis score de matrice par chaîne gloutonne (chaque colonne a au plus un voisin gauche et un droit, sans cycle). */
+static int MINE[64], MAXE[64], CURW = -1, CURN = -1;
+static void colends(int n, int w) {
+    int full = n / w, nl = n % w;
+    for (int i = 0; i < w; i++) { MINE[i] = full * (i + 1) - 1; MAXE[i] = (i < nl) ? full * (i + 1) + i : MINE[i] + nl; }
+    for (int i = 0; i < w; i++) {
+        int idx = w - 1 - i;
+        if (MAXE[idx] > n - 1 - full * i) MAXE[idx] = n - 1 - full * i;
+        if (i < nl) { int v = n - 1 - full * i - i; if (MINE[idx] < v) MINE[idx] = v; }
+        else { int v = MAXE[idx] - nl; if (MINE[idx] < v) MINE[idx] = v; }
+    }
+    CURW = w; CURN = n;
+}
+static double chain_score(double m[64][64], int d) {
+    int left[64], right[64]; for (int i = 0; i < d; i++) left[i] = right[i] = -1;
+    double sum = 0;
+    for (int it = 1; it <= d; it++) {
+        double best = -1e18; int b1 = -1, b2 = -1;
+        for (int p1 = 0; p1 < d; p1++) {
+            if (right[p1] != -1) continue;
+            int inc[64] = {0};
+            if (it != d) { int cur = p1; while (left[cur] != -1) { cur = left[cur]; inc[cur] = 1; } }
+            for (int p2 = 0; p2 < d; p2++) {
+                if (left[p2] != -1 || inc[p2] || p1 == p2) continue;
+                if (m[p1][p2] > best) { best = m[p1][p2]; b1 = p1; b2 = p2; }
+            }
+        }
+        if (b1 != -1) { sum += best; left[b2] = b1; right[b1] = b2; }
+    }
+    return sum / d;
+}
+static double idp(const int *t, int n, int w1) {
+    if (CURW != w1 || CURN != n) colends(n, w1);
+    static double m[64][64]; int full = n / w1;
+    for (int c1 = 0; c1 < w1; c1++) for (int c2 = 0; c2 < w1; c2++) {
+        if (c1 == c2) { m[c1][c2] = -1e18; continue; }
+        double best = -1e18;
+        if (n % w1 == 0) {
+            int p1 = MINE[c1], p2 = MINE[c2]; double s = 0;
+            for (int l = 0; l < full; l++) s += BG[t[p1 - l]][t[p2 - l]];
+            best = s;
+        } else {
+            int s1 = MINE[c1] - full + 1, s2 = MINE[c2] - full + 1, o1 = MAXE[c1] - MINE[c1], o2 = MAXE[c2] - MINE[c2];
+            for (int pass = 0; pass < 2; pass++) {
+                int omax = pass == 0 ? o2 : o1;
+                for (int off = pass; off <= omax; off++) {
+                    int p1 = s1 + (pass ? off : 0), p2 = s2 + (pass ? 0 : off); double s = 0; int a = p1, b = p2;
+                    if (a < 0 || b < 0 || a + full > n || b + full > n) continue;
+                    for (int i = 0; i < full; i++) s += BG[t[a + i]][t[b + i]];
+                    if (s > best) best = s;
+                    int q1 = a + full, q2 = b + full, k = 0;
+                    while (q1 <= MAXE[c1] && q2 <= MAXE[c2]) { s += BG[t[q1]][t[q2]] - BG[t[a + k]][t[b + k]]; k++; q1++; q2++; if (s > best) best = s; }
+                }
+            }
+        }
+        m[c1][c2] = best / full;
+    }
+    return chain_score(m, w1);
+}
+
+'''
+src=src[:start]+new_idp+src[end:]
+# 2) mouvements CrypTool 2 dans l'étape K2 : échanges multiples, échange de blocs, décalage de bloc, pivot
+old_mut=src[src.index('static void mutate(int *k, int w) {'):src.index('static double stage2')]
+new_mut=r'''static void mutate(int *k, int w) {
+    int a = rint_(w), b = rint_(w); if (a == b) return;
+    int mv = rint_(3);
+    if (mv == 0) { int x = k[a]; k[a] = k[b]; k[b] = x; }
+    else if (mv == 1) { if (a > b) { int x = a; a = b; b = x; } while (a < b) { int x = k[a]; k[a] = k[b]; k[b] = x; a++; b--; } }
+    else { int v = k[a]; if (a < b) memmove(k + a, k + a + 1, sizeof(int) * (b - a)); else memmove(k + b + 1, k + b, sizeof(int) * (a - b)); k[b] = v; }
+}
+static void mutate_ct2(int *k, int w) {       /* répertoire de mouvements de CrypTool 2 */
+    int r = rint_(100), tmp[64];
+    if (r < 50) { int n = 1 + rint_(9); for (int i = 0; i < n; i++) { int a = rint_(w), b = rint_(w), x = k[a]; k[a] = k[b]; k[b] = x; } }
+    else if (r < 70) { int n = 1 + rint_(2); for (int j = 0; j < n; j++) { int l = 1 + rint_(w - 1), f = rint_(w), t = (f + l + rint_(w - l > 0 ? w - l : 1)) % w;
+                        for (int i = 0; i < l; i++) { int x = k[(f + i) % w]; k[(f + i) % w] = k[(t + i) % w]; k[(t + i) % w] = x; } } }
+    else if (r < 90) { int l = 1 + rint_(w - 1), f = rint_(w), t = (f + 1 + rint_(w - 1)) % w; memcpy(tmp, k, sizeof(int) * w);
+                        int t0 = (t - f + w) % w, nn = (t0 + l) % w; for (int i = 0; i < nn; i++) { int ff = (f + i) % w, tt = (((t0 + i) % nn) + f) % w; k[tt] = tmp[ff]; } }
+    else { int p = 1 + rint_(w - 1); memcpy(tmp, k, sizeof(int) * w); memcpy(k, tmp + p, sizeof(int) * (w - p)); memcpy(k + w - p, tmp, sizeof(int) * p); }
+}
+'''
+src=src.replace(old_mut,new_mut)
+src=src.replace("memcpy(q, k, sizeof(int) * w2); mutate(q, w2); undo(c, n, w2, q, t); double s = idp(t, n, w1);",
+                "memcpy(q, k, sizeof(int) * w2); mutate_ct2(q, w2); undo(c, n, w2, q, t); double s = idp(t, n, w1);")
+open('kaliningrad/tools/k16_double_ct2.c','w').write(src.replace("K14 — double transposition à grandes clés","K16 — double transposition à grandes clés, IDP porté de CrypTool 2 (Lasry)"))
+E
+K=/tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/scratchpad/k16; gcc -O2 -Wall -o $K kaliningrad/tools/k16_double_ct2.c -lm 2>&1 | grep -E "error|warning: unused" ; S=/tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/scratchpad
+python3 - <<E
+s=open('/home/user/kryptos-research-handoff/kaliningrad/tools/k16_double_ct2.c').read()
+ins='''            { int tt[2048]; undo(c, n, w2, k2, tt); double it_ = idp(tt, n, w1); undo(c, n, bw2, b2, tt); double if_ = idp(tt, n, bw1);
+              int rk[64]; randperm(rk, w2); undo(c, n, w2, rk, tt); printf("  IDP vraie %.4f | trouvée %.4f | aléatoire %.4f\\\\n", it_, if_, idp(tt, n, w1)); }
+            int k2ok = 1;'''
+s=s.replace('            int k2ok = 1;',ins,1); open('$S/k16dbg.c','w').write(s)
+E
+gcc -O2 -o $S/k16dbg $S/k16dbg.c -lm && cd /home/user/kryptos-research-handoff && for s in 12 13 14 7; do (time $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 4 80000 5 20000 $s) 2>&1 | grep -E "IDP|essai|real" & done; wait
+  IDP vraie -5.3086 | trouvée -5.3086 | aléatoire -6.2843
+essai 0 : vrai w=11,13 | trouvé w=11,13 K2 exacte score=-9.2607 (vrai -9.2607) contacts=978/978
+real	0m4.326s
+  IDP vraie -5.1515 | trouvée -5.1515 | aléatoire -6.2114
+essai 0 : vrai w=10,16 | trouvé w=10,16 K2 exacte score=-9.0642 (vrai -9.0642) contacts=978/978
+real	0m6.755s
+  IDP vraie -5.2439 | trouvée -5.8664 | aléatoire -6.0076
+essai 0 : vrai w=13,17 | trouvé w=13,17 K2 fausse score=-14.7781 (vrai -9.3728) contacts=5/978
+real	0m20.749s
+  IDP vraie -5.2248 | trouvée -5.9308 | aléatoire -6.0377
+essai 0 : vrai w=16,19 | trouvé w=16,19 K2 fausse score=-14.8119 (vrai -9.2604) contacts=5/978
+real	0m24.289s
+[1]   Done                    ( time $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 4 80000 5 20000 $s ) 2>&1 | grep -E "IDP|essai|real"
+[2]   Done                    ( time $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 4 80000 5 20000 $s ) 2>&1 | grep -E "IDP|essai|real"
+[3]-  Done                    ( time $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 4 80000 5 20000 $s ) 2>&1 | grep -E "IDP|essai|real"
+[4]+  Done                    ( time $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 4 80000 5 20000 $s ) 2>&1 | grep -E "IDP|essai|real"
+Amélioration nette : la séparation vraie clé/clé aléatoire est plus forte et le cas 10/16 est résolu. Il reste 2 échecs de recherche (clés à 17 et 19 colonnes) où la clé trouvée score trop bas — j'augmente fortement redémarrages et itérations sur ces deux cas.
+
+Higher effort on failing cases
+Bash
+S=/tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/scratchpad; for s in 14 7; do for T in "0.05 0.002" "0.02 0.001"; do set -- $T; ( (time K14_T2A=$1 K14_T2B=$2 $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 12 200000 5 20000 $s) 2>&1 | grep -E "IDP|essai|real" | sed "s/^/s$s T$1 /" ) & done; done; wait
+s7 T0.05   IDP vraie -5.1515 | trouvée -5.1515 | aléatoire -6.2151
+s7 T0.05 essai 0 : vrai w=10,16 | trouvé w=10,16 K2 exacte score=-9.0642 (vrai -9.0642) contacts=978/978
+s7 T0.05 real	0m53.942s
+s7 T0.02   IDP vraie -5.1515 | trouvée -5.1515 | aléatoire -6.2473
+s7 T0.02 essai 0 : vrai w=10,16 | trouvé w=10,16 K2 exacte score=-9.0642 (vrai -9.0642) contacts=978/978
+s7 T0.02 real	0m54.736s
+s14 T0.05   IDP vraie -5.2439 | trouvée -5.7336 | aléatoire -5.9726
+s14 T0.05 essai 0 : vrai w=13,17 | trouvé w=13,17 K2 fausse score=-14.6040 (vrai -9.3728) contacts=171/978
+s14 T0.05 real	2m39.254s
+[1]   Done                    ( ( time K14_T2A=$1 K14_T2B=$2 $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 12 200000 5 20000 $s ) 2>&1 | grep -E "IDP|essai|real" | sed "s/^/s$s T$1 /" )
+[3]-  Done                    ( ( time K14_T2A=$1 K14_T2B=$2 $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 12 200000 5 20000 $s ) 2>&1 | grep -E "IDP|essai|real" | sed "s/^/s$s T$1 /" )
+[4]+  Done                    ( ( time K14_T2A=$1 K14_T2B=$2 $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 12 200000 5 20000 $s ) 2>&1 | grep -E "IDP|essai|real" | sed "s/^/s$s T$1 /" )
+s14 T0.02   IDP vraie -5.2439 | trouvée -5.2439 | aléatoire -5.9886
+s14 T0.02 essai 0 : vrai w=13,17 | trouvé w=13,17 K2 exacte score=-9.3728 (vrai -9.3728) contacts=978/978
+s14 T0.02 real	2m39.653s
+[2]+  Done                    ( ( time K14_T2A=$1 K14_T2B=$2 $S/k16dbg ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 1 12 200000 5 20000 $s ) 2>&1 | grep -E "IDP|essai|real" | sed "s/^/s$s T$1 /" )
+Le cas 13/17 est résolu avec une recherche plus poussée, mais à 2,5 min par paire sur 121 paires possibles, une recherche exhaustive prendrait 5 heures. Je vais d'abord tester un passage rapide pour présélectionner les 5 meilleures paires par score IDP avant d'approfondir, en vérifiant que la bonne paire ressort bien de ce filtrage.
+
+Added screening mode; check true pair rank in quick screen
+Bash
+python3 - <<'E'
+p='kaliningrad/tools/k16_double_ct2.c'; s=open(p).read()
+old=s[s.index('/* recherche complète sur les paires de largeurs'):s.index('static int load_letters')]
+new=r'''/* recherche sur les paires de largeurs. Mode criblage (K16_SCREEN=Rs,Is,top) : passage rapide sur toutes les paires, puis
+   recherche profonde (R2, I2) seulement sur les « top » paires au meilleur IDP. */
+static double full(const int *c, int n, int wmin, int wmax, int kw1, int kw2, int R2, int I2, int R1, int I1,
+                   int *bw1, int *bw2, int *bk1, int *bk2, int *bout) {
+    double best = -1e18; int k1[64], k2[64], t[2048], out[2048];
+    int pw1[512], pw2[512], np = 0; double pid[512];
+    for (int w1 = (kw1 ? kw1 : wmin); w1 <= (kw1 ? kw1 : wmax); w1++)
+        for (int w2 = (kw2 ? kw2 : wmin); w2 <= (kw2 ? kw2 : wmax); w2++) { pw1[np] = w1; pw2[np] = w2; pid[np] = 0; np++; }
+    int Rs = 0, Is = 0, top = np;
+    if (getenv("K16_SCREEN")) sscanf(getenv("K16_SCREEN"), "%d,%d,%d", &Rs, &Is, &top);
+    if (Rs > 0 && top < np) {
+        for (int i = 0; i < np; i++) pid[i] = stage2(c, n, pw1[i], pw2[i], Rs, Is, k2);
+        for (int i = 0; i < np; i++) for (int j = i + 1; j < np; j++) if (pid[j] > pid[i]) {
+            double x = pid[i]; pid[i] = pid[j]; pid[j] = x; int a = pw1[i]; pw1[i] = pw1[j]; pw1[j] = a; a = pw2[i]; pw2[i] = pw2[j]; pw2[j] = a; }
+        if (getenv("K16_VERBOSE")) { fprintf(stderr, "criblage :"); for (int i = 0; i < 8 && i < np; i++) fprintf(stderr, " (%d,%d)%.3f", pw1[i], pw2[i], pid[i]); fprintf(stderr, "\n"); }
+        np = top;
+    }
+    for (int i = 0; i < np; i++) {
+        int w1 = pw1[i], w2 = pw2[i];
+        stage2(c, n, w1, w2, R2, I2, k2); undo(c, n, w2, k2, t);
+        double s = stage1(t, n, w1, R1, I1, k1, out);
+        if (s > best) { best = s; *bw1 = w1; *bw2 = w2; memcpy(bk1, k1, sizeof k1); memcpy(bk2, k2, sizeof k2); memcpy(bout, out, sizeof(int) * n); }
+    }
+    return best;
+}
+
+'''
+s=s.replace(old,new); open(p,'w').write(s)
+E
+K=/tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/scratchpad/k16; gcc -O2 -o $K kaliningrad/tools/k16_double_ct2.c -lm && for s in 12 13 14 7; do ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" ) & done; wait
+s14 criblage : (19,20)-5.756 (19,14)-5.758 (19,18)-5.763 (19,19)-5.763 (19,10)-5.763 (19,17)-5.766 (19,12)-5.770 (19,15)-5.771
+s7 criblage : (10,16)-5.461 (19,19)-5.824 (19,13)-5.837 (19,17)-5.844 (19,20)-5.848 (19,14)-5.848 (19,10)-5.853 (19,16)-5.856
+s12 criblage : (19,18)-5.815 (19,20)-5.832 (19,17)-5.838 (19,13)-5.842 (18,17)-5.842 (19,15)-5.844 (19,19)-5.849 (19,12)-5.850
+[1]   Done                    ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" )
+[3]-  Done                    ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" )
+[4]+  Done                    ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" )
+s13 criblage : (11,13)-5.309 (19,20)-5.883 (19,17)-5.885 (19,11)-5.887 (19,18)-5.891 (19,15)-5.891 (19,13)-5.895 (19,16)-5.898
+[2]+  Done                    ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" )
+Je remarque que le score IDP brut favorise artificiellement les grandes clés à cause du bruit sur les colonnes plus courtes, masquant les bonnes paires dans les cas difficiles. Je vais corriger cela en normalisant chaque paire par un score z calculé sur des clés aléatoires de même taille.
+
+Normalized screening by random-key baseline, retest ranks
+Bash
+python3 - <<'E'
+p='kaliningrad/tools/k16_double_ct2.c'; s=open(p).read()
+old="        for (int i = 0; i < np; i++) pid[i] = stage2(c, n, pw1[i], pw2[i], Rs, Is, k2);"
+new='''        for (int i = 0; i < np; i++) {
+            /* normalisation : niveau de hasard de l'IDP pour cette paire de largeurs (40 clés K2 aléatoires) */
+            double m = 0, m2 = 0; int rk[64], tt[2048];
+            for (int r = 0; r < 40; r++) { randperm(rk, pw2[i]); undo(c, n, pw2[i], rk, tt); double v = idp(tt, n, pw1[i]); m += v; m2 += v * v; }
+            m /= 40; double sd = sqrt(m2 / 40 - m * m) + 1e-9;
+            pid[i] = (stage2(c, n, pw1[i], pw2[i], Rs, Is, k2) - m) / sd;
+        }'''
+assert old in s; s=s.replace(old,new); open(p,'w').write(s)
+E
+K=/tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/scratchpad/k16; gcc -O2 -o $K kaliningrad/tools/k16_double_ct2.c -lm && for s in 12 13 14 7; do ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" | cut -c1-200 ) & done; wait
+s13 criblage : (11,13)35.583 (10,20)7.909 (11,18)7.638 (15,19)6.978 (15,20)6.948 (12,15)6.669 (14,20)6.578 (10,13)6.551
+s14 criblage : (11,20)7.164 (20,18)6.905 (14,20)6.767 (15,19)6.634 (11,14)6.521 (10,16)6.366 (10,19)6.298 (10,15)6.145
+s7 criblage : (10,16)15.148 (16,15)7.442 (12,18)7.077 (15,19)6.793 (14,18)6.780 (18,10)6.712 (12,16)6.600 (14,20)6.551
+s12 criblage : (17,12)7.510 (10,17)6.834 (11,18)6.817 (18,17)6.752 (10,19)6.749 (13,14)6.738 (15,16)6.726 (15,12)6.545
+[1]   Done                    ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" | cut -c1-200 )
+[2]   Done                    ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" | cut -c1-200 )
+[3]-  Done                    ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" | cut -c1-200 )
+[4]+  Done                    ( K16_VERBOSE=1 K16_SCREEN=2,20000,0 K14_T2A=0.02 K14_T2B=0.001 timeout 900 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s 2>&1 | grep -E "criblage|essai" | sed "s/^/s$s /" | cut -c1-200 )
+La normalisation fonctionne bien sur les cas faciles, mais les deux cas difficiles restent ambigus faute d'un passage assez approfondi. Je vais tester un criblage plus poussé sur ces deux cas.
+
+Deeper screening on hard cases
+Bash
+K=/tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/scratchpad/k16; for s in 12 14; do ( (time K16_VERBOSE=1 K16_SCREEN=3,60000,0 K14_T2A=0.02 K14_T2B=0.001 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s) 2>&1 | grep -E "criblage|real" | sed "s/^/s$s /" | cut -c1-200 ) & done; wait
+Command did not complete within its 600s timeout and was moved to the background (ID: b6sp2el99). Output is being written to: /tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/tasks/b6sp2el99.output. You will be notified when it completes. To check interim output, use Read on that file path.
+Pendant ce criblage plus profond, je commite le nouvel outil. J'ajoute dans l'en-tête la référence explicite au code d'origine de CrypTool 2 (licence Apache 2.0).
+
+Added attribution header and committed K16 tool
+Bash
+head -3 /home/user/cryptoolproject/cryptool-2/CrypPlugins/IDPAttack/IDPAnalyser.cs; python3 - <<'E'
+p='kaliningrad/tools/k16_double_ct2.c'; s=open(p).read()
+s=s.replace("/* K16 — double transposition à grandes clés, IDP porté de CrypTool 2 (Lasry)","/* K16 — double transposition à grandes clés, IDP porté de CrypTool 2 (Lasry)\n   Réimplémentation en C de l'évaluation IDP et des mouvements de CrypPlugins/IDPAttack/IDPAnalyser.cs (CrypTool 2,\n   https://github.com/CrypToolProject/CrypTool-2, licence Apache 2.0) ; méthode : Lasry, Kopal & Wacker, Cryptologia 38(3), 2014.",1)
+open(p,'w').write(s)
+E
+head -5 kaliningrad/tools/k16_double_ct2.c; git add kaliningrad/tools/k16_double_ct2.c && git commit -q -m "Kaliningrad: outil K16 (IDP de Lasry porté de CrypTool 2, criblage normalisé des largeurs)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01QweC7E1821CMDHK3KnDWch" && git push -q -u origin claude/ecstatic-volta-cn51vq; git log --oneline -1
+﻿/*
+   Copyright 2023 CrypTool 2 Team <ct2contact@CrypTool.org>
+
+/* K16 — double transposition à grandes clés, IDP porté de CrypTool 2 (Lasry)
+   Réimplémentation en C de l'évaluation IDP et des mouvements de CrypPlugins/IDPAttack/IDPAnalyser.cs (CrypTool 2,
+   https://github.com/CrypToolProject/CrypTool-2, licence Apache 2.0) ; méthode : Lasry, Kopal & Wacker, Cryptologia 38(3), 2014. : recuit sur K2 noté par le potentiel de juxtaposition des colonnes (IDP, bigrammes
+   allemands), puis recuit sur K1 (quadrigrammes). Voir experiments/K14_double_grandes_cles/PREREGISTRATION.md.
+   Compilation : gcc -O2 -o k14 tools/k14_double_idp.c -lm
+af29cad Kaliningrad: outil K16 (IDP de Lasry porté de CrypTool 2, criblage normalisé des largeurs)
+L'en-tête est mal fusionné avec l'ancien (référence à k14, phrase coupée). Je le réécris proprement en attendant le criblage.
+
+
+Exécuté 2 commandes
+Rewrote K16 header cleanly
+python3 - <<'E'
+p='kaliningrad/tools/k16_double_ct2.c'; s=open(p).read()
+i=s.index('#include')
+hdr='''/* K16 — double transposition à grandes clés : attaque « diviser pour régner » de Lasry.
+   Étape K2 : recuit sur la seconde clé, noté par l'IDP (potentiel de juxtaposition des colonnes, bigrammes allemands) ;
+   étape K1 : recuit sur la première clé (quadrigrammes). Criblage des paires de largeurs par IDP normalisé (score z contre
+   des clés aléatoires), option K16_SCREEN=Rs,Is,top.
+   L'évaluation IDP (plages exactes de fin de colonne, fenêtre glissante, score de matrice par chaîne gloutonne) et le
+   répertoire de mouvements sont réimplémentés en C d'après CrypPlugins/IDPAttack/IDPAnalyser.cs (CrypTool 2,
+   https://github.com/CrypToolProject/CrypTool-2, licence Apache 2.0) ; méthode : Lasry, Kopal & Wacker, Cryptologia 38(3), 2014.
+   Voir experiments/K16_double_lasry/PREREGISTRATION.md.
+   Compilation : gcc -O2 -o k16 tools/k16_double_ct2.c -lm
+   Usage : identique à k14_double_idp.c (ctrl / solve / null). */
+'''
+open(p,'w').write(hdr+s[i:])
+E
+head -12 kaliningrad/tools/k16_double_ct2.c | tail -3; gcc -O2 -o /tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/scratchpad/k16b kaliningrad/tools/k16_double_ct2.c -lm && echo compile-ok
+   Usage : identique à k14_double_idp.c (ctrl / solve / null). */
+#include <stdio.h>
+#include <stdlib.h>
+compile-ok
+Waited for deeper screening results
+Push aussi
+
+Committed and pushed everything
+Bash
+git add -A kaliningrad && git commit -q -m "Kaliningrad K16: en-tête de l'outil réécrit (attribution CrypTool 2, usage)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01QweC7E1821CMDHK3KnDWch"; for i in 1 2 3 4; do git push -q -u origin claude/ecstatic-volta-cn51vq && break || sleep $((2**i)); done; git log --oneline -1; git status --short | wc -l; git log origin/claude/ecstatic-volta-cn51vq --oneline -1
+417a4f2 Kaliningrad K16: en-tête de l'outil réécrit (attribution CrypTool 2, usage)
+0
+417a4f2 Kaliningrad K16: en-tête de l'outil réécrit (attribution CrypTool 2, usage)
+Poussé : la branche distante est à jour (417a4f2) et il ne reste rien de non commité. Je reprends le criblage approfondi.
+
+Checked screening progress
+Bash
+cat /tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/tasks/b6sp2el99.output; pgrep -x k16 | wc -l
+2
+Le criblage approfondi tourne toujours sur les deux cas difficiles (121 paires de largeurs chacun). J'attends sa fin pour fixer les réglages de l'outil, avant de pré-inscrire K16 et de lancer ses contrôles.
+
+Crédits d'utilisation épuisés
+Achetez des crédits pour continuer à travailler. Votre limite hebdomadaire se réinitialise 4 oct. à 00:00."
+ https://claude.ai/code#:~:text=Les%20contr%C3%B4les%20de,%C3%A0%2000%3A00.

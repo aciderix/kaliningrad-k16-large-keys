@@ -1,0 +1,11 @@
+essai 0 : vrai w=18,0 v=0 | trouvé w=18,0 v=0 score=0.7999 (vrai 0.9950) contacts=816/973
+essai 1 : vrai w=19,0 v=0 | trouvé w=19,0 v=0 score=0.6499 (vrai 0.9845) contacts=627/973
+essai 2 : vrai w=5,0 v=0 | trouvé w=5,0 v=0 score=0.9220 (vrai 0.9220) contacts=973/973
+essai 3 : vrai w=16,0 v=0 | trouvé w=16,0 v=0 score=0.7701 (vrai 0.9668) contacts=791/973
+essai 4 : vrai w=19,0 v=0 | trouvé w=19,0 v=0 score=0.6229 (vrai 1.0051) contacts=521/973
+essai 5 : vrai w=8,0 v=0 | trouvé w=8,0 v=0 score=0.8795 (vrai 0.8795) contacts=973/973
+essai 6 : vrai w=5,0 v=0 | trouvé w=5,0 v=0 score=0.9711 (vrai 0.9711) contacts=973/973
+essai 7 : vrai w=18,0 v=0 | trouvé w=18,0 v=0 score=0.7642 (vrai 0.9804) contacts=707/973
+essai 8 : vrai w=15,0 v=0 | trouvé w=15,0 v=0 score=0.9953 (vrai 0.9953) contacts=973/973
+essai 9 : vrai w=13,0 v=0 | trouvé w=13,0 v=0 score=0.9434 (vrai 0.9434) contacts=973/973
+SUCCES 5/10 (fam=C score=I R=8 I=40000)

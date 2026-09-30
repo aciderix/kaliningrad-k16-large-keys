@@ -1,0 +1,23 @@
+auto-compatibilité (≥ 90 % exigé) :
+  F1 clair                     0.85
+  F2 substitution              0.93
+  F3 Vigenère                  0.85
+  F4 transposition             0.95
+  F5 subst+transp              0.93
+  F6 Playfair                  0.93
+  F7 Bifid                     0.82
+  F8 homophonique              0.97
+  F9 i.i.d. fréq. allemandes   0.90
+  F10 i.i.d. fréq. bouteille   0.90
+matrice : part des échantillons de la famille (ligne) jugés compatibles avec la famille (colonne)
+                                F1    F2    F3    F4    F5    F6    F7    F8    F9   F10
+  F1 clair                     0.85  0.93  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00
+  F2 substitution              0.85  0.93  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00
+  F3 Vigenère                  0.00  0.00  0.85  0.00  0.00  0.00  0.00  0.00  0.00  0.00
+  F4 transposition             0.00  0.00  0.00  0.95  0.97  0.00  0.00  0.00  0.82  0.05
+  F5 subst+transp              0.00  0.00  0.00  0.93  0.93  0.00  0.00  0.00  0.82  0.07
+  F6 Playfair                  0.00  0.00  0.00  0.00  0.00  0.93  0.00  0.00  0.00  0.00
+  F7 Bifid                     0.00  0.00  0.00  0.00  0.00  0.00  0.82  0.00  0.00  0.00
+  F8 homophonique              0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.97  0.00  0.00
+  F9 i.i.d. fréq. allemandes   0.00  0.00  0.00  0.90  0.93  0.00  0.00  0.00  0.90  0.10
+  F10 i.i.d. fréq. bouteille   0.00  0.00  0.00  0.82  0.75  0.00  0.00  0.00  0.53  0.90

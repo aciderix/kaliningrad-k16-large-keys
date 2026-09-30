@@ -1,0 +1,18 @@
+chiffré : 194 mots, D = 182
+langue  fenêtres  D moyen  D max  fenêtres >= chiffré
+cs          274    135.7    160        0
+da          480    124.3    149        0
+de         3393    130.4    157        0
+eo         4916    121.1    154        0
+es         7110    118.5    143        0
+fi          382    156.1    175        0
+fr         5763    126.9    152        0
+hu          201    151.1    172        0
+it         5204    136.0    155        0
+la         1157    166.7    187       23
+nl         3769    129.0    155        0
+pl         1035    155.0    172        0
+ru           96    151.5    171        0
+sv          678    129.0    150        0
+max toutes langues = 187 ; chiffré = 182
+contrôle positif (allemand transposé, faux mots) : D moyen 188.3, min 185, max 191

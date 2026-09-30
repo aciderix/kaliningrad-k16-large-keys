@@ -1,0 +1,11 @@
+K=/tmp/claude-0/-home-user-kryptos-research-handoff/2e425fa0-fc4b-5c2e-b3e1-6b1c9d05ebbf/scratchpad/k16; for s in 12 14; do ( (time K16_VERBOSE=1 K16_SCREEN=3,60000,0 K14_T2A=0.02 K14_T2B=0.001 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s) 2>&1 | grep -E "criblage|real" | sed "s/^/s$s /" | cut -c1-200 ) & done; wait
+s12 criblage : (11,19)8.266 (12,20)7.908 (19,18)7.425 (15,15)7.127 (10,16)7.093 (11,16)6.818 (16,13)6.785 (18,20)6.784
+s12 real	32m15.626s
+[1]-  Done                    ( ( time K16_VERBOSE=1 K16_SCREEN=3,60000,0 K14_T2A=0.02 K14_T2B=0.001 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s ) 2>&1 | grep -E "criblage|real" | sed "s/^/s$s /" | cut -c1-200 )
+s14 criblage : (15,17)7.581 (12,18)7.394 (12,13)7.100 (13,11)7.099 (20,12)6.923 (19,17)6.917 (18,19)6.892 (12,20)6.890
+s14 real	32m22.369s
+[2]+  Done                    ( ( time K16_VERBOSE=1 K16_SCREEN=3,60000,0 K14_T2A=0.02 K14_T2B=0.001 $K ctrl dagapeyeff/data/models/qg_de.bin dagapeyeff/data/heldout/de.txt 1 10 20 0 1 10 1 10 $s ) 2>&1 | grep -E "criblage|real" | sed "s/^/s$s /" | cut -c1-200 )
+
+[exited with code 0]
+"
+ https://claude.ai/code#:~:text=%EE%83%9D,%C3%89chap%20pour%20annuler.

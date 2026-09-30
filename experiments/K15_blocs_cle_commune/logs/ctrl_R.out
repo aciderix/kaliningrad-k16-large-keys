@@ -1,0 +1,23 @@
+entrées communes du catalogue : 3976
+  MI essai 0: vrai (71, 'spir31', 'lire') | trouvé (71, 'spir31', 'lire') contacts 973/973
+  MI essai 1: vrai (5, 'colzz00', 'lire') | trouvé (5, 'colzz00', 'lire') contacts 973/973
+  MI essai 2: vrai (8, 'diagmain00', 'inverse') | trouvé (8, 'diagmain00', 'inverse') contacts 973/973
+  MI essai 3: vrai (70, 'rowzz10', 'lire') | trouvé (70, 'rowzz01', 'lire') contacts 973/973
+  MI essai 4: vrai (45, 'col11', 'inverse') | trouvé (45, 'col11', 'inverse') contacts 973/973
+  MI essai 5: vrai (66, 'spir31', 'lire') | trouvé (66, 'spir31', 'lire') contacts 973/973
+  MI essai 6: vrai (64, 'colzz10', 'inverse') | trouvé (64, 'colzz10', 'inverse') contacts 973/973
+  MI essai 7: vrai (9, 'spir01', 'inverse') | trouvé (9, 'spir01', 'inverse') contacts 973/973
+  MI essai 8: vrai (26, 'spir10', 'lire') | trouvé (26, 'spir10', 'lire') contacts 973/973
+  MI essai 9: vrai (37, 'spir01', 'inverse') | trouvé (37, 'spir01', 'inverse') contacts 973/973
+==> MI : 10/10
+  Q essai 0: vrai (65, 'colzz11', 'inverse') | trouvé (65, 'colzz11', 'inverse') contacts 973/973
+  Q essai 1: vrai (63, 'diaganti01', 'lire') | trouvé (63, 'diaganti01', 'lire') contacts 973/973
+  Q essai 2: vrai (29, 'rowzz00', 'inverse') | trouvé (29, 'rowzz00', 'lire') contacts 973/973
+  Q essai 3: vrai (30, 'spir30', 'inverse') | trouvé (30, 'spir30', 'inverse') contacts 973/973
+  Q essai 4: vrai (29, 'colzz11', 'lire') | trouvé (29, 'colzz00', 'lire') contacts 973/973
+  Q essai 5: vrai (2, 'spir11', 'lire') | trouvé (2, 'colzz00', 'lire') contacts 973/973
+  Q essai 6: vrai (37, 'spir21', 'inverse') | trouvé (37, 'spir21', 'inverse') contacts 973/973
+  Q essai 7: vrai (69, 'rowzz01', 'lire') | trouvé (69, 'rowzz01', 'lire') contacts 973/973
+  Q essai 8: vrai (43, 'rowzz00', 'inverse') | trouvé (43, 'rowzz00', 'lire') contacts 973/973
+  Q essai 9: vrai (10, 'spir21', 'inverse') | trouvé (10, 'spir21', 'inverse') contacts 973/973
+==> Q : 10/10

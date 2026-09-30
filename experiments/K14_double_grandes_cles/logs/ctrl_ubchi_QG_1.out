@@ -1,0 +1,6 @@
+essai 0 : vrai w=13,13 | trouvé w=13,13 MI=-9.1535 (vrai -9.1535) contacts=978/978
+essai 1 : vrai w=15,15 | trouvé w=15,15 MI=-9.2803 (vrai -9.2803) contacts=978/978
+essai 2 : vrai w=11,11 | trouvé w=11,11 MI=-9.2568 (vrai -9.2568) contacts=978/978
+essai 3 : vrai w=10,10 | trouvé w=10,10 MI=-9.4065 (vrai -9.4065) contacts=978/978
+essai 4 : vrai w=13,13 | trouvé w=13,13 MI=-9.0817 (vrai -9.0817) contacts=978/978
+SUCCES 5/5 (n=979, w=10..15, R=5, I=40000, largeurs cherchées)

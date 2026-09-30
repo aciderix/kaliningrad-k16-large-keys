@@ -1,0 +1,7 @@
+[v1] G_int = +15.74 (nul moy -1.47, p = 0.001) ; G'_int = +16.53 (nul moy -1.47, p = 0.001) ; G_fen = +8.61 (nul moy +2.32, p = 0.034) ; G_pos = -0.92 (nul moy -0.86, p = 0.573)
+    LL hors échantillon : M0 -419.4, M1 -419.0, M2 -403.2, M3 -428.7, M4 -412.1, M5 -394.6, M6 -404.1
+[v1 page 1] G_int = +17.74 (nul moy -1.74, p = 0.001) ; G'_int = +18.52 (nul moy -1.83, p = 0.001) ; G_fen = +7.34 (nul moy +0.99, p = 0.022) ; G_pos = -1.12 (nul moy -0.93, p = 0.621)
+    LL hors échantillon : M0 -347.2, M1 -346.0, M2 -328.2, M3 -358.3, M4 -339.8, M5 -320.9, M6 -329.3
+[Corsair 2015] G_int = +16.74 (nul moy -1.68, p = 0.001) ; G'_int = +16.79 (nul moy -1.90, p = 0.001) ; G_fen = +9.36 (nul moy +2.72, p = 0.028) ; G_pos = -2.44 (nul moy -0.74, p = 0.819)
+    LL hors échantillon : M0 -408.8, M1 -409.2, M2 -392.4, M3 -421.2, M4 -404.4, M5 -383.1, M6 -394.9
+    M2 (log-odds) : const -3.11, L=2 -0.27, L=3 +0.74, L=4 +0.96, L=5 +1.00, L=6 +1.52, L=7 +1.51, L=8 +2.26, avant=V +0.15, après=V +0.26, V|V +1.27, C|C +0.86, identiques +0.31

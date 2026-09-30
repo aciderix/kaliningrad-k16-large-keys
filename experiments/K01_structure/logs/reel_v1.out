@@ -1,0 +1,8 @@
+sections (variante A) : [166, 169, 162, 169, 169, 144, 5]
+  [réel S1-S6] T1 χ²=94.6 p_bas=0.2317 p_haut=0.7684 | T2 dist=2.729 p_bas=0.6196 | T3 iso=38 p_haut=0.4585
+  [réel S1-S5 (sensibilité : sans la page 2 pâle)] T1 χ²=75.5 p_bas=0.2456 p_haut=0.7545 | T2 dist=1.838 p_bas=0.7211 | T3 iso=38 p_haut=0.3422
+  [réel] T4 mots≥4 = 137 ; de:0.197(null 0.163, p=0.164) nl:0.175(null 0.159, p=0.328) en:0.146(null 0.161, p=0.736) sv:0.153(null 0.128, p=0.204) da:0.146(null 0.114, p=0.144) cs:0.131(null 0.127, p=0.522) pl:0.117(null 0.091, p=0.194) fr:0.153(null 0.157, p=0.607) it:0.146(null 0.120, p=0.204)
+
+real	1m4.893s
+user	1m2.324s
+sys	0m1.784s

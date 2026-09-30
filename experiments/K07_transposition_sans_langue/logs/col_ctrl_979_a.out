@@ -1,0 +1,6 @@
+essai 0 : vrai w=8 sens=1 | trouvé w=8 sens=1 MI=1.0448 (vrai 1.0355) contacts=974/978
+essai 1 : vrai w=18 sens=1 | trouvé w=18 sens=1 MI=0.9702 (vrai 0.9552) contacts=964/978
+essai 2 : vrai w=15 sens=1 | trouvé w=15 sens=1 MI=1.0657 (vrai 1.0554) contacts=967/978
+essai 3 : vrai w=10 sens=0 | trouvé w=10 sens=0 MI=0.9873 (vrai 0.9873) contacts=978/978
+essai 4 : vrai w=14 sens=0 | trouvé w=14 sens=0 MI=0.7648 (vrai 1.0398) contacts=0/978
+SUCCES 4/5 (n=979, w=5..20, R=30, I=3000)

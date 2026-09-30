@@ -1,0 +1,11 @@
+essai 0 : vrai w=13 sens=1 | trouvé w=13 sens=1 MI=1.8057 (vrai 1.7121) contacts=157/168
+essai 1 : vrai w=13 sens=1 | trouvé w=13 sens=0 MI=1.7839 (vrai 1.7329) contacts=65/168
+essai 2 : vrai w=13 sens=0 | trouvé w=13 sens=0 MI=1.6100 (vrai 1.7381) contacts=117/168
+essai 3 : vrai w=13 sens=0 | trouvé w=13 sens=0 MI=1.4542 (vrai 1.4201) contacts=39/168
+essai 4 : vrai w=13 sens=1 | trouvé w=13 sens=1 MI=1.6676 (vrai 1.5924) contacts=157/168
+essai 5 : vrai w=13 sens=1 | trouvé w=13 sens=1 MI=1.7030 (vrai 1.6578) contacts=160/168
+essai 6 : vrai w=13 sens=0 | trouvé w=13 sens=0 MI=1.6316 (vrai 1.5949) contacts=104/168
+essai 7 : vrai w=13 sens=0 | trouvé w=13 sens=0 MI=1.5959 (vrai 1.6583) contacts=39/168
+essai 8 : vrai w=13 sens=1 | trouvé w=13 sens=0 MI=1.5136 (vrai 1.4299) contacts=39/168
+essai 9 : vrai w=13 sens=1 | trouvé w=13 sens=1 MI=1.8470 (vrai 1.8162) contacts=160/168
+SUCCES 4/10 (n=169, w=13..13, R=20, I=20000)

@@ -1,0 +1,5 @@
+  [(a) même bloc transposé 6 fois] T1 χ²=4.2 p_bas=0.0001 p_haut=1.0000 | T2 dist=0.710 p_bas=0.0001 | T3 iso=37 p_haut=0.9767
+  [(b) même bloc, 6 substitutions] T1 χ²=952.5 p_bas=1.0000 p_haut=0.0001 | T2 dist=0.710 p_bas=0.0001 | T3 iso=253 p_haut=0.0033
+  [(c) 6 blocs différents, même substitution] T1 χ²=111.4 p_bas=0.5604 p_haut=0.4397 | T2 dist=2.720 p_bas=0.6576 | T3 iso=26 p_haut=0.9834
+  [(d) mots allemands anagrammés] T4 mots≥4 = 116 ; de:1.000(null 0.169, p=0.005) nl:0.517(null 0.179, p=0.005) en:0.457(null 0.190, p=0.005) sv:0.345(null 0.157, p=0.005) da:0.362(null 0.130, p=0.005) cs:0.276(null 0.159, p=0.005) pl:0.241(null 0.118, p=0.005) fr:0.379(null 0.182, p=0.005) it:0.310(null 0.156, p=0.005)
+  [(e) mots allemands substitués] T4 mots≥4 = 116 ; de:0.017(null 0.020, p=0.692) nl:0.026(null 0.021, p=0.468) en:0.026(null 0.023, p=0.502) sv:0.017(null 0.021, p=0.701) da:0.017(null 0.014, p=0.488) cs:0.034(null 0.041, p=0.756) pl:0.000(null 0.016, p=1.000) fr:0.026(null 0.015, p=0.254) it:0.009(null 0.014, p=0.841)

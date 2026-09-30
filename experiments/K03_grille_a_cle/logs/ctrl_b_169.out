@@ -1,0 +1,21 @@
+bloc  0 q=13 var=0 score=-11.450 vrai=-11.450 contacts=168/168
+bloc  1 q=13 var=1 score=-10.161 vrai=-10.295 contacts=161/168
+bloc  2 q=13 var=0 score=-10.518 vrai=-10.518 contacts=168/168
+bloc  3 q=13 var=1 score=-9.901 vrai=-10.236 contacts=161/168
+bloc  4 q=13 var=0 score=-9.553 vrai=-9.553 contacts=168/168
+bloc  5 q=13 var=1 score=-9.386 vrai=-9.626 contacts=159/168
+bloc  6 q=13 var=0 score=-10.427 vrai=-10.427 contacts=168/168
+bloc  7 q=13 var=1 score=-10.101 vrai=-10.308 contacts=160/168
+bloc  8 q=13 var=0 score=-9.230 vrai=-9.230 contacts=168/168
+bloc  9 q=13 var=1 score=-9.626 vrai=-9.875 contacts=164/168
+bloc 10 q=13 var=0 score=-10.717 vrai=-10.717 contacts=168/168
+bloc 11 q=13 var=1 score=-10.069 vrai=-10.260 contacts=161/168
+bloc 12 q=13 var=0 score=-9.963 vrai=-9.963 contacts=168/168
+bloc 13 q=13 var=1 score=-10.455 vrai=-10.697 contacts=164/168
+bloc 14 q=13 var=0 score=-10.494 vrai=-10.494 contacts=168/168
+bloc 15 q=13 var=1 score=-9.852 vrai=-9.971 contacts=159/168
+bloc 16 q=13 var=0 score=-11.487 vrai=-11.064 contacts=156/168
+bloc 17 q=13 var=1 score=-9.542 vrai=-9.719 contacts=162/168
+bloc 18 q=13 var=0 score=-10.562 vrai=-10.562 contacts=168/168
+bloc 19 q=13 var=1 score=-10.371 vrai=-10.489 contacts=162/168
+SUCCES 20/20 (q=13, bruit=0.05, R=100, I=4000)

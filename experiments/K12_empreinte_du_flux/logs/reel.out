@@ -1,0 +1,11 @@
+bouteille : IC 0.0832, MI1 0.0025, MI2 0.0020, ICperiod 0.0846, pair/impair 30.1494, doublets(2k) 34.0000, nb lettres 22.0000, trigr.rép 28.8000
+  F1 clair                     exclue : MI1 (centile 0.0), MI2 (centile 0.0), trigr.rép (centile 0.0)
+  F2 substitution              exclue : MI1 (centile 0.0), MI2 (centile 0.0), trigr.rép (centile 0.0)
+  F3 Vigenère                  exclue : IC (centile 100.0), MI1 (centile 0.0), nb lettres (centile 0.0), trigr.rép (centile 0.0)
+  F4 transposition             COMPATIBLE
+  F5 subst+transp              COMPATIBLE
+  F6 Playfair                  exclue : IC (centile 100.0), MI1 (centile 0.0), MI2 (centile 0.0), ICperiod (centile 100.0), doublets(2k) (centile 100.0), nb lettres (centile 0.0), trigr.rép (centile 0.0)
+  F7 Bifid                     exclue : IC (centile 100.0), ICperiod (centile 100.0), nb lettres (centile 0.0)
+  F8 homophonique              exclue : IC (centile 100.0), MI1 (centile 0.0), MI2 (centile 0.0), ICperiod (centile 100.0), nb lettres (centile 0.0), trigr.rép (centile 0.0)
+  F9 i.i.d. fréq. allemandes   COMPATIBLE
+  F10 i.i.d. fréq. bouteille   COMPATIBLE
