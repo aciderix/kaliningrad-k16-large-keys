@@ -72,3 +72,24 @@ Fusions de lettres (une lettre allemande écrite avec le signe d'une autre, 1 à
 Échanges ou fusions de quelques lettres ne rendent donc pas un profil allemand ; une substitution complète est déjà
 défavorisée par T2. Il n'existe pas de transformation lettre à lettre simple qui ramène le flux à de l'allemand,
 et donc pas de flux « corrigé » sur lequel relancer utilement le solveur K16.
+
+## Complément : seulement la partie la plus sûre ? (exploration)
+
+Même test sur la page 1 seule (L01–L20, lue de la même façon par deux transcripteurs indépendants) et sur chacun des
+six blocs, calibré sur des fenêtres allemandes de même longueur (références : dépôt + Gutenberg 2229, 35312, 50285).
+
+| Partie | Lettres | f + w | Fenêtres allemandes avec autant de f + w | G global : fenêtres ≥ |
+|---|---:|---:|---:|---:|
+| Page 1 (fiable) | 786 | 64 (8,1 %) | **0** | 0,2 % |
+| Page 2 (pâle) | 193 | 18 (9,3 %) | 0 | 0,2 % |
+| Bloc 1 | 166 | 18 | 0,02 % | 0,1 % |
+| Bloc 2 | 169 | 14 | 0,2 % | 40 % |
+| Bloc 3 | 162 | 13 | 0,5 % | 37 % |
+| Bloc 4 | 169 | 11 | 3,6 % | 4,5 % |
+| Bloc 5 | 169 | 12 | 1,8 % | 33 % |
+| Bloc 6 | 144 | 14 | 0 | 0,3 % |
+
+L'anomalie n'est pas due aux lignes douteuses : elle est aussi forte sur la page fiable, et **chacun des six
+blocs** a trop de f + w (tous sous 4 %). Les blocs 2, 3 et 5 passent le test global seulement faute de puissance
+(169 lettres), pas parce qu'ils ressembleraient à l'allemand. Aucune portion du texte n'est un meilleur candidat
+qu'une autre ; les transpositions par bloc ont par ailleurs déjà été testées (K03, K05, K06, K13, K15).
