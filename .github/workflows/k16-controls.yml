@@ -15,11 +15,10 @@ jobs:
       fail-fast: false
       max-parallel: 10
       matrix:
-        seed: [61520, 61521, 61522, 61523, 61524, 61525, 61526, 61527, 61528, 61529]
+        seed: [62520, 62521, 62522, 62523, 62524, 62525, 62526, 62527, 62528, 62529]
     env:
       OMP_NUM_THREADS: 4
       OMP_DYNAMIC: FALSE
-      K16_SCREEN: 3,60000,8
       K14_T2A: 0.02
       K14_T2B: 0.001
     steps:
@@ -82,7 +81,7 @@ jobs:
           print(result)
           Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text(result + "\n")
           with open(os.environ["GITHUB_OUTPUT"], "a") as output:
-              output.write(f"power_pass={'true' if total == 10 and passed >= 8 else 'false'}\n")
+              output.write(f"power_pass={'true' if total == 10 and passed == 10 else 'false'}\n")
           if total != 10:
               raise SystemExit(f"Only {total} of 10 control logs were collected")
           PY
@@ -96,7 +95,6 @@ jobs:
     env:
       OMP_NUM_THREADS: 4
       OMP_DYNAMIC: FALSE
-      K16_SCREEN: 3,60000,8
       K14_T2A: 0.02
       K14_T2B: 0.001
     steps:

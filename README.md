@@ -4,14 +4,16 @@ Ce dépôt dédié contient le solveur K16, le modèle allemand utilisé par le 
 le texte tenu à part pour les contrôles, et un workflow GitHub Actions manuel.
 
 Le workflow démarre dix contrôles indépendants sur des runners Ubuntu. Chaque runner
-utilise ses quatre cœurs pour le criblage des largeurs 15–20; les dix journaux sont
-conservés en artefacts. La recherche sur la bouteille est un workflow séparé, à
-lancer seulement si au moins 8/10 contrôles satisfont le seuil de 90 % des contacts.
+utilise ses quatre cœurs pour rechercher en profondeur les 36 paires de largeurs
+15–20, sans présélection. Les dix journaux sont conservés en artefacts. La recherche
+sur la bouteille ne part que si les dix contrôles satisfont le seuil de 90 % des
+contacts.
 
 ## Lancer les contrôles
 
 Dans GitHub : **Actions → K16 large-key controls → Run workflow**. Le workflow se
-termine avec un résumé du nombre de contrôles récupérés. Les artefacts contiennent
+termine avec un résumé du nombre de contrôles récupérés. L'objectif courant est 10/10.
+Les artefacts contiennent
 les largeurs plantées et trouvées, les scores et les nombres de contacts.
 
 ## Données
