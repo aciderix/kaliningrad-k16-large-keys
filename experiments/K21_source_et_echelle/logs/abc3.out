@@ -1,0 +1,9 @@
+# abc3.py — prior élargi s = 1..200 (jitter et paquets), seuil = 3 % des 3 000 simulations ; modèle « mélange dans les 6 sections réelles »
+s in [1,25]: within threshold 0.017  (n=353)
+s in [26,50]: within threshold 0.069  (n=362)
+s in [51,80]: within threshold 0.061  (n=477)
+s in [81,120]: within threshold 0.026  (n=647)
+s in [121,160]: within threshold 0.015  (n=598)
+s in [161,200]: within threshold 0.007  (n=563)
+shuffle within the 6 real sections: within threshold 0.013 (n=600) ; threshold 1.38
+accepted s: median 60, 90% [24, 153]

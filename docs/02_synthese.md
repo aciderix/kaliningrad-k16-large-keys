@@ -55,6 +55,43 @@ de preuve), HYPOTHÈSE.
 > conserve ce décompte : A′ et C sont donc exclues pour de l'allemand ordinaire, sans recherche de clé.
 > Voir `experiments/K17_profil_invariant/RESULTS.md`.
 
+> **K18 (2026-10-03)** : liens entre voisines absents même avec les 34 symboles (n', t', ê… distincts) ⇒ toute
+> lecture dans l'ordre exclue ; profil trié incompatible avec 11 langues (Bible synodale russe comprise, p ≤ 0,011) ;
+> **aucune signature de lettres inventées à la main** (cyclage, suites alphabétiques, évitement des répétitions) ⇒
+> le flux est un mélange mécanique d'un stock de lettres. Seul « allemand + ≈ 100 nuls f, w, n » reste à la limite
+> (p ≈ 0,07). Les deux « solutions » de Cipherbrain (T. Ernst 2017, « Frank » 2021) n'ont jamais été publiées.
+> Voir `experiments/K18_contre_expertise/RESULTS.md`.
+
+> **K19 (2026-10-03)** : les chiffres « d'écolier » à clé fixe sont exclus (permutation de groupes de p lettres,
+> grilles de Verne 4×4–7×7 en recherche exhaustive, transpositions par ligne). Mais le flux garde **un reste d'ordre
+> à courte distance** (six mesures concordantes, dont c près de h/k et une remise en ordre à déplacements ≤ 3,
+> z = +5,3) : un texte de type allemand brassé par tranches d'une vingtaine de lettres, sans clé répétée, puis
+> habillé. Un tel brassage ne se défait pas par les fréquences (le modèle préfère du pseudo-allemand au vrai texte).
+> Voir `experiments/K19_melange_local/RESULTS.md`.
+
+> **K20 (2026-10-03)** : on travaille sur le **texte entier** (les sections ne sont pas des unités du brassage).
+> Le reste d'ordre est sans sens de lecture et de type germanique au niveau des paires de lettres, mais la présence de
+> **vrais mots** n'est ni démontrée ni exclue (le test de mots réagit autant à du pseudo-allemand). Voir `experiments/K20_blocs_et_mots/RESULTS.md`.
+
+> **K21 (2026-10-03)** : brassage local sur ≈ 25–100 positions (simulation) ; grilles tournantes à clé unique jusqu'à
+> 13×13 exclues ; aucun texte source parmi tout l'allemand de Gutenberg, 11 192 chants populaires et trois Bibles ;
+> les « bribes de clair » produites par les réarrangements sont des artefacts (autant sur des lignes factices).
+> Voir `experiments/K21_source_et_echelle/RESULTS.md`.
+
+> **K22 (2026-10-03)** : sans information extérieure, le message n'est pas reconstituable : à l'échelle de brassage
+> mesurée, la composition locale porte ≈ 0,9 bit par lettre au mieux, moins que l'incertitude d'un texte allemand
+> cohérent ; un décodeur mot à mot ne retrouve un contrôle que pour des déplacements de 2 à 4 positions.
+> Voir `experiments/K22_reconstruction/RESULTS.md`.
+
+> **K23 (2026-10-03)** : le reste d'ordre local se trouve entièrement **à l'intérieur des « mots »** de l'habillage
+> et pas entre eux, contrairement à un allemand brassé puis découpé : il vient probablement de la fabrication des mots,
+> pas d'un message. Voir `experiments/K23_signal_dans_les_mots/RESULTS.md`.
+
+> **K24–K25 (2026-10-03)** : aucune grille à trous fixe commune aux blocs ne cache d'allemand (K24). Comparé à
+> 97 langues (K25), le décompte reste plus proche de l'allemand que de toute autre langue sans être compatible ; avec
+> une substitution en plus de la transposition, 16 langues sur 97 passent le test du profil trié, qui ne peut donc pas
+> identifier la langue (nuance de K18). Voir `experiments/K24_grille_fixe/` et `experiments/K25_cent_langues/`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

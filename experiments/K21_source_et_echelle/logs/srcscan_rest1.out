@@ -1,0 +1,14 @@
+bottle reduced windows: 19 x 40
+  146.2  median  214.9  len    89124  gut/t_6830.txt  beta=49748
+  147.1  median  213.4  len   472623  gut/t_51151.txt  beta=355537
+  149.1  median  218.7  len  1319050  gut/t_3064.txt  beta=1060201
+  149.3  median  216.2  len   294745  gut/t_55633.txt  beta=118772
+  149.8  median  220.1  len   912571  gut/t_53428.txt  beta=402361
+  150.2  median  219.8  len  1386082  gut/t_3065.txt  beta=278567
+  150.4  median  221.5  len   312088  gut/t_70743.txt  beta=81357
+  150.5  median  216.7  len   486856  gut/t_59275.txt  beta=224985
+  150.6  median  215.9  len   739085  gut/t_58219.txt  beta=80899
+  150.8  median  216.2  len   185110  gut/t_42651.txt  beta=50074
+  150.8  median  220.1  len   813273  gut/t_16301.txt  beta=634427
+  151.0  median  222.3  len   435582  gut/t_49084.txt  beta=65108
+(planted-source controls: 21.7 ; 65.5 with chunk-60 + 15% nulls ; unrelated text best ≈ 140-150)

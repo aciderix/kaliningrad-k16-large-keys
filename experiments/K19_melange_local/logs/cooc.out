@@ -1,0 +1,25 @@
+correlation bottle local-enrichment vs German local co-occurrence: r=+0.149; null -0.008±0.075; z=+2.09; p=0.020
+  ch: bottle obs 22 exp 15.1 z=+2.05 | German local log-ratio +0.48
+  sc: bottle obs 25 exp 23.0 z=+0.45 | German local log-ratio +0.09
+  sh: bottle obs 65 exp 58.5 z=+0.94 | German local log-ratio +0.02
+  ck: bottle obs 3 exp 2.3 z=+0.46 | German local log-ratio +0.04
+  ei: bottle obs 247 exp 243.0 z=+0.29 | German local log-ratio +0.05
+  ie: bottle obs 247 exp 243.0 z=+0.29 | German local log-ratio +0.05
+  en: bottle obs 482 exp 467.8 z=+0.78 | German local log-ratio +0.08
+  er: bottle obs 307 exp 287.3 z=+1.31 | German local log-ratio +0.06
+  nd: bottle obs 148 exp 150.0 z=-0.20 | German local log-ratio +0.06
+  ng: bottle obs 58 exp 44.3 z=+2.22 | German local log-ratio +0.07
+  st: bottle obs 62 exp 64.4 z=-0.31 | German local log-ratio +0.02
+  un: bottle obs 120 exp 117.7 z=+0.24 | German local log-ratio +0.06
+  au: bottle obs 41 exp 33.6 z=+1.31 | German local log-ratio -0.01
+  ge: bottle obs 56 exp 55.0 z=+0.14 | German local log-ratio +0.04
+  ht: bottle obs 40 exp 41.8 z=-0.31 | German local log-ratio +0.08
+  tz: bottle obs 9 exp 8.7 z=+0.09 | German local log-ratio +0.06
+  ff: bottle obs 48 exp 42.0 z=+0.73 | German local log-ratio -0.00
+  ss: bottle obs 82 exp 86.3 z=-0.39 | German local log-ratio +0.02
+  nn: bottle obs 374 exp 380.1 z=-0.26 | German local log-ratio -0.06
+  ll: bottle obs 54 exp 33.4 z=+2.56 | German local log-ratio +0.13
+  ee: bottle obs 578 exp 569.7 z=+0.29 | German local log-ratio -0.13
+  fw: bottle obs 21 exp 33.5 z=-2.25 | German local log-ratio -0.09
+  iu: bottle obs 41 exp 60.8 z=-2.77 | German local log-ratio -0.09
+  ae: bottle obs 121 exp 132.8 z=-1.13 | German local log-ratio -0.03

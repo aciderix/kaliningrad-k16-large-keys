@@ -1,0 +1,23 @@
+bottle: per-letter correlation of local neighbourhood with German (z vs shuffles)
+  h n= 43 r=+0.64 z=+2.66
+  n n=137 r=+0.50 z=+2.09
+  f n= 46 r=+0.43 z=+1.82
+  d n= 54 r=+0.45 z=+1.77
+  c n= 17 r=+0.41 z=+1.75
+  a n= 39 r=+0.41 z=+1.73
+  i n= 71 r=+0.36 z=+1.49
+  e n=168 r=+0.33 z=+1.45
+  l n= 41 r=+0.30 z=+1.30
+  u n= 42 r=+0.23 z=+0.98
+  g n= 16 r=+0.21 z=+0.94
+  o n= 19 r=+0.18 z=+0.77
+  r n= 84 r=+0.02 z=+0.08
+  w n= 36 r=-0.08 z=-0.39
+  z n=  9 r=-0.11 z=-0.47
+  s n= 66 r=-0.12 z=-0.51
+  b n=  6 r=-0.13 z=-0.54
+  k n=  7 r=-0.15 z=-0.61
+  m n= 25 r=-0.29 z=-1.20
+  t n= 48 r=-0.32 z=-1.26
+control (German + 6% null f + 4% null w, chunk-20):
+  h:+2.8 c:+2.7 i:+2.5 g:+2.4 n:+1.9 u:+1.8 d:+1.7 a:+1.6 m:+1.2 l:+1.1 o:+1.1 k:+1.1 t:+1.0 s:+1.0 e:+0.9 w:+0.4 z:+0.3 f:-0.2 b:-0.3 r:-0.4

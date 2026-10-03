@@ -1,0 +1,8 @@
+entropie d’une lettre isolée (fréquences allemandes) : 4.11 bits
+tranches de   3 lettres : information portée par la composition ≈    9.9 bits par tranche = 3.30 bit par lettre
+tranches de   5 lettres : information portée par la composition ≈   14.1 bits par tranche = 2.82 bit par lettre
+tranches de  10 lettres : information portée par la composition ≈   21.6 bits par tranche = 2.16 bit par lettre
+tranches de  25 lettres : information portée par la composition ≈   35.0 bits par tranche = 1.40 bit par lettre
+tranches de  50 lettres : information portée par la composition ≈   46.9 bits par tranche = 0.94 bit par lettre
+tranches de 100 lettres : information portée par la composition ≈   59.2 bits par tranche = 0.59 bit par lettre
+tranches de 170 lettres : information portée par la composition ≈   69.5 bits par tranche = 0.41 bit par lettre

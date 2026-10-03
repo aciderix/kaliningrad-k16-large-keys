@@ -1,0 +1,3 @@
+top z distances: [(416, np.float64(3.83)), (150, np.float64(3.21)), (546, np.float64(2.93)), (462, np.float64(2.8)), (207, np.float64(2.77)), (188, np.float64(2.66)), (17, np.float64(2.59)), (223, np.float64(2.59)), (536, np.float64(2.53)), (168, np.float64(2.53)), (206, np.float64(2.51)), (544, np.float64(2.49))]
+null max z over 599 distances: mean 3.16, 95% 3.69
+control columnar w=12 top: [(111, np.float64(3.6)), (320, np.float64(3.2)), (408, np.float64(3.0)), (82, np.float64(2.9)), (298, np.float64(2.9))]  expected d≈ 81

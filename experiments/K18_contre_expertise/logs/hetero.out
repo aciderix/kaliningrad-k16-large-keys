@@ -1,0 +1,10 @@
+1 166 e25 f14 n18 w4 r13 d13 a9 t10 c7 g1 b0 o3
+2 169 e28 f7 n24 w7 r14 d6 a6 t5 c3 g3 b2 o5
+3 162 e30 f7 n21 w6 r11 d10 a8 t12 c2 g3 b2 o3
+4 169 e28 f5 n28 w6 r11 d6 a6 t8 c3 g4 b0 o1
+5 169 e31 f5 n25 w7 r16 d8 a6 t8 c2 g3 b2 o5
+6 144 e26 f8 n21 w6 r19 d11 a4 t5 c0 g2 b0 o2
+f only: chi2=7.5 p=0.1655
+all letters: chi2=94.6 p=0.7700
+max over letters: chi2=12.6 p=0.3486
+German contiguous: max-letter chi2 >= bottle: 2967/9319 ; all-letter chi2 >= bottle 94.6: 6760/9319

@@ -1,0 +1,19 @@
+BOTTLE
+  start G=131.6
+  step 1: 'ei' -> 'f'  G=98.3
+  step 2: 'sch' -> 'w'  G=77.5
+  step 3: 'au' -> 'n'  G=67.6
+  step 4: 'ng' -> 'n'  G=61.5
+  bottle vs rewritten German: G=61.5 p=0.0907
+CALIB corp/x_11024.txt
+   rules [('sch', 'y'), ('st', 'k'), ('ei', 'o'), ('ss', 'v')] G after: 125.0 p=0.0049 G before 324.5
+CALIB corp/en_1342.txt
+   rules [('ss', 'x'), ('ei', 'o'), ('eu', 'y'), ('au', 'p')] G after: 159.8 p=0.0010 G before 354.1
+CALIB corp/x_218.txt
+   rules [('k', 'p'), ('z', 'q'), ('ch', 'c'), ('ng', 'o')] G after: 237.5 p=0.0000 G before 451.2
+CALIB corp/x_2000.txt
+   rules [('k', 'q'), ('ei', 'o'), ('z', 'y'), ('ch', 'c')] G after: 209.7 p=0.0000 G before 498.6
+CALIB corp/x_11940.txt
+   rules [('ch', 'a'), ('g', 'y'), ('b', 'p'), ('z', 'j')] G after: 455.0 p=0.0000 G before 971.9
+
+[exited with code 0]

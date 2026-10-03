@@ -1,0 +1,4 @@
+n=7 grilles=16777216 best=-0.3640 grille=8115274 offset=33 rev=1 ccw=1 colmajor=0
+null1 n=7 grilles=16777216 best=-0.3926 grille=11833143 offset=22 rev=0 ccw=0 colmajor=0
+null2 n=7 grilles=16777216 best=-0.3912 grille=2694711 offset=14 rev=0 ccw=1 colmajor=1
+null3 n=7 grilles=16777216 best=-0.3820 grille=3910540 offset=48 rev=1 ccw=0 colmajor=0

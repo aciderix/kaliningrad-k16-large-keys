@@ -1,0 +1,9 @@
+n=4 plain           recovered 3/3 [(0.476, 'off12', 'fwd'), (0.493, 'off4', 'fwd'), (0.434, 'off6', 'fwd')] 0s
+n=4 nulls           recovered 3/3 [(0.243, 'off9', 'fwd'), (0.198, 'off15', 'fwd'), (0.254, 'off11', 'fwd')] 0s
+n=4 nulls+reversed  recovered 3/3 [(0.099, 'off14', 'rev'), (0.265, 'off3', 'rev'), (0.233, 'off6', 'rev')] 0s
+n=5 plain           recovered 3/3 [(0.483, 'off16', 'fwd'), (0.475, 'off24', 'fwd'), (0.487, 'off6', 'fwd')] 1s
+n=5 nulls           recovered 3/3 [(0.221, 'off7', 'fwd'), (0.205, 'off9', 'fwd'), (0.26, 'off17', 'fwd')] 1s
+n=5 nulls+reversed  recovered 3/3 [(0.282, 'off0', 'rev'), (0.241, 'off11', 'rev'), (0.265, 'off3', 'rev')] 1s
+n=6 plain           recovered 3/3 [(0.478, 'off6', 'fwd'), (0.478, 'off18', 'fwd'), (0.503, 'off1', 'fwd')] 79s
+n=6 nulls           recovered 3/3 [(0.239, 'off19', 'fwd'), (0.276, 'off26', 'fwd'), (0.245, 'off14', 'fwd')] 83s
+n=6 nulls+reversed  recovered 3/3 [(0.205, 'off4', 'rev'), (0.264, 'off9', 'rev'), (0.241, 'off7', 'rev')] 85s

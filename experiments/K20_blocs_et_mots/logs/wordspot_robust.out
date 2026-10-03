@@ -1,0 +1,8 @@
+bottle slack=5 global: sum z real 418.0 | null mean 0.0 sd 357.0 -> Z=+1.17, p_high=0.120
+bottle slack=10 global: sum z real 855.4 | null mean 0.0 sd 757.5 -> Z=+1.13, p_high=0.090
+wc_chunk20_0 slack=5 global: sum z real 1325.6 | null mean 0.0 sd 317.6 -> Z=+4.17, p_high=0.000
+wc_chunk20_1 slack=5 global: sum z real 1461.8 | null mean 0.0 sd 319.3 -> Z=+4.58, p_high=0.000
+wc_chunk40_1 slack=5 global: sum z real 752.9 | null mean 0.0 sd 363.6 -> Z=+2.07, p_high=0.033
+wc_chunk40_2 slack=5 global: sum z real 782.6 | null mean 0.0 sd 361.0 -> Z=+2.17, p_high=0.017
+wc_chunk80_0 slack=5 global: sum z real 355.7 | null mean 0.0 sd 346.4 -> Z=+1.03, p_high=0.133
+wc_chunk80_2 slack=5 global: sum z real 321.1 | null mean 0.0 sd 351.4 -> Z=+0.91, p_high=0.167

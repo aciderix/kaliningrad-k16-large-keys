@@ -1,0 +1,113 @@
+# anagram.c qg_de.bin 10 400000 <seed> ; lignes réelles (graines 11,12,13), factices A/B (40 jeux), allemand mélangé (graine 23)
+real (3 seeds): [np.float64(-7.65), np.float64(-7.621), np.float64(-7.621)]  German control -7.535
+fake A (global shuffle, 40 sets): mean -7.837 sd 0.075 max -7.664 -> z=2.76, sets>=real 0/40
+fake B (same vowel count per line): mean -7.751 sd 0.036 max -7.692 -> z=3.32, sets>=real 0/40
+
+D=3: real -9.487 | fake -9.895±0.077 (max -9.753) z=+5.32 | German jitter<=5 control -8.634
+D=5: real -8.647 | fake -8.987±0.070 (max -8.870) z=+4.82 | German jitter<=5 control -8.277
+D=10: real -8.145 | fake -8.309±0.062 (max -8.169) z=+2.65 | German jitter<=5 control -7.942
+D=20: real -7.854 | fake -8.044±0.066 (max -7.951) z=+2.89 | German jitter<=5 control -7.751
+
+# meilleurs arrangements, graine 12 (D libre) :
+-7.5016 feinderklichtvonderhaufderstelleinew
+-7.5982 ffdernunftunderstanderfrausstellung
+-7.3713 ffderschlusschendenunderunderschaufw
+-8.7642 commtefrauchaffenstimmentafftwenderwac
+-7.5495 wohlenderstelleinemeinemallendiesiehauu
+-7.8909 rnunftsonderhernunderselbstenstroswirklichm
+-7.5666 rhabenwassingungensinnensondermoglichenwirw
+-7.6393 ezufallenaufenderkeinesonderstenwelc
+-7.9761 fftwerfahrundersondersprundassichzuseinihrf
+-8.0189 koffenweitdemwiesenstehtunderstehenunftf
+-7.0702 mmenhaberstanderstehensicheinunderseinundw
+-7.7264 hhaberhaltendenihregriffenderstenzumw
+-7.7888 gfalleinemverhaltenungenstandenotweitzuw
+-7.2485 fallenwiederscheinersteinemeinesowe
+-8.2386 ffhalswillstanzumgrunderstandersinnsinnstellth
+-7.3145 pirihreinunderschenwillicheineinereinunftf
+-7.7111 fwollendengenstimmungenwahrungenhabendassw
+-7.1556 zungensinderstandereinerfahrungenmitenb
+-7.7473 hthindenkommersterwissendigenderzeitzw
+-7.6771 hfuhrerforteinerschersteineinenwollu
+-7.1981 flosserkenunderscheinenweitdereinenwirw
+-7.2242 falleineinmanderstanderallenderauflo
+-7.2966 zwisseinendernunftseinerkenderengenwirm
+-7.6642 hrvernunftnistimmenderfahrundernsinderfl
+-7.5949 ihrerstandenwerdenwirdiegriffenwirdemwo
+
+# arrangements D=3 puis D=5 :
+-9.6508 feindvonftehendihrlickeraltedeleswur
+-8.1392 fdienvondentherflichkeitderalleserwu
+
+-9.6281 egrundannuntellenfrsfurdufterstdasf
+-8.3523 rungundentallenserfunftfurdasstderf
+
+-9.6813 scuferderfrechlundenwussenunddaschhf
+-8.4926 csfurdererfluchdenundwendassenschfuh
+
+-11.2926 andescarenauferfochnimmtwaffmmtwettefc
+-10.0635 casanderenfraufenwochimmtwaffemmtettcf
+
+-9.5058 dlundhoralleunenlestemmeinhiewiealiesee
+-8.6947 dundallerholleunstehenemeinemwiealiesei
+
+-9.4734 mderstersonnternurfderrlsblichnissenwohntuk
+-8.8341 mderstrensonnterfurderrlichselbsinsohnunktw
+
+-9.3148 sangeschinwidmoglinwirbersohannerungeswennn
+-8.2966 sgansicheinmoglinwordenswirhabernungenwenns
+
+-9.7612 ikelesonderzualtenescffenelanderenwu
+-8.8968 ekleinesonderzuffallenstecenenderauw
+
+-10.2370 fthesinwendfihrzusersfurspfandihrsordernauc
+-8.9877 hsteffindernzwisserhauffursprindohnurdersac
+
+-10.2541 hwendensehnumfenoffinktistetttfurwesedee
+-9.0060 hsehenwendemoffnunftinktistestetwederufe
+
+-8.3012 erunderdesseinherauenwennstimmtendabinschh
+-7.9443 erundersehendiesenaturwennstimmendinschabh
+
+-9.6844 fbrenzentderhantherherwehmfausindiegl
+-8.6959 fberzendennterwahrhersteihmhaufdingel
+
+-9.4207 aftedievonatinungenzwasgeweltmullehrennt
+-8.8121 aftdievoneitunganzwegenmalswelltentherun
+
+-7.8596 dieinentwelchesalseinerwesereinemfo
+-7.8510 deineitenwelchenlassererwieseinemfo
+
+-10.9417 lingfuhrtalsausehendentrinftlinnstmllswassdrnz
+-10.0610 lingaufuhrthalsderstenenflinstminnstanszwllsdr
+
+-9.4585 pcderrlistewiruhinfieihreinennlichenuneinf
+-7.9205 pderrlichweistfureinihreinnlicheneineinunf
+
+-9.3102 ngstennsehrgenwehwindnungalsdemmalbenaufwo
+-8.9620 ngstengensehrenwindwahlungendalsammenwofub
+
+-8.4629 mirnundhausstenangeberzennerfreindingte
+-7.9552 minundsahrungestanzenberfreinendereingt
+
+-10.4954 szderrinnisserenheithodewiegtwkmmtendz
+-8.9043 zdersinihrenstseinderwogehtkeimmtwendz
+
+-9.4315 ireineforsofereinenerschluhtruhlentw
+-8.7363 iorineroffensereinerschelltheruhtunw
+
+-8.9702 ofenunwirwenweseristickdererselndenhein
+-8.2476 ofurenweinenwerwisstecklinderenderseinh
+
+-8.6862 andeinanalitalloffallendermenserderu
+-8.5147 annandiealitalloffallendermenderersu
+
+-8.2538 tzenkenweinenmenwendingrunserfreisserdi
+-8.0272 zweitenkennendenmungenwirsinerfreisserd
+
+-10.5444 firalindemrundfrfreinentrundvhrnehmensts
+-9.4417 fildarfinderfurmirnnunvernehmtherdennsts
+
+-8.5576 affeindwenderdesdermortigenwirwirwenihr
+-8.3479 affenwiderdendermoderstigenwirwirenwirh
+

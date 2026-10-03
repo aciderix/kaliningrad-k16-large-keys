@@ -1,0 +1,4 @@
+null global    : band1-10 z=+3.16 p=0.000 | same-letter pairs d<=10: obs 833 null 808.4 z=+0.96
+null window 80 : band1-10 z=+2.01 p=0.023 | same-letter pairs d<=10: obs 833 null 795.2 z=+1.59
+null window 40 : band1-10 z=+1.59 p=0.053 | same-letter pairs d<=10: obs 833 null 795.3 z=+1.60
+null window 20 : band1-10 z=+0.89 p=0.186 | same-letter pairs d<=10: obs 833 null 800.0 z=+1.78

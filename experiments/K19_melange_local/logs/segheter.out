@@ -1,0 +1,5 @@
+lines (25) bottle chi2=  458.2 null=  506.1± 29.7 z=-1.61 p=0.9555 | German in order: z median -1.61 (5-95%: -2.99..+0.03)
+W=20       bottle chi2=  968.2 null=  987.5± 41.6 z=-0.46 p=0.6665 | German in order: z median -2.02 (5-95%: -3.66..-0.32)
+W=40       bottle chi2=  459.0 null=  482.7± 28.7 z=-0.82 p=0.7945 | German in order: z median -1.40 (5-95%: -2.93..-0.09)
+W=80       bottle chi2=  217.1 null=  231.8± 20.4 z=-0.73 p=0.7695 | German in order: z median -1.00 (5-95%: -2.73..+0.51)
+W=160      bottle chi2=  107.2 null=  105.3± 13.9 z=+0.13 p=0.4275 | German in order: z median -0.78 (5-95%: -2.38..+1.18)

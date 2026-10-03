@@ -1,0 +1,17 @@
+c with an h/k partner in the same line: 15/17 ; null mean 13.3 ; p_high=0.2588
+c with h/k within ±3: 8/17 ; null mean 4.5 ; p_high=0.0580
+c with h/k within ±6: 11/17 ; null mean 7.9 ; p_high=0.1056
+c with h/k within ±10: 16/17 ; null mean 11.0 ; p_high=0.0080
+German 40-letter chunks: c with h/k partner in chunk: 3300/3323
+  line has c: enifvndtohnfdeelhrikiraceletedeluwrs | h: 2 k: 1
+  line has c: uesrcfefdrrhelcnundeuwsesddanunhhscf | h: 3 k: 0
+  line has c: denacsearaefnruhncfoiwmammtftfwmettcef | h: 1 k: 0
+  line has c: esmdesrntrnorunterrelfdrlbscihssneinnwhtouk | h: 2 k: 1
+  line has c: sanseighcinmowidgnlwireorbnsnhraneuwesgnenn | h: 2 k: 0
+  line has c: eisekdloernuazneletffsnclneeeradnwue | h: 0 k: 1
+  line has c: efhtiesnnfwrdihszeusrsrfuafnpihrdodesrunrca | h: 3 k: 0
+  line has c: ueerrnddeeshseianerenunwtmnisentmiabdhhncs | h: 3 k: 0
+  line has c: dieninelcteweashlensrwieeeisreeomnf | h: 1 k: 0
+  line has c: drepcrliwtsrehuiiinfieeihnrlnecnnhiuenenfi | h: 3 k: 0
+  line has c: ieirfnoreseeonferisenlcrthrhulnhuewt | h: 3 k: 0
+  line has c: ofenuinrwewenwertsscidikereelrnsnehdeni | h: 1 k: 1

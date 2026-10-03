@@ -1,0 +1,26 @@
+top positive contributors (pair, obs, exp, Ps):
+  iu obs=41 exp=60.6 Ps=-5.52 contrib=+54.0
+  nr obs=208 exp=233.8 Ps=-3.05 contrib=+39.3
+  ae obs=121 exp=133.1 Ps=-5.56 contrib=+33.6
+  fw obs=21 exp=33.6 Ps=-4.41 contrib=+27.9
+  lw obs=21 exp=30.0 Ps=-6.15 contrib=+27.6
+  ll obs=54 exp=34.1 Ps=+2.46 contrib=+24.4
+  ai obs=49 exp=56.3 Ps=-5.42 contrib=+19.7
+  rw obs=54 exp=61.4 Ps=-5.09 contrib=+18.9
+  cg obs=2 exp=5.5 Ps=-10.63 contrib=+18.7
+  mr obs=26 exp=42.7 Ps=-2.11 contrib=+17.5
+  eo obs=59 exp=64.8 Ps=-5.46 contrib=+16.0
+  lr obs=62 exp=70.0 Ps=-3.87 contrib=+15.4
+  cn obs=44 exp=47.3 Ps=-8.89 contrib=+14.7
+  uu obs=30 exp=35.8 Ps=-4.38 contrib=+12.8
+  fu obs=50 exp=39.2 Ps=+2.34 contrib=+12.6
+d=1 VC alternations 447 null 442.6±13.8 z=+0.32
+d=2 VC alternations 434 null 442.5±13.3 z=-0.64
+d=3 VC alternations 477 null 442.7±13.7 z=+2.51
+d=4 VC alternations 439 null 441.7±14.2 z=-0.19
+d=5 VC alternations 432 null 441.7±13.5 z=-0.72
+d=6 VC alternations 442 null 441.3±14.5 z=+0.05
+d=7 VC alternations 457 null 440.8±14.0 z=+1.16
+d=8 VC alternations 431 null 439.7±13.4 z=-0.65
+d=9 VC alternations 452 null 440.9±14.2 z=+0.79
+d=10 VC alternations 462 null 438.7±14.5 z=+1.61

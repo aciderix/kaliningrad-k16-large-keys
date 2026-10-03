@@ -1,0 +1,5 @@
+bottle reduced windows: 19 x 40
+  156.3  median  222.5  len  3241766  luther1912_all.txt  beta=2078520
+  156.4  median  222.4  len  3356240  corp/de_schlachter.json  beta=1817049
+  254.0  median  356.5  len  2850301  corp/ru_synodal.json  beta=20241
+(planted-source controls: 21.7 ; 65.5 with chunk-60 + 15% nulls ; unrelated text best ≈ 140-150)

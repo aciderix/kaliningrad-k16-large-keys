@@ -1,0 +1,6 @@
+jitter s in [1,10]: fraction within threshold 0.000
+jitter s in [11,25]: fraction within threshold 0.011
+jitter s in [26,50]: fraction within threshold 0.055
+jitter s in [51,80]: fraction within threshold 0.043
+jitter s in [81,120]: fraction within threshold 0.021
+global shuffle: fraction within threshold 0.000 ; no scramble: 0.000 (threshold 1.22)

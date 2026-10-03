@@ -1,0 +1,33 @@
+dictionary 6000 extra letters allowed in window: 5
+global: sum z real 444.7 | null mean -0.0 sd 367.5 -> Z=+1.21, p_high=0.120
+words most in excess (obs vs null mean, p_high):
+  hanschen     obs  15 null   0.72 p=0.000
+  gasthaus     obs   5 null   0.05 p=0.000
+  kleider      obs  16 null   1.44 p=0.000
+  langsamen    obs   7 null   0.29 p=0.000
+  augen        obs  31 null   6.39 p=0.000
+  genau        obs  31 null   6.39 p=0.000
+  haustur      obs   9 null   0.67 p=0.000
+  hauschen     obs   9 null   0.62 p=0.000
+  gaunen       obs  24 null   4.35 p=0.000
+  hassen       obs  34 null   9.04 p=0.000
+  kleidern     obs  13 null   1.67 p=0.000
+  philister    obs   2 null   0.00 p=0.000
+  rathaus      obs   9 null   0.83 p=0.000
+  ganzes       obs  10 null   1.04 p=0.000
+  gewinnen     obs  15 null   2.93 p=0.000
+  ansehung     obs  12 null   1.41 p=0.000
+  erstlich     obs   9 null   1.07 p=0.000
+  kleide       obs  15 null   2.18 p=0.000
+  england      obs  13 null   2.17 p=0.000
+  sagen        obs  32 null  10.03 p=0.000
+  schauen      obs  12 null   1.97 p=0.000
+  monch        obs   8 null   0.83 p=0.000
+  damals       obs   6 null   0.56 p=0.000
+  getan        obs  25 null   7.61 p=0.000
+  tagen        obs  25 null   7.61 p=0.000
+  sachen       obs  17 null   4.44 p=0.000
+  achsen       obs  17 null   4.44 p=0.000
+  haus         obs  29 null   9.30 p=0.000
+  mangel       obs  11 null   1.78 p=0.000
+  langem       obs  11 null   1.78 p=0.000
