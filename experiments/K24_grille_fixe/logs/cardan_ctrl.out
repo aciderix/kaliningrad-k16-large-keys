@@ -1,0 +1,7 @@
+# cardan.py ctrl — message allemand placé dans m trous fixes de chaque bloc de p cases, autres cases = lettres de la bouteille mélangées
+contrôle p=49 trous=0.3: plantée +0.518 | lettres mélangées max -0.079
+contrôle p=49 trous=0.5: plantée +0.513 | lettres mélangées max -0.197
+contrôle p=100 trous=0.3: plantée +0.523 | lettres mélangées max +0.156
+contrôle p=100 trous=0.5: plantée +0.512 | lettres mélangées max -0.060
+contrôle p=169 trous=0.3: plantée +0.613 | lettres mélangées max +0.394
+contrôle p=169 trous=0.5: plantée +0.544 | lettres mélangées max +0.147
