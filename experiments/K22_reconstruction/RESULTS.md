@@ -58,3 +58,21 @@ autres textes allemands cohérents. Une proposition de solution resterait **vér
 limités), mais aucune ne pourrait être prouvée unique. Seule exception : si l'échelle réelle était au bas de
 l'intervalle estimé (≈ 25 lettres) et le texte sans nuls, l'information serait à la limite — ce que les contrôles du
 § 1 ne permettent pas d'exploiter avec les modèles disponibles ici.
+
+## 5. Propositions « crédibles » pour la bouteille (`bottle22.py`, `shuf22.py`, `logs/bottle_decodes.out`)
+
+Le décodeur appliqué au bloc 1 (166 lettres, nuls f/w/n autorisés) produit des phrases allemandes :
+D = 25 : « die öffentliche Darstellung der Verhältnisse kennenlernte … Freundschaft … Landwirtschaft … » ;
+D = 50 : « der niederländischen Residentschaft auf der deutschen Völkerschaften welche alle Errungenschaften unserer
+Freundschaft mit fortlaufenden Nummern … ». Les **mêmes lettres mélangées au hasard** donnent des phrases du même
+niveau : « den Traumgedanken enthalten Scheidewände … fest verschlossenen Fensterläden im nordwestlichen Deutschland und
+fünfhundert Dollar … », « der demokratischen mitteldeutschen Handelsverein … am Fenster öffnen Fenster … ». Ces
+propositions changent avec D, n'ont aucune cohérence d'ensemble et ne se distinguent pas de celles obtenues sur du
+hasard : ce sont des textes **compatibles**, pas des déchiffrements.
+
+## 6. Note sur l'échelle (20 ou 50 ?)
+
+K19 avait estimé « une vingtaine de lettres » en comparant la bouteille à **un seul tirage** par contrôle. K21 a
+repris l'estimation avec 3 000 simulations par modèle : médiane ≈ 55, intervalle à 90 % ≈ 25–100 (le repérage de mots
+de K20 pointait aussi vers 40–80). C'est cette dernière valeur qui est retenue ; même à 20–25 lettres, la composition
+locale ne porterait que ≈ 1,4–1,6 bit par lettre, à la limite de ce qu'il faut, et le décodeur échoue déjà à 10 (§ 1).
