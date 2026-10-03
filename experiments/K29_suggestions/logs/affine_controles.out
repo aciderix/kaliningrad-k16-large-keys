@@ -1,0 +1,64 @@
+== contrôle 1 (loubere, 10 % de nuls)
+clé 13x13 [[12,2],[1,12]] départ (11,10) sens 0 ; clé 12x12 [[10,9],[9,11]] départ (8,7) sens 1
+marches 13x13 essayées : 8858304 (x 5 blocs) ; marches 12x12 : 1327104
+carré magique 12x12 doublement pair : meilleure note -15.2801 (sym 7 sens 0)
+== clé commune aux blocs S1-S5 (moyenne des 5 notes)
+  -10.5857 bloc S1-S5  [[1,1],[2,1]] départ (5,8) sens 1  rentatenihfnmwohlenrfuhltesiwchwiedfereinbezogenindenmenschl
+  -10.5857 bloc S1-S5  [[12,2],[1,12]] départ (11,10) sens 0  rentatenihfnmwohlenrfuhltesiwchwiedfereinbezogenindenmenschl
+== bloc S1 seul
+  -10.1234 bloc S1  [[1,1],[2,1]] départ (5,8) sens 1  mefrhinglaubtemannnnunschondarandassesmitihmnichtganzinordnu
+  -10.1234 bloc S1  [[12,2],[1,12]] départ (11,10) sens 0  mefrhinglaubtemannnnunschondarandassesmitihmnichtganzinordnu
+  -10.7100 bloc S1  [[12,7],[1,3]] départ (3,1) sens 0  eitwomitdieertihmzuhelfenditihmnichtganmefrhinglaubtstenanor
+== bloc S2 seul
+  -10.4293 bloc S2  [[1,1],[2,1]] départ (4,8) sens 1  wohlenrfuhltesiwchwiedfereinbezogenindenmenschlinchenkreifsw
+  -10.4293 bloc S2  [[12,2],[1,12]] départ (0,9) sens 0  wohlenrfuhltesiwchwiedfereinbezogenindenmenschlinchenkreifsw
+  -10.5153 bloc S2  [[1,1],[2,1]] départ (3,8) sens 1  siwchwiedfereinbezogenindenmenschlinchenkreifswunderhofftevo
+== bloc S3 seul
+  -10.0074 bloc S3  [[1,1],[2,1]] départ (5,8) sens 1  uberrnaschenndeleiswtungenumfurdiesichnaherndenentfscheidend
+  -10.0074 bloc S3  [[12,2],[1,12]] départ (11,10) sens 0  uberrnaschenndeleiswtungenumfurdiesichnaherndenentfscheidend
+  -10.3259 bloc S3  [[4,4],[11,10]] départ (10,10) sens 1  fetewereinwennemoglichsteirndenentfsahernaschennuberallerdin
+== bloc S4 seul
+  -11.2815 bloc S4  [[1,1],[2,1]] départ (2,8) sens 1  cfhondiesesgerauschandernsalsmenschlicherfhusnntenklangwaser
+  -11.2815 bloc S4  [[12,2],[1,12]] départ (4,7) sens 0  cfhondiesesgerauschandernsalsmenschlicherfhusnntenklangwaser
+  -11.2828 bloc S4  [[1,1],[2,1]] départ (4,8) sens 1  ndamoglichnferweniseaunchscfhondiesesgerauschandernsalsmensc
+== bloc S5 seul
+  -10.9278 bloc S5  [[12,7],[1,3]] départ (11,10) sens 0  fwnischenganzureundhorchtescheltenviellternmitdemnfpfstillng
+  -10.9278 bloc S5  [[4,4],[2,1]] départ (7,8) sens 1  fwnischenganzureundhorchtescheltenviellternmitdemnfpfstillng
+  -10.9595 bloc S5  [[1,1],[2,1]] départ (5,8) sens 1  fwnischenganzfstillngewordenviellenichtsasfsendieeflternmitd
+== bloc S6 seul
+  -10.6635 bloc S6  [[2,3],[3,7]] départ (4,9) sens 0  wlfinessihndortfloswarfsichgegendieturhieltsicnhanihraufrenc
+  -10.6635 bloc S6  [[10,9],[9,11]] départ (6,7) sens 1  wlfinessihndortfloswarfsichgegendieturhieltsicnhanihraufrenc
+  -10.6689 bloc S6  [[2,3],[3,7]] départ (10,7) sens 0  mmitdemsesselzurfturhinnwlfinessihndortfloswarfsichgegendiet
+== La Loubère classique (a=-1,b=2,c=1,d=-1, départ (0,6)) : S1/sens0 -13.895 S2/sens0 -11.581 S3/sens0 -12.391 S4/sens0 -12.661 S5/sens0 -11.738 S1/sens1 -15.922 S2/sens1 -16.064 S3/sens1 -15.358 S4/sens1 -16.439 S5/sens1 -16.219
+== contrôle 2 (quelconque, 10 % de nuls)
+clé 13x13 [[6,3],[0,2]] départ (2,2) sens 0 ; clé 12x12 [[1,6],[0,11]] départ (1,0) sens 0
+marches 13x13 essayées : 8858304 (x 5 blocs) ; marches 12x12 : 1327104
+carré magique 12x12 doublement pair : meilleure note -15.0755 (sym 5 sens 1)
+== clé commune aux blocs S1-S5 (moyenne des 5 notes)
+  -11.0599 bloc S1-S5  [[7,0],[3,11]] départ (12,11) sens 1  daunchbisdnahinjemandaunsdefmgeschaftkommenumnanchmirzufrage
+  -11.0599 bloc S1-S5  [[6,3],[0,2]] départ (2,2) sens 0  daunchbisdnahinjemandaunsdefmgeschaftkommenumnanchmirzufrage
+== bloc S1 seul
+  -10.5381 bloc S1  [[7,0],[3,11]] départ (12,11) sens 1  wrklicnhenundselbstverstandlichenverhaltnissedannabersagteer
+  -10.5381 bloc S1  [[6,3],[0,2]] départ (2,2) sens 0  wrklicnhenundselbstverstandlichenverhaltnissedannabersagteer
+  -10.8860 bloc S1  [[6,10],[0,11]] départ (9,11) sens 0  fnfhabenimubrandigverlassesbentntvollstunbnedingtdfantwmffus
+== bloc S2 seul
+  -10.6534 bloc S2  [[7,0],[3,11]] départ (7,11) sens 1  ndfasgeschnaftwirdvorsiebenuhrgeoffnetfundermacnhtesichnunda
+  -10.6534 bloc S2  [[6,3],[0,2]] départ (4,12) sens 0  ndfasgeschnaftwirdvorsiebenuhrgeoffnetfundermacnhtesichnunda
+  -10.6876 bloc S2  [[7,0],[3,11]] départ (10,11) sens 1  efmgeschaftkommenumnanchmirzufragendennndfasgeschnaftwirdvor
+== bloc S3 seul
+  -11.6514 bloc S3  [[7,0],[3,11]] départ (12,11) sens 1  iggfleichmassigausdembetthifnaufszuschaukelnwennersichaufdie
+  -11.6514 bloc S3  [[6,3],[0,2]] départ (2,2) sens 0  iggfleichmassigausdembetthifnaufszuschaukelnwennersichaufdie
+  -11.9592 bloc S3  [[6,11],[0,3]] départ (10,3) sens 0  sbliebderkofpifnaufszuschabenwolltevoraseausdembfettiggfleic
+== bloc S4 seul
+  -11.3404 bloc S4  [[7,0],[3,11]] départ (12,11) sens 1  verletztderruckenschienfhartzuseindeffmwurdewohlbeindemfalla
+  -11.3404 bloc S4  [[6,3],[0,2]] départ (2,2) sens 0  verletztderruckenschienfhartzuseindeffmwurdewohlbeindemfalla
+  -11.3723 bloc S4  [[7,0],[3,11]] départ (0,11) sens 1  fenefsgebenmwverletztderruckenschienfhartzuseindeffmwurdewoh
+== bloc S5 seul
+  -10.9509 bloc S5  [[7,0],[3,11]] départ (2,11) sens 1  negnorschonzurhalftewauwsdembetterfagteunsswteundderwwahrsnc
+  -10.9509 bloc S5  [[6,3],[0,2]] départ (6,9) sens 0  negnorschonzurhalftewauwsdembetterfagteunsswteundderwwahrsnc
+  -10.9603 bloc S5  [[7,0],[3,11]] départ (6,11) sens 1  wrgnnisseerregenwurdedasmussnteabergewagtwerdenalsgrnegnorsc
+== bloc S6 seul
+  -10.7005 bloc S6  [[11,0],[6,1]] départ (11,11) sens 1  odewarnmehreinspwiwewlalseineanstrenngungernbrauchteimmnernu
+  -10.7005 bloc S6  [[1,6],[0,11]] départ (7,11) sens 0  odewarnmehreinspwiwewlalseineanstrenngungernbrauchteimmnernu
+  -10.7276 bloc S6  [[11,0],[6,1]] départ (4,11) sens 1  fielihmeinwieneinfachalleswarewennmannihmzuffhildieneuemetnh
+== La Loubère classique (a=-1,b=2,c=1,d=-1, départ (0,6)) : S1/sens0 -15.900 S2/sens0 -15.709 S3/sens0 -16.265 S4/sens0 -16.481 S5/sens0 -16.257 S1/sens1 -16.116 S2/sens1 -16.390 S3/sens1 -16.574 S4/sens1 -16.979 S5/sens1 -15.434

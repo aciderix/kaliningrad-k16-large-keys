@@ -1,0 +1,17 @@
+== base et ê
+base (K17 : ê→e)                             G bouteille   125.5 | fenêtres : médiane  31.3, max  309.4 | p = 0.0012 (2608 fenêtres)
+ê lu comme ä (→ a)                           G bouteille   118.2 | fenêtres : médiane  31.3, max  309.4 | p = 0.0015 (2608 fenêtres)
+
+== 2C : sch écrit w (ш cursif)
+sch→w                                        G bouteille   106.5 | fenêtres : médiane  32.7, max  302.8 | p = 0.0020 (2468 fenêtres)
+sch→w, et ê→ä                                G bouteille    99.1 | fenêtres : médiane  32.7, max  302.8 | p = 0.0024 (2468 fenêtres)
+   sch par 979 lettres en allemand : 7.8 (excès de w à expliquer : ≈ 20 ; déficit de c : ≈ 15)
+
+== 2B : nombres en toutes lettres
+cardinaux 1–100                              meilleur α = 0.02 : G 124.3, p = 0.0012 | f 3.4 % w 1.7 % n 14.1 % g 6.6 % a 2.5 % dans les nombres
+chiffres à la militaire (eins zwo … null)    meilleur α = 0.20 : G 101.6, p = 0.0019 | f 4.8 % w 2.3 % n 14.3 % g 0.0 % a 2.4 % dans les nombres
+années 1900–1999 et dates                    meilleur α = 0.20 : G 114.5, p = 0.0015 | f 2.4 % w 1.9 % n 17.6 % g 2.8 % a 1.8 % dans les nombres
+
+== 2A : w = séparateur
+   Kafka (Gutenberg 22367) : 190.6 mots et 7.3 phrases par 979 lettres ; w attendu ≈ 16 ; bouteille w = 36
+   w séparateur de mots ⇒ w ≈ 207 (incompatible) ; séparateur de phrases ⇒ w ≈ 23

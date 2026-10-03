@@ -1,0 +1,33 @@
+marches 13x13 essayées : 8858304 (x 5 blocs) ; marches 12x12 : 1327104
+carré magique 12x12 doublement pair : meilleure note -14.5131 (sym 2 sens 0)
+== clé commune aux blocs S1-S5 (moyenne des 5 notes)
+  -14.8031 bloc S1-S5  [[6,8],[0,5]] départ (11,7) sens 1  ckrunediosslnsorntfwedlihsfhureemwedssdenznrwihieibseinntdhm
+  -14.8031 bloc S1-S5  [[8,0],[11,11]] départ (9,10) sens 0  ckrunediosslnsorntfwedlihsfhureemwedssdenznrwihieibseinntdhm
+  -14.8165 bloc S1-S5  [[3,6],[2,5]] départ (1,2) sens 1  nsmeeinerrmltnuerrithlnnsnsgleetnimulngereaoouszfdfwnwnsmnrh
+  -14.8165 bloc S1-S5  [[1,8],[11,6]] départ (3,11) sens 0  nsmeeinerrmltnuerrithlnnsnsgleetnimulngereaoouszfdfwnwnsmnrh
+  -14.8292 bloc S1-S5  [[1,4],[11,3]] départ (12,8) sens 0  uisnfnwrwenhinsmeeinerrmltaacufrnaesuiinuerrithlnnsntswiheef
+== bloc S1 seul
+  -14.4774 bloc S1  [[8,9],[10,0]] départ (8,3) sens 0  ceherauneteedranumrfaucnaufheurefflurftfntddwrodgockeestfeen
+  -14.4774 bloc S1  [[8,3],[4,0]] départ (4,1) sens 1  ceherauneteedranumrfaucnaufheurefflurftfntddwrodgockeestfeen
+  -14.5246 bloc S1  [[8,2],[7,10]] départ (2,8) sens 1  rttfhehlinfaueneeccflwetrolattdlmeeenurduwuncdoniuslnanddeou
+== bloc S2 seul
+  -14.0387 bloc S2  [[8,9],[7,7]] départ (4,1) sens 1  pendifekanngtergieismlrnlcseogranonhurtrefnleewalwachedenmsk
+  -14.0387 bloc S2  [[8,9],[7,7]] départ (2,1) sens 1  seogranonhurtrefnleewalwachedenmskwrrliunnrinnlbfwennessnsie
+  -14.0387 bloc S2  [[10,1],[5,12]] départ (12,12) sens 0  pendifekanngtergieismlrnlcseogranonhurtrefnleewalwachedenmsk
+== bloc S3 seul
+  -13.2493 bloc S3  [[0,9],[5,11]] départ (2,2) sens 0  ofknfunteifitanueogdivteiasihnbcmhrantdutreeftwessdtsenenwmw
+  -13.2493 bloc S3  [[0,3],[8,9]] départ (7,5) sens 1  ofknfunteifitanueogdivteiasihnbcmhrantdutreeftwessdtsenenwmw
+  -13.5277 bloc S3  [[0,6],[5,3]] départ (12,7) sens 0  senenwmwangtzuerwanseniehnanueogdivteiaedereunsedereitalmefd
+== bloc S4 seul
+  -13.6619 bloc S4  [[9,8],[12,3]] départ (1,12) sens 1  wmnsloutnselsisfhfzdicgemleempnhtunhlinleeeggreetarliwanaher
+  -13.6619 bloc S4  [[1,3],[2,9]] départ (11,6) sens 0  wmnsloutnselsisfhfzdicgemleempnhtunhlinleeeggreetarliwanaher
+  -13.7300 bloc S4  [[9,8],[12,3]] départ (10,12) sens 1  iwanaherlsthrinnnlisruenneletseinendlewariunhlltefhinfnetese
+== bloc S5 seul
+  -13.8700 bloc S5  [[7,2],[7,3]] départ (8,11) sens 0  hnenwhegirwiteerwafossuneeinfeenfwrneetaletdwremnourseelkdni
+  -13.8700 bloc S5  [[7,2],[7,3]] départ (5,0) sens 0  intmsgrrfzrtrentdeitinoadunessseemdenhindaznobrzugsrrnnheitc
+  -13.8700 bloc S5  [[1,12],[9,6]] départ (5,9) sens 1  intmsgrrfzrtrentdeitinoadunessseemdenhindaznobrzugsrrnnheitc
+== bloc S6 seul
+  -13.5722 bloc S6  [[2,3],[1,7]] départ (2,0) sens 0  rnundlzsnatdfvdederinwennrterfsifeunheienewenitekereneirlhmo
+  -13.5722 bloc S6  [[10,1],[3,5]] départ (9,2) sens 1  fvdederinwennrterfsifeunheienewenitekereneirlhmodefrnmannreg
+  -13.5722 bloc S6  [[2,3],[1,7]] départ (5,7) sens 0  fvdederinwennrterfsifeunheienewenitekereneirlhmodefrnmannreg
+== La Loubère classique (a=-1,b=2,c=1,d=-1, départ (0,6)) : S1/sens0 -16.229 S2/sens0 -14.829 S3/sens0 -15.509 S4/sens0 -16.014 S5/sens0 -15.049 S1/sens1 -16.295 S2/sens1 -15.398 S3/sens1 -16.451 S4/sens1 -14.143 S5/sens1 -14.539

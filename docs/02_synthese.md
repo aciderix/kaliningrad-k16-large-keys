@@ -99,6 +99,12 @@ de preuve), HYPOTHÈSE.
 > classique ; la page lue en colonnes et le retrait des lettres marquées (apostrophes, accents, abréviations) ne
 > rendent aucun lien entre voisines (K28). Bilan d'ensemble : `docs/03_bilan.md`.
 
+> **K29 (2026-10-03)** : examen de suggestions externes. Nombres en toutes lettres, « sch » écrit w, ê = ä ou э,
+> w séparateur de mots : aucun ne rend le décompte allemand. Toutes les marches affines des carrés 13×13 et 12×12
+> (dont La Loubère) sont exclues, nuls compris. Les apostrophes ne suivent pas la distribution du signe mou russe ;
+> les mots « russes » (gon'it') sont au niveau du hasard. Reste non testable : une grille tournante différente par
+> bloc avec ≈ 10 % de nuls. Voir `experiments/K29_suggestions/RESULTS.md`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

@@ -1,11 +1,11 @@
 # Bilan au 2026-10-03 — tout ce qui a été tenté pour déchiffrer la bouteille, et ce qu'il en reste
 
-Ce document rassemble en un seul endroit l'état de la recherche après les cellules K01–K28. Détails, chiffres et
+Ce document rassemble en un seul endroit l'état de la recherche après les cellules K01–K29. Détails, chiffres et
 contrôles : `README.md` (tableau des cellules), `docs/02_synthese.md`, et `experiments/K*/RESULTS.md`.
 
 ## 1. Verdict
 
-**La bouteille n'est pas déchiffrée.** Après 28 cellules d'expériences, chacune calibrée sur des contrôles plantés,
+**La bouteille n'est pas déchiffrée.** Après 29 cellules d'expériences, chacune calibrée sur des contrôles plantés,
 aucune lecture ne résiste. Le texte a la composition de lettres d'un allemand un peu déformé, mais leur **ordre est
 détruit** (aucun lien entre voisines) et aucune clé d'aucune famille classique ne le rétablit. Deux explications
 restent, et aucune ne donne de prise à la cryptanalyse :
@@ -55,11 +55,13 @@ Une transposition à clé d'une famille encore non couverte reste possible en pr
 | double transposition, même clé (Übchi) | 10–15 colonnes | K14 |
 | **double transposition à clés-mots** | **≈ 34 000 mots allemands, russes (ordre cyrillique ou latin), prénoms, noms de lieux, expressions ; toutes longueurs ; 4 variantes de lecture (12 autres en cours) ; texte entier et par bloc** | **K27** |
 | Myszkowski, AMSCO, nihiliste | 5–15 ; 3–12 ; blocs carrés | K13 |
-| grilles tournantes (Fleissner, Verne) | 4×4 à 13×13 | K05, K19, K21 |
+| grilles tournantes (Fleissner, Verne) | 4×4 à 13×13 ; une clé par bloc : seulement sans nuls (voir § 5) | K05, K19, K21, K29 |
+| marches régulières sur les carrés 13×13 et 12×12 : La Loubère (siamoise), Bachet, de la Hire, toute marche affine ; carré magique 12×12 | 8,9 M + 1,3 M marches, avec nuls | K29 |
 | grille de Cardan fixe commune aux blocs | 25–169 cases | K24 |
 | permutations périodiques à clé fixe | période ≤ 25 avec nuls, ≤ 36 sans | K19 |
 | transpositions ligne par ligne, lecture de la page en colonnes | — | K19, K28 |
 | « eimat » / « Heimat » comme clé (colonnes, double, Vigenère, Beaufort, zigzag) | — | K28 |
+| apostrophes = signe mou ь, mots russes translittérés, ê = э ou ä, nombres en toutes lettres, sch → w | — | K29 |
 | messages dans l'habillage (initiales, finales, apostrophes, abréviations, lettres soulignées) | — | K17, K18 |
 | texte source connu brassé localement | 2 386 livres allemands de Gutenberg, 11 192 chants, Bibles Luther, Schlachter, synodale | K21 |
 | « solutions » annoncées (T. Ernst 2017, « Frank » 2021, Bible synodale) | jamais publiées ; contredites par les mesures | K18 |
@@ -68,7 +70,9 @@ Une transposition à clé d'une famille encore non couverte reste possible en pr
 
 - Transpositions à clé **non tirée d'un mot** et à structure plus riche : double transposition à deux clés
   quelconques de 10 colonnes et plus (K16 : puissance insuffisante, mais K17 montre qu'un allemand ordinaire est de
-  toute façon exclu ; il faudrait des nuls), grilles différentes pour chaque bloc, grilles tournantes à clé changeante.
+  toute façon exclu ; il faudrait des nuls), grilles différentes pour chaque bloc. En particulier, **une grille
+  tournante différente pour chaque bloc carré, avec ≈ 10 % de nuls, n'est pas testable** : sur 169 lettres, la clé
+  n'est retrouvée que 2 fois sur 12 et la note de quadrigrammes ne sépare plus le vrai clair des faux optimums (K05, K29).
 - Mélange sans clé (local ou global) d'un texte allemand non standard : vérifiable si on propose un texte, jamais
   démontrable comme unique (K22).
 - Pseudo-texte sans message.

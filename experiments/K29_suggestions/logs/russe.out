@@ -1,0 +1,29 @@
+== 1. consonnes portant une apostrophe (bouteille) et consonnes suivies de ь (russe, pondéré)
+cons.  bouteille    russe ь % consonnes bout. %
+n             42          6.6           21.4
+t             29         39.6            7.5
+r             13          3.3           13.1
+d             12          2.1            8.4
+s              6         12.2           10.3
+f              6          0.0            7.2
+l              5         18.2            6.4
+m              3          0.7            3.9
+z              2          1.0            1.4
+sh             0         12.0            0.0
+ch             0          1.7            0.0
+w              0          1.1            5.6
+log-vraisemblance des 118 apostrophes : modèle ь russe -337.8 ; apostrophe au hasard sur une consonne de la bouteille -257.4
+taux : bouteille 12.1 % des lettres portent une apostrophe ; ь = 2.3 % des lettres russes
+
+== 2. mots de la bouteille présents dans un lexique (123577 formes russes translittérées, 49503 allemandes)
+russe     longueur >= 2 : bouteille  17 (gonit' ren' sans mne nie sêk d'e ide ede wen rbn ne) | témoins 14.1 ± 3.0 | p = 0.206
+russe     longueur >= 3 : bouteille  10 (gonit' ren' sans mne nie sêk ide ede wen rbn) | témoins 7.1 ± 2.5 | p = 0.166
+russe     longueur >= 4 : bouteille   2 (gonit' sans) | témoins 1.1 ± 1.1 | p = 0.314
+russe     longueur >= 5 : bouteille   1 (gonit') | témoins 0.1 ± 0.4 | p = 0.110
+allemand  longueur >= 2 : bouteille  17 (es'tes rande ren' t'oa ihr rêt nie sêk d'e wiê wen ne) | témoins 14.1 ± 2.9 | p = 0.228
+allemand  longueur >= 3 : bouteille  10 (es'tes rande ren' t'oa ihr rêt nie sêk wiê wen) | témoins 7.2 ± 2.4 | p = 0.172
+allemand  longueur >= 4 : bouteille   2 (es'tes rande) | témoins 1.2 ± 1.2 | p = 0.350
+allemand  longueur >= 5 : bouteille   2 (es'tes rande) | témoins 0.2 ± 0.5 | p = 0.024
+
+o en russe : 11.1 % des lettres ; dans la bouteille : 1.2 %
+э en russe : 0.78 % (7.6 par 979 lettres) ; ê dans la bouteille : 17
