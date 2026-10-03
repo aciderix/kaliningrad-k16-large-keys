@@ -1,0 +1,34 @@
+page 1 : 20 lignes, y = [88, 123, 158, 191, 228, 261, 295, 332, 366, 400, 435, 470, 504, 539, 575, 609, 644, 680, 715, 749]
+page 2 (sous eimat) : 13 lignes délavées, y = [291, 326, 359, 436, 471, 508, 543, 579, 615, 655, 691, 726, 762]
+
+== page 1 endroit
+p2 y=291  même hauteur L07 r=0.88 | meilleures : L07 0.88 (décalage +5) L02 0.51 (décalage -38) L04 0.47 (décalage -24)
+p2 y=326  même hauteur L08 r=0.73 | meilleures : L08 0.73 (décalage +4) L18 0.51 (décalage -15) L17 0.49 (décalage +60)
+p2 y=359  même hauteur L09 r=0.50 | meilleures : L17 0.51 (décalage -10) L09 0.50 (décalage +5) L02 0.47 (décalage -33)
+p2 y=436  même hauteur L11 r=0.13 | meilleures : L02 0.41 (décalage -60) L01 0.38 (décalage +60) L19 0.27 (décalage -20)
+p2 y=471  même hauteur L12 r=0.70 | meilleures : L12 0.70 (décalage +4) L19 0.66 (décalage -20) L02 0.52 (décalage -1)
+p2 y=508  même hauteur L13 r=0.90 | meilleures : L13 0.90 (décalage +4) L14 0.57 (décalage +25) L03 0.52 (décalage +0)
+p2 y=543  même hauteur L14 r=0.91 | meilleures : L14 0.91 (décalage +3) L03 0.67 (décalage +0) L18 0.57 (décalage +0)
+p2 y=579  même hauteur L15 r=0.84 | meilleures : L15 0.84 (décalage +4) L06 0.48 (décalage +0) L04 0.45 (décalage +12)
+p2 y=615  même hauteur L16 r=0.80 | meilleures : L16 0.80 (décalage +4) L01 0.47 (décalage +1) L18 0.42 (décalage -19)
+p2 y=655  même hauteur L17 r=0.68 | meilleures : L17 0.68 (décalage +3) L02 0.47 (décalage -54) L01 0.38 (décalage +7)
+p2 y=691  même hauteur L18 r=0.90 | meilleures : L18 0.90 (décalage +4) L03 0.49 (décalage +0) L02 0.42 (décalage -9)
+p2 y=726  même hauteur L19 r=0.88 | meilleures : L19 0.88 (décalage +4) L04 0.47 (décalage +9) L02 0.43 (décalage -22)
+p2 y=762  même hauteur L20 r=0.89 | meilleures : L20 0.89 (décalage +4) L01 0.49 (décalage +0) L19 0.43 (décalage -55)
+médiane r (ligne de même hauteur) = 0.84
+
+== page 1 miroir
+p2 y=291  même hauteur L07 r=0.40 | meilleures : L11 0.47 (décalage +44) L07 0.40 (décalage +54) L04 0.37 (décalage -19)
+p2 y=326  même hauteur L08 r=-0.24 | meilleures : L11 0.36 (décalage -25) L10 0.26 (décalage +2) L01 0.21 (décalage +60)
+p2 y=359  même hauteur L09 r=0.04 | meilleures : L01 0.34 (décalage -60) L15 0.32 (décalage +49) L06 0.31 (décalage +56)
+p2 y=436  même hauteur L11 r=0.18 | meilleures : L01 0.45 (décalage +24) L02 0.38 (décalage +32) L07 0.31 (décalage +60)
+p2 y=471  même hauteur L12 r=0.41 | meilleures : L12 0.41 (décalage -21) L01 0.34 (décalage -60) L16 0.28 (décalage -43)
+p2 y=508  même hauteur L13 r=0.07 | meilleures : L11 0.44 (décalage -60) L09 0.32 (décalage -42) L20 0.26 (décalage -35)
+p2 y=543  même hauteur L14 r=0.23 | meilleures : L11 0.55 (décalage +29) L16 0.47 (décalage +57) L10 0.30 (décalage -10)
+p2 y=579  même hauteur L15 r=0.31 | meilleures : L19 0.43 (décalage +18) L05 0.36 (décalage +60) L01 0.34 (décalage -34)
+p2 y=615  même hauteur L16 r=0.45 | meilleures : L14 0.48 (décalage +56) L01 0.46 (décalage +53) L16 0.45 (décalage +60)
+p2 y=655  même hauteur L17 r=0.36 | meilleures : L02 0.45 (décalage +0) L15 0.41 (décalage -28) L04 0.39 (décalage -25)
+p2 y=691  même hauteur L18 r=0.55 | meilleures : L18 0.55 (décalage +9) L05 0.39 (décalage -12) L12 0.36 (décalage +49)
+p2 y=726  même hauteur L19 r=0.51 | meilleures : L19 0.51 (décalage +28) L01 0.43 (décalage +42) L11 0.42 (décalage -48)
+p2 y=762  même hauteur L20 r=0.39 | meilleures : L11 0.42 (décalage +21) L01 0.40 (décalage +51) L19 0.39 (décalage +30)
+médiane r (ligne de même hauteur) = 0.36
