@@ -1,0 +1,50 @@
+L=979 clesA=28380 clesB=5666 mode=whole pref=120 seuil=-12.80
+paires x variantes notees : 1929612960 ; au-dessus du seuil -12.80 : 2624
+histogramme du criblage (score par quadrigramme, pas 0,125) :
+  -16.000 665263611
+  -15.875 165879138
+  -15.750 168554370
+  -15.625 164741165
+  -15.500 155377978
+  -15.375 139153314
+  -15.250 120335724
+  -15.125 97784091
+  -15.000 77024404
+  -14.875 57640313
+  -14.750 41103262
+  -14.625 28981695
+  -14.500 18655012
+  -14.375 12020505
+  -14.250 7530885
+  -14.125 4299702
+  -14.000 2507563
+  -13.875 1350845
+  -13.750 685889
+  -13.625 367429
+  -13.500 198993
+  -13.375 89398
+  -13.250 42109
+  -13.125 12905
+  -13.000 8967
+  -12.875 1729
+  -12.750 1497
+  -12.625 309
+  -12.500 128
+  -12.375 21
+  -12.250 4
+  -11.875 5
+-14.8745  A=de:beruehrung  B=de:moskaukrieg  v=03  dfrwrengtdreseidritseweinreicedenswenfspehedrcdnenunetwrtshdeinnerodenesntnuiritendeneursucfsuennichannrrmeeiniseernreri
+-14.9040  A=de:verkriechen  B=de:preussenschatz  v=13  ienfisenisddenrmnihtdindeuesogeurnfensdersteefnwanwirnsorbedawhitfhneehereeeentseernkensleeinnunwffdsmeeaslanmutetsenemg
+-14.9912  A=rl:proverka  B=de:eimatpreussen  v=02  gaifteifindseilhefrnunadnnertrinwentinnseidnetesnefedrirsreindeeistvrfhdnsnnsserwwnernutenhntwtlinilfsenerleidsieneanems
+-15.0105  A=ru:преследует  B=de:moskwakrieg  v=13  srmwedfdgreinesresienntineweinewrstdepfderodwehnntnwataundsonennveindidnftgestrusnsetenurnnerutcfhieerircannerrrlesisiee
+-15.0207  A=de:herzfrequenz  B=rl:moiamoskva  v=30  gwudemursduwerintitinilnowlrdseherieinedeamdrgottsheeheanwanneegsnegeennwananrnfdwersonerlnsilrninsisinnleumkannhiseinme
+-15.0273  A=de:bestaetigung  B=rl:moiamoskva  v=20  gwudemursduwerintitinilnowlrdseherieinedeamdrgottsheeheanwanneegsnegeennwananrnfdwersonerlnsilrninsisinnleumkannhiseinme
+-15.0273  A=de:fantastische  B=rl:moiamoskva  v=30  gwudemursduwerintitinilnowlrdseherieinedeamdrgottsheeheanwanneegsnegeennwananrnfdwersonerlnsilrninsisinnleumkannhiseinme
+-15.0295  A=rl:nevozmozhnoe  B=rl:moiamoskva  v=30  gwudemursduwerintitinilnowlrdseherieinedeamdrgottsheeheanwanneegsnegeennwananrnfdwersonerlnsilrninsisinnleumkannhiseinme
+-15.0332  A=de:erklaerungen  B=rl:moiamoskva  v=20  gwudemursduwerintitinilnowlrdseherieinedeamdrgottsheeheanwanneegsnegeennwananrnfdwersonerlnsilrninsisinnleumkannhiseinme
+-15.0369  A=ru:рассчитывать  B=rl:moiamoskva  v=30  gwudemursduwerintitinilnowlrdseherieinedeamdrgottsheeheanwanneegsnegeennwananrnfdwersonerlnsilrninsisinnleumkannhiseinme
+-15.0377  A=ru:замечательно  B=rl:moiamoskva  v=30  gwudemursduwerintitinilnowlrdseherieinedeamdrgottsheeheanwanneegsnegeennwananrnfdwersonerlnsilrninsisinnleumkannhiseinme
+-15.0421  A=de:reginald  B=ru:пионерыфлот  v=03  etulndnentmnnreteielnesdenusodienteitedentihrurndwdlienssdnaseeannbrfeshennercwerleinaniiedinihnmengsmiernswenlnfndleene
+-15.0423  A=ru:заинтересует  B=rl:moiamoskva  v=30  gwudemursduwerintitinilnowlrdseherieinedeamdrgottsheeheanwanneegsnegeennwananrnfdwersonerlnsilrninsisinnleumkannhiseinme
+-15.0441  A=de:aufgegangen  B=de:botschaftgeheimnis  v=03  nhmannetifekfsunnerrnrresshnmnmeisergdenensesbirdenttiiunintesaittndnerdewilsioleueestuddesenfertuttereerfundelernincghd
+-15.0472  A=ru:направляются  B=rl:moiamoskva  v=30  gwudemursduwerintitinilnowlrdseherieinedeamdrgottsheeheanwanneegsnegeennwananrnfdwersonerlnsilrninsisinnleumkannhiseinme
