@@ -1,0 +1,6 @@
+# shortcal.py (graine 17) — sources plantées (allemand + 10 % de nuls, brassé par 40) vs 2 000 extraits sans rapport
+K   planted(dist)   unrelated: min over 2000, 1st percentile
+ 7    1.40   min 5.35   1% 5.84   median 7.44
+ 9    1.13   min 5.63   1% 6.40   median 7.81
+13    2.30   min 6.65   1% 7.05   median 8.24
+20    2.20   min 7.47   1% 7.72   median 8.81

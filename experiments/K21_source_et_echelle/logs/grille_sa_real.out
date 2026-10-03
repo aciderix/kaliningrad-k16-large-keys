@@ -1,0 +1,15 @@
+== n=8
+n=8 best=-0.3563 offset=38 rev=0 ccw=1 colmajor=0 grille=3201312111213202
+clair: glfusstrrhlcdesuaunennfreaffesdndntersdrdfuedrunenlfutescnneuwdasahcomtmfldnalnscdcserewamtcuenehenafnunmfttedrthfarfifwehoulleenemerrurlsihehtahwiiealtnoldcwunmie
+   null1 n=8 best=-0.3650 offset=45 rev=0 ccw=1 colmajor=0 grille=0202220321203221
+   null2 n=8 best=-0.3658 offset=30 rev=1 ccw=0 colmajor=1 grille=1301310230230203
+== n=9
+n=9 best=-0.2973 offset=64 rev=1 ccw=1 colmajor=0 grille=21313302120320300122
+clair: gndmwthdeshimieserreufehrheanbrnesmwesdelieihrrnfchttnreedeunfaseentzedbanunnaihndeweifeuheredishwsetstttfinehewdrhnasdnfeufttnnnsanofursrfihcerskofmndurspfruezine
+   null1 n=9 best=-0.3152 offset=37 rev=0 ccw=1 colmajor=0 grille=32021201101333222320
+   null2 n=9 best=-0.3238 offset=25 rev=1 ccw=1 colmajor=1 grille=10122223203012133002
+== n=10
+n=10 best=-0.2717 offset=97 rev=0 ccw=0 colmajor=0 grille=1002023133011310322102320
+clair: annfdnanitmtdhuntehieiinrhcesanfomwtclneneswieessruhrerucwameedollemaemdtnodsacefhmtfffuralemneelserntrdrbstscmilosuegnselesceflinnukenwdwernesidnazfeersenwoasiogr
+   null1 n=10 best=-0.2975 offset=86 rev=0 ccw=0 colmajor=1 grille=3330033320232030222112032
+   null2 n=10 best=-0.3035 offset=89 rev=1 ccw=0 colmajor=1 grille=3231022211221330132013133

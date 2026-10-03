@@ -1,0 +1,14 @@
+bottle reduced windows: 19 x 40
+  153.1  median  218.4  len   715659  corp/g38780.txt  beta=330314
+  155.7  median  223.4  len  1227633  corp/g34811.txt  beta=603364
+  156.4  median  222.4  len  3356240  corp/de_schlachter.json  beta=1817049
+  157.7  median  219.5  len  1188984  corp/g40739.txt  beta=286003
+  160.2  median  218.6  len  1061260  corp/g6343.txt  beta=810569
+  160.8  median  229.2  len   311849  corp/g31284.txt  beta=167833
+  161.2  median  221.5  len   410789  corp/g7205.txt  beta=48350
+  161.3  median  228.2  len   471216  corp/g5323.txt  beta=218796
+  161.5  median  220.1  len    99138  corp/g22367.txt  beta=75427
+  161.9  median  226.3  len   193347  corp/g56156.txt  beta=48294
+  162.3  median  244.6  len    62460  corp/p_51467.txt  beta=35030
+  162.7  median  218.2  len   422100  corp/g2403.txt  beta=157866
+(planted-source controls: 21.7 ; 65.5 with chunk-60 + 15% nulls ; unrelated text best ≈ 140-150)

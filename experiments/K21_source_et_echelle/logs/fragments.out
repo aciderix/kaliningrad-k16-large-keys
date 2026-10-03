@@ -1,0 +1,14 @@
+D=3: share of letters inside German words (>=4 letters): real 0.348 | fake sets 0.368 ± 0.026 (min 0.320, max 0.404)
+D=5: share of letters inside German words (>=4 letters): real 0.450 | fake sets 0.474 ± 0.031 (min 0.429, max 0.518)
+
+--- examples, D=5: REAL lines 11, 14, 25 vs FAKE lines (same positions, set 1) ---
+real 11: erundersehendiesenaturwennstimmendinschabh   words: runder sehen diesen wenns timm
+fake 11: hltwunsersthindennsinderwaswirwerbfmcfftdr   words: unsers denn sind
+real 14: deineitenwelchenlassererwieseinemfo   words: deine welchen lasse erwies einem
+fake 14: sondenweistehenhoferschereileutensp   words: weist ehen hofe schere leuten
+real 25: affenwiderdendermoderstigenwirwirenwirh   words: affen wider ende moder
+fake 25: gtwortwermoglicandeinesistunderliedenal   words: wort deines stunde lied
+real  4: casanderenfraufenwochimmtwaffemmtettcf   words: sande frau waffe
+fake  4: sundiesaufenderfluswiederwenderstenwic   words: sund saufen wieder wende
+real  7: sgansicheinmoglinwordenswirhabernungenwenns   words: gans hein worden habe wenns
+fake  7: mflfsmindershlznfthalssihrenmusstderwirfisz   words: minder thal ihren musst wirf

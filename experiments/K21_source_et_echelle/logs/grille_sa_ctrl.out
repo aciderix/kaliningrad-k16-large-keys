@@ -1,0 +1,15 @@
+# grille_sa n P_de.txt ctl<n>.txt 4 <iters> 1 — allemand + 10 % de nuls f/w/n chiffré par une grille n×n plantée
+# vérification 6×6 sur la bouteille : n=6 best=-0.3735 offset=12 rev=0 ccw=1 colmajor=0 (= optimum exhaustif de K19)
+ctl8 planted grille 3113132222203312 offset 46
+n=8 best=0.2304 offset=46 rev=0 ccw=0 colmajor=0 grille=3113132222203312
+clair: wsvielfgenauerschonihreintriwttwarfurihnschrecklichkaufmwarsieneingfetrnetenlinefnsifeofhnesiwchzeitzunehmendiweturezuwschliessfensosehrsiesonstdaranufachtwetejedemdenanblifckvongregorsznimmerz
+ctl9 planted grille 21312030032132320000 offset 71
+n=9 best=0.2056 offset=71 rev=0 ccw=0 colmajor=0 grille=21312030032132320000
+ctl10 planted grille 3120012123012231233111333 offset 67
+n=10 best=0.2610 offset=67 rev=0 ccw=0 colmajor=0 grille=3120012123012231233111333
+11 planted 132122122133333100002000332021 offset 47
+n=11 best=0.1482 offset=47 rev=0 ccw=0 colmajor=0 grille=132122122133333100002000332021
+12 planted 111122121221221132000022030122023310 offset 107
+n=12 best=0.2883 offset=107 rev=0 ccw=0 colmajor=0 grille=333300303003003310222200212300201132  (grille équivalente, clair lisible)
+13 planted 202103111202020101333203011132221331103311 offset 14
+n=13 best=0.2883 offset=14 rev=0 ccw=0 colmajor=0 grille=202103111202020101333203011132221331103311
