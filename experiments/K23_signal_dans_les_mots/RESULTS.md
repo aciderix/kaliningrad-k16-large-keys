@@ -50,3 +50,19 @@ Lecture corrigée : le signal **à très courte distance** (1–4) vient entièr
 **entre les mots**, aux distances 5–40, un signal faible (≈ 2 écarts-types en combinant les bandes, qui ne sont pas
 indépendantes). L'habillage explique donc la plus grande partie du « reste d'ordre » de K19, mais pas forcément tout :
 un faible ordre local du flux d'origine (échelle ≈ 5–40) reste possible, à un niveau qui ne permet aucune lecture.
+
+## Complément 2 : le flux d'origine, mots mis de côté (`cross_abc.py`)
+
+Mesure unique fixée avant calcul : score des paires **entre deux mots**, distances 5–40, contre 2 000 témoins
+redécoupés : **z = +2,2 (p ≈ 0,016)**. Estimation de l'échelle (ABC) sur ces seules paires : les échelles 31–60
+sont les plus compatibles (7,9 % des simulations dans la zone retenue), mais le **mélange de tout le texte reste
+presque aussi compatible (3,0 %)**, soit un rapport d'environ 2,6 seulement (contre « jamais compatible » quand les
+paires internes aux mots étaient comptées, K21).
+
+## Conclusion révisée de K19–K23
+
+Une fois retiré l'effet de la fabrication des mots, le flux d'origine ne garde qu'une **trace faible et incertaine**
+d'ordre local (p ≈ 0,02 ; un mélange complet n'est que 2 à 3 fois moins vraisemblable). L'essentiel du « reste
+d'ordre » venait de l'habillage. Le portrait redevient celui de K18 : un flux de lettres sans structure exploitable,
+mis en forme de « mots » par une main qui en soignait l'aspect allemand ; message chiffré (transposition non
+identifiée) ou pseudo-texte, sans moyen de trancher par les fréquences.

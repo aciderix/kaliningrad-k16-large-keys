@@ -14,3 +14,8 @@ d 11-20: dans un mot z=+1.05 | entre mots z=+0.69
 d 21-40: dans un mot (sans objet) | entre mots z=+1.53
 paires c–h/k à ±10 : même mot 8 (témoin 4.4, z=+1.77) ; mots différents 17 (témoin 12.8, z=+1.16)
 paires voisines en début de mot z=+1.24 ; milieu z=+1.50 ; fin z=-0.33
+# cross_abc.py — paires entre deux mots seulement
+1) signal entre mots, d=5-40 : z=+2.17, p=0.0155 (2000 témoins)
+   ABC (900 simulations jitter s=1..150, nuls 0-20 %, redécoupées ; seuil 5 %) :
+   échelle 1-10: 0.000 ; 11-30: 0.053 ; 31-60: 0.079 ; 61-100: 0.065 ; 101-150: 0.029 ; mélange global : 0.030
+   échelle retenue : médiane 67, 90% [19, 136]
