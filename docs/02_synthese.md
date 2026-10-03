@@ -92,6 +92,13 @@ de preuve), HYPOTHÈSE.
 > une substitution en plus de la transposition, 16 langues sur 97 passent le test du profil trié, qui ne peut donc pas
 > identifier la langue (nuance de K18). Voir `experiments/K24_grille_fixe/` et `experiments/K25_cent_langues/`.
 
+> **K26–K28 (2026-10-03)** : les lignes délavées sous la page 2 ne sont que la page 1 vue par transparence (K26 :
+> pas de texte caché). Une double transposition dont les deux clés sont des mots — ≈ 34 000 clés allemandes et russes
+> (ordre cyrillique ou latin), prénoms, lieux, expressions, toutes longueurs, 16 variantes, texte entier et par
+> bloc — est exclue avec des contrôles 10/10 (K27, pré-inscrit). « eimat » / « Heimat » n'est la clé d'aucun procédé
+> classique ; la page lue en colonnes et le retrait des lettres marquées (apostrophes, accents, abréviations) ne
+> rendent aucun lien entre voisines (K28). Bilan d'ensemble : `docs/03_bilan.md`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

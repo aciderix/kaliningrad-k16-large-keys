@@ -36,13 +36,17 @@ Même protocole que `dagapeyeff/docs/PROTOCOLE.md`. Choix de la cible : `docs/00
 | **K23 signal dans les mots** (2026-10-03) | le reste d'ordre local vient-il d'un message brassé ou de l'habillage ? | signal **entièrement dans les « mots »** (z = +3,0) et **absent entre les mots** (+0,1), alors qu'un allemand brassé puis découpé le montre des deux côtés : le reste d'ordre est probablement un **produit de l'habillage** ; entre les mots il ne reste qu'une trace faible (z = +2,2, p ≈ 0,016), à peine plus compatible avec un brassage local qu'avec un mélange complet |
 | **K24 grille fixe** (2026-10-03) | message dans les trous d'une grille fixe (Cardan non tournante), cases restantes remplies au hasard ? | **non** pour une même grille sur tous les blocs (25 à 169 cases, 25–60 % de trous ; recherche exacte, contrôles +0,51 à +0,61 contre bouteille au niveau des mélanges) |
 | **K25 cent langues** (2026-10-03) | le décompte correspond-il à une autre langue que les 11 de K18 (97 langues et dialectes, dont baltes, slaves, scandinaves, bas-allemand, yiddish) ? | **non sans substitution** (l'allemand et ses voisins restent les plus proches, aucune langue compatible) ; **avec substitution, 16 langues sur 97 passent** le profil trié : ce test ne peut pas identifier la langue |
+| **K26 photos** (2026-10-03) | les lignes délavées sous la page 2 sont-elles un texte caché ? | **non** : c'est la page 1 vue par transparence, à l'endroit (corrélation ligne à ligne 0,68–0,91 pour 11 lignes sur 13, en miroir ≈ 0,36) ; feuille 2 photographiée posée sur la feuille 1 ; le cryptogramme est complet |
+| **K27 clés-mots** (2026-10-03, pré-inscrit) | double transposition dont les clés sont des mots (allemands, russes en ordre cyrillique ou latin, prénoms, lieux, expressions), toutes longueurs, 16 variantes, texte entier et par bloc ? | **non** : ≈ 34 000 clés, 2,1 × 10¹⁰ paires × variantes ; contrôles plantés (allemand + 10 % de nuls) 10/10 ; bouteille au mieux −14,6 contre ≈ −11 pour un clair : aucun déchiffrement |
+| **K28 « eimat » et pistes rapides** (2026-10-03) | « eimat »/« Heimat » comme clé ? page lue en colonnes ? signes de l'habillage = nuls ? | **non** pour les trois (au niveau des mélanges) ; outil `tools/k28/verifier.py` pour tester toute solution proposée |
 
-Synthèse d'étape : [`docs/02_synthese.md`](docs/02_synthese.md).
+Synthèse d'étape : [`docs/02_synthese.md`](docs/02_synthese.md). **Bilan d'ensemble (tout ce qui a été tenté, ce qui reste,
+comment vérifier une proposition) : [`docs/03_bilan.md`](docs/03_bilan.md).**
 
 ## Dépôt complet et reproductibilité
 
 Ce dépôt rassemble désormais le rapport initial, les transcriptions, les cellules
-K01–K25, leurs préinscriptions (K01–K16), résultats et journaux, ainsi que les outils des
+K01–K28, leurs préinscriptions (K01–K16, K27), résultats et journaux, ainsi que les outils des
 analyses K01–K15 et le solveur K16. Les échanges Claude qui documentent le transfert
 du travail sont dans [`docs/claude-transcripts/`](docs/claude-transcripts/); les
 formes de jetons sont masquées avant publication.
@@ -69,7 +73,7 @@ vérifier, pas une résolution sans contrôle du texte et de la puissance.
 - `data/ciphertext_979.txt` : flux de 979 lettres préparé pour K16.
 - `data/models/qg_de.bin` : modèle de quadrigrammes allemands.
 - `data/heldout/de.txt` : texte indépendant du modèle, réservé aux contrôles.
-- `tools/` : scripts et sources C de K01–K16 ; `tools/k18/` à `tools/k22/` pour K18–K22 (corpus : `tools/k18/fetch_corpus.sh`).
+- `tools/` : scripts et sources C de K01–K16 ; `tools/k18/` à `tools/k28/` pour K18–K28 (corpus : `tools/k18/fetch_corpus.sh`).
 
 Les commandes K16 `solve` et `null` prennent le chemin du fichier chiffré en
 troisième argument. Le chargeur corrigé lit le contenu du fichier; `solve` affiche

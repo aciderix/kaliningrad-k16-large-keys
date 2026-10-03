@@ -1,0 +1,49 @@
+== graine 1, texte entier, 4 variantes de base
+clés   : A=ru:хотелось B=ru:случайно v=10
+paires x variantes notees : 28772496 ; au-dessus du seuil -12.80 : 1
+-10.9011  A=ru:хотелось  B=ru:случайно  v=10  mnenrhinglaubntemwannfunschondnarandfassesmitihmnfichtganzinowrdnungwarundfwarbereitihmzuhelfendnwiezuversicwhtufndsnich
+== graine 2, texte entier, 4 variantes de base
+clés   : A=de:okay B=de:polizist v=01
+paires x variantes notees : 28772496 ; au-dessus du seuil -12.80 : 2
+-11.2566  A=de:okay  B=de:polizist  v=01  rkliwchenundselbstverstawnffdlichefnfverhanltnisnsedannabersagteersicheheeseinviertnelachtschlagtnmussifchunbedingtndasb
+-11.2566  A=de:okay  B=de:polizist  v=11  rkliwchenundselbstverstawnffdlichefnfverhanltnisnsedannabersagteersicheheeseinviertnelachtschlagtnmussifchunbedingtndasb
+== graine 3, texte entier, 4 variantes de base
+clés   : A=de:tasche B=de:gefallen v=10
+paires x variantes notees : 28772496 ; au-dessus du seuil -12.80 : 3
+-11.0746  A=de:tasche  B=de:gefallen  v=10  hfastmitwiderwinllenvnondemnapnfabundfkrochindinezimmermittezurnuckimwfohnnzimmefrwarwiegregordurchdietunrfspaltesahdasg
+-11.0746  A=ru:города  B=de:gefallen  v=00  hfastmitwiderwinllenvnondemnapnfabundfkrochindinezimmermittezurnuckimwfohnnzimmefrwarwiegregordurchdietunrfspaltesahdasg
+== graine 4, par bloc, 4 variantes de base
+clés   : A=rl:kazhetsia B=rl:obeshchaiu v=01
+paires x variantes notees : 28772496 ; au-dessus du seuil -12.80 : 2
+-11.0616  A=rl:kazhetsia  B=rl:obeshchaiu  v=01  asessennwwegenseinerheiklenflninkensfeiteschwierigkenitenmnachteundenrkonntenuressenwenndferganzekorpferschnaufendmitarf
+-15.8782  A=de:schwert  B=ru:несмотря  v=11  knnmczdelbenewseetunigdlgunenksthteminewfehrchsesnsonmitduermhisrengonnankinciueestenineiersedereffihmarterinnessekeifoi
+== graine 5, par bloc, 4 variantes de base
+clés   : A=de:verfolgen B=ru:первый v=00
+paires x variantes notees : 28772496 ; au-dessus du seuil -12.80 : 4
+-10.9241  A=de:verfolgen  B=rl:liubit  v=01  enarmeninihrzimmernzudranngenundgleichzeitigmitsefinemkornperihnnendenausblickfaufgnregorzunwehmenfsiewurdennuntatsanchl
+-10.9241  A=de:verfolgen  B=ru:первый  v=00  enarmeninihrzimmernzudranngenundgleichzeitigmitsefinemkornperihnnendenausblickfaufgnregorzunwehmenfsiewurdennuntatsanchl
+== graine 11, texte entier, 16 variantes
+clés   : A=rl:vernulas B=rl:bolshoi v=20
+paires x variantes notees : 115089984 ; au-dessus du seuil -12.80 : 1748
+-11.2898  A=rl:vernulas  B=rl:bolshoi  v=20  fortetemitdumpfnfenrnstimmeoffenbafnrdrucwktesieihrfgesichwtanfdesvwatersbrfustdinfemutterwarohwnmachtigaberesgewhtihrsc
+-11.2928  A=rl:devushka  B=rl:bolshoi  v=30  nnbeswsefrgfregnoristaunsgebrochenichhfabeesjaferwartetsagtedervaterichhnabeeseuchwjaimmergesagntanbefrihrfrafuenwolltni
+== graine 12, texte entier, 16 variantes
+clés   : A=ru:вернулся B=de:grossen v=21
+paires x variantes notees : 115089984 ; au-dessus du seuil -12.80 : 6093
+-11.3968  A=de:kaempfen  B=de:grossen  v=21  fwanndeoderdenplafondfurbesnonderebosheithaltewnallerdingwsmusstesichgregorsagennnndaswsersogardiesesnlafufennichtnlafng
+-11.3975  A=ru:телефону  B=de:grossen  v=21  fwanndeoderdenplafondfurbesnonderebosheithaltewnallerdingwsmusstesichgregorsagennnndaswsersogardiesesnlafufennichtnlafng
+== graine 13, texte entier, 16 variantes
+clés   : A=de:burgermeister B=de:wuerde v=21
+paires x variantes notees : 115089984 ; au-dessus du seuil -12.80 : 1059
+-11.0494  A=de:burgermeister  B=ru:похоже  v=20  ediesfchwesterfnastvolligangezogwendieturnundsahmitspannungherfeinsiefanndihnnichtgleichaberalssienihnunterdemkanawpeebe
+-11.0494  A=de:burgermeister  B=de:wuerde  v=21  ediesfchwesterfnastvolligangezogwendieturnundsahmitspannungherfeinsiefanndihnnichtgleichaberalssienihnunterdemkanawpeebe
+== graine 14, par bloc, 16 variantes
+clés   : A=ru:простите B=de:fuenf v=20
+paires x variantes notees : 115089984 ; au-dessus du seuil -12.80 : 4256
+-10.8347  A=ru:простите  B=de:fuenf  v=20  hfreversaumnisansniebnetrafndasihnnensefitkurzemnanvenrtrnauteinkassoaberichlegtfewanhrhaftigfffastmeifnehwwrffennwortda
+-10.8347  A=ru:простите  B=de:heute  v=21  hfreversaumnisansniebnetrafndasihnnensefitkurzemnanvenrtrnauteinkassoaberichlegtfewanhrhaftigfffastmeifnehwwrffennwortda
+== graine 15, par bloc, 16 variantes
+clés   : A=ru:остальные B=rl:ubiistve v=12
+paires x variantes notees : 115089984 ; au-dessus du seuil -12.80 : 8
+-11.0789  A=ru:остальные  B=rl:ubiistve  v=12  lenwetterseninfenfsteraufgerissnenundhifnausgwelehntdrucktwesieihrgefsichtweitawusserhwanlbdesfenstefrsinihrehanndezwisn
+-13.1782  A=ru:остальные  B=rl:ubiistva  v=12  lenwenterseniausnfsternetgerissenfundhiffausgweletntdrucktwnsieihrgehsichtwenwawusserdeanlbdeseinstefrsnhihrehanhfezwisn

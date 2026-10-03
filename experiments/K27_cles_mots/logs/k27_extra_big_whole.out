@@ -1,0 +1,50 @@
+L=979 clesA=5666 clesB=28380 mode=whole pref=120 seuil=-12.80
+paires x variantes notees : 643204320 ; au-dessus du seuil -12.80 : 1665
+histogramme du criblage (score par quadrigramme, pas 0,125) :
+  -16.000 203674083
+  -15.875 52291437
+  -15.750 54482745
+  -15.625 54246964
+  -15.500 51768876
+  -15.375 47383008
+  -15.250 41634335
+  -15.125 35154045
+  -15.000 28554140
+  -14.875 22304976
+  -14.750 16769449
+  -14.625 12112576
+  -14.500 8430195
+  -14.375 5623800
+  -14.250 3617592
+  -14.125 2236598
+  -14.000 1327564
+  -13.875 755929
+  -13.750 413765
+  -13.625 218209
+  -13.500 109158
+  -13.375 52720
+  -13.250 24370
+  -13.125 10416
+  -13.000 4466
+  -12.875 1757
+  -12.750 730
+  -12.625 285
+  -12.500 88
+  -12.375 31
+  -12.250 8
+  -12.125 5
+-14.8232  A=rl:nashpismo  B=de:lieferte  v=01  mnneeurtsigeernlehreumensielnearttinehsrrnterreteientslinseseaufddfttndtildelnshnewdnhdalsseezrhnenbfinnesdenndesrinnann
+-14.8902  A=de:schatzder  B=ru:просмотр  v=00  ranndtndnrerwesoesenrhanterrsfhssststebedenrsffilderanlenenndlnseehenedahnufsihnesessinnneseaneteenefdidresswtaneinhtnwa
+-14.9313  A=de:konigsbergbaltijsk  B=ru:печальный  v=01  wfhdthninausseondrteevreredlineherhurlfndnneftrensnebesinunenfwenediendenenseeeinrddersewisehndgdiensenozceefwelosonanti
+-14.9525  A=ru:союззаписка  B=ru:найдите  v=10  eieuesenfaefawidennesereinndemerenisennentherinndlfdnmhirderrartdelnwsimbenadgwdanneeeieisteeicenfhunalerreetzffmesderth
+-14.9540  A=de:leningradnachricht  B=rl:pozvoleno  v=11  stseesneinluannefnrdeiehienlugrtedahnurhriefeineutreenddnkerihrhenemrdiwnesgtraldenfirsuhefreennendidedetulieiderddeeune
+-14.9568  A=ru:секреттайна  B=ru:воздушные  v=10  dwsrisdierninninnnalreneumeinirndedhroinenntelngfrmtdedaienemedoeoetcinilenrufihneurtesinwgerhfninddratusenndhaufdemgine
+-14.9582  A=de:schatzbotschaft  B=de:telefonieren  v=10  surgereusinnrrniensefnerenmrlszwotunfmegeereebeehiehuchmateteeddeushirtnehnanworercedesinnugsstatdrinanwawirideswsesoeis
+-14.9593  A=ru:родинамир  B=rl:zashibis  v=11  rniurlzheungdenaienttarrenssoddlfewnssedrrfhsnnestenlentrifbsenshlnsieeinrdesnennadassunhieesehaefnennefdestsendeswirnne
+-14.9650  A=de:leninnachricht  B=rl:okazheshsia  v=10  eoeeerrnieendurhiemskeiseruseffideudensacwngrunbloseitegitrdinusefeutnnarrdaitieaudetausnetreierlrgthinehrdneslwieenreia
+-14.9729  A=de:ingrid  B=rl:priacheshsia  v=11  tsnunustiteitnrnehnuwedesserzenadtanstenfesenndtnserersordiensfsbernhniasnleahnednehiesesrdaseslernsestenfnfnetedeensuew
+-14.9798  A=ru:секретгермания  B=ru:юридической  v=00  rsndgreihtserseieuundadoiielrfedkesewgimuzfitlleienwenarreieharerhensgenileemsserduunegeiburdadereunftiwiertetiwllnereil
+-14.9813  A=rl:pillausoiuz  B=de:migrane  v=00  hnsreentedinorenidolaeffnermfeneihbeutariesinnesesdgdmieeinfierhieeetithniensdemnererzrfradetdinerrendandilhlwrndalshuen
+-14.9813  A=rl:pillausoiuz  B=ru:мозгами  v=01  hnsreentedinorenidolaeffnermfeneihbeutariesinnesesdgdmieeinfierhieeetithniensdemnererzrfradetdinerrendandilhlwrndalshuen
+-14.9956  A=rl:soiuzkorabl  B=ru:красных  v=11  asegieeineirihfsendetafdeneceeeinhlhufenntmedderinritnndreunanrtwasusleneneisinenwetfudetseigreensfurzfnllinalhrentersti
+-14.9956  A=rl:soiuzkorabl  B=de:gereizt  v=10  asegieeineirihfsendetafdeneceeeinhlhufenntmedderinritnndreunanrtwasusleneneisinenwetfudetseigreensfurzfnllinalhrentersti

@@ -1,0 +1,66 @@
+L=979 clesA=28380 clesB=28380 mode=whole pref=120 seuil=-12.80
+paires x variantes notees : 3221697600 ; au-dessus du seuil -12.80 : 10145
+histogramme du criblage (score par quadrigramme, pas 0,125) :
+  -16.000 950337626
+  -15.875 244307493
+  -15.750 258399569
+  -15.625 262552121
+  -15.500 256517204
+  -15.375 241103727
+  -15.250 218054901
+  -15.125 189667848
+  -15.000 158579289
+  -14.875 127395695
+  -14.750 98321339
+  -14.625 72807214
+  -14.500 51741148
+  -14.375 35256893
+  -14.250 23042892
+  -14.125 14435800
+  -14.000 8664938
+  -13.875 4982395
+  -13.750 2735688
+  -13.625 1443605
+  -13.500 724769
+  -13.375 347959
+  -13.250 160303
+  -13.125 69724
+  -13.000 29098
+  -12.875 11683
+  -12.750 4329
+  -12.625 1600
+  -12.500 540
+  -12.375 154
+  -12.250 45
+  -12.125 9
+  -12.000 2
+-14.6385  A=de:getroffen  B=de:oesterreich  v=10  neswindekldundweitniehrredurzwlsrnenahtrirdidehneiidnmnenrertenntnnelmneoderhdflohienenddennatdnimnieansheeinrimegidsuro
+-14.8378  A=ru:капитаном  B=de:erledigt  v=11  aetwersnnfsietruobesenslarrenahnenseesehnfdhfsarlehinnennnntdesenlensseinnssiedduwednisenaetefrfehateniaseeilsnntnerdfhh
+-14.8477  A=ru:клиентами  B=de:richmond  v=10  ittremuleriseneseneettefdlslaenledenelnnwsnfstehndetithhnsinisusddanedanfsesezennndeifndnerneinwebtfnotwesinserasfadewer
+-14.8690  A=rl:seksualnaia  B=de:nervoes  v=10  giiodeeineierseihndetanficseeeennuhfelhnrtmerdenderitisuinerenntwaisenuseneinndwarztfudeltgrserensffuwlnelindlnhtereehli
+-14.8814  A=rl:ostaeshsia  B=de:trophaee  v=10  uanseehwceltetreihrensusentuflsneosedhfnnaareifuegeindiehstennndahienniwwenndrhereceseuenensdredualluneragwiuurterzienen
+-14.8956  A=ru:семьдесят  B=de:richtung  v=11  iesnnrtuuereneireerenenesinlarthrteslettdentdrssnetehtffsswlaadizuninnedeendlhsdenenhefslisneofrndannnensindbesehstssaft
+-14.8967  A=rl:vashingtone  B=de:stohnen  v=00  ifnneresendatawitenrnbeerisglandertidenhinfeinmenihlieffedmaizrdrantfwnldmircwehdauenneeslsteredhennetasnerenretfiefesse
+-14.9014  A=rl:dalneishikh  B=de:erklare  v=00  etaintiemnunfsalfisnenandderawfdieerneliennebeaneninddeftmlhgrdernenhihinarisetimdrnwesacefreifmentutgrzusteieretdefwdre
+-14.9014  A=rl:dalneishikh  B=de:neugier  v=01  etaintiemnunfsalfisnenandderawfdieerneliennebeaneninddeftmlhgrdernenhihinarisetimdrnwesacefreifmentutgrzusteieretdefwdre
+-14.9069  A=de:chirurgen  B=de:lieferte  v=11  nneeurtsigerenlehreuemnsielnerattinehsrrnterretieentslinesseaufddtftndtildlenshnewdhndalsseerzhnenbfinnesdenndserinnannf
+-14.9343  A=de:erweitern  B=ru:чемоданы  v=11  ignrernungirnteehshdrmsedroliertnannhtrferustnlibnfsnnerllendsreesenennthasansdahwdtuieisennhineennwessseendisedieesefef
+-14.9347  A=de:ausgerustet  B=ru:пробовать  v=01  nknmwdronuesinnmdrmesunglarthrtmeifesamnntcleennarreirdedinensdamennerndndaflnellnaleninernerneiemdanzeggwererrsernnfets
+-14.9370  A=rl:damochki  B=rl:ispytyvat  v=10  ngenseeneereerunhgenieinhrertrnadtnemettetersrinhsusnafftseiltnennleidlalwndndndenslehehstiaendfnsoeinunesesznesisesdaft
+-14.9371  A=rl:tochniak  B=de:langsamer  v=10  rtarzehneutsmthersnsttedaianlshrtfrenntehinenwenhlfiesblenhlendidedadsnoneneennenastissnantnisinedndfersewesrsweeffinsla
+-14.9401  A=ru:осторожен  B=rl:zvuchalo  v=11  aesinagrrnseieuntcaesggffeodrdhdhennortersiriereninrrnsiihrsbetnssedrmeruseheslandrnntauftelnwandendhninsrendesdesessitf
+-14.9416  A=de:betroffen  B=ru:добавили  v=10  nrenrlitnemenirruthesernresesdretlitledsteetewfnnenlandetslnildinethsfenfedusaehheziefssdenndnntanenfenrindewestwinsoswa
+-14.9426  A=ru:попадают  B=rl:nachinaem  v=11  mirrensegrruunernegeeemennehesirenrhrutdartlnisrteteetnanstheilenisdlfztfentnundassndlehdlweininhansonenrdsnseihnesbedda
+-14.9433  A=de:zivilisiert  B=de:cousins  v=00  fnmdemdiensiesernintersenentratnhenlhriesedsrerendnetrinnseiwinnedwarzudnaeldtcuslieenrfwrneudelmttgedefshvlehnfredaisnn
+-14.9433  A=de:zivilisiert  B=de:alleine  v=01  fnmdemdiensiesernintersenentratnhenlhriesedsrerendnetrinnseiwinnedwarzudnaeldtcuslieenrfwrneudelmttgedefshvlehnfredaisnn
+-14.9598  A=rl:razgovarival  B=rl:zadniaia  v=11  nunwnnrhwemgwnofregeeduinerernteclsflarereulzedenecaldigumeienegealdntrenulfesinteletetlscherninhiheinenreinnruenrainewe
+-14.9632  A=ru:департамент  B=de:marilyn  v=00  eeitaserehieedemnffanieiefsdnindeddnthmeninreninrserneietrtdranalshieeflclsetedemineuerwewenddnivenzanehrfulnnsisthuener
+-14.9632  A=ru:департамент  B=de:betaubt  v=01  eeitaserehieedemnffanieiefsdnindeddnthmeninreninrserneietrtdranalshieeflclsetedemineuerwewenddnivenzanehrfulnnsisthuener
+-14.9643  A=rl:terroristov  B=ru:больших  v=10  odedemodeiffnnendeitmrehaseniinhinnamderrtsicesreineffeeeisetuntiselndedieerwanerzinendtnrllhilemdeervnedufuhwfefuswdhlh
+-14.9643  A=rl:terroristov  B=ru:божечки  v=11  odedemodeiffnnendeitmrehaseniinhinnamderrtsicesreineffeeeisetuntiselndedieerwanerzinendtnrllhilemdeervnedufuhwfefuswdhlh
+-14.9676  A=ru:школьного  B=ru:расстанемся  v=00  usdldrmhuzeeihenedeheurtsinlnenwewindlhinderrinnunesdlhrgerimdwhntdrdeitdienieneulefsrnierfomnedestinderleeteaioneenneff
+-14.9697  A=ru:попадают  B=ru:переехала  v=10  grruunernegeeemennehesirenrhrutdartlnisrteteetnanstheilenisdlfztfentnundassndlehdlweininhansonenrdsnseihnesbeddasssieere
+-14.9725  A=rl:rasstraivat  B=ru:костюмы  v=01  eendageeiennfdemffiehiitenhiedrednnnirremfdmateidnanieraterflctshlseresundweneneeinewnedlenndinanesetlshueiezrturftdrits
+-14.9725  A=rl:rasstraivat  B=ru:ангелом  v=00  eendageeiennfdemffiehiitenhiedrednnnirremfdmateidnanieraterflctshlseresundweneneeinewnedlenndinanesetlshueiezrturftdrits
+-14.9728  A=ru:повернуться  B=ru:здоровьем  v=10  nererdniheeeinhnunanhdriengresrllmdereinthigdenluitsoduhnsdendetweuinnesdedenihcwirfdherseranzlauermarhsgihdsihreramteei
+-14.9729  A=de:freund  B=rl:priacheshsia  v=11  tsnunustiteitnrnehnuwedesserzenadtanstenfesenndtnserersordiensfsbernhniasnleahnednehiesesrdaseslernsestenfnfnetedeensuew

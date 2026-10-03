@@ -1,0 +1,52 @@
+L=979 clesA=28380 clesB=5666 mode=whole pref=120 seuil=-12.80
+paires x variantes notees : 643204320 ; au-dessus du seuil -12.80 : 1578
+histogramme du criblage (score par quadrigramme, pas 0,125) :
+  -16.000 205586748
+  -15.875 52153793
+  -15.750 54340665
+  -15.625 54124656
+  -15.500 51676032
+  -15.375 47317163
+  -15.250 41575715
+  -15.125 35099448
+  -15.000 28486190
+  -14.875 22202906
+  -14.750 16623069
+  -14.625 11950623
+  -14.500 8262945
+  -14.375 5468241
+  -14.250 3486683
+  -14.125 2128398
+  -14.000 1249948
+  -13.875 705517
+  -13.750 382515
+  -13.625 198185
+  -13.500 99207
+  -13.375 47382
+  -13.250 21925
+  -13.125 9476
+  -13.000 4151
+  -12.875 1609
+  -12.750 728
+  -12.625 262
+  -12.500 91
+  -12.375 36
+  -12.250 8
+  -12.125 3
+  -12.000 1
+  -11.875 1
+-14.8814  A=rl:ostaeshsia  B=rl:sssrmoia  v=11  uanseehwceltetreihrensusentuflsneosedhfnnaareifuegeindiehstennndahienniwwenndrhereceseuenensdredualluneragwiuurterzienen
+-14.9090  A=de:erklaren  B=ru:нашродина  v=10  rneintorgerenehsieennmherernastntutsfmertehitnnewrdfelhnslaeaelinndendeenerddidetnenhestsenutznssonlnnwasdendilssiefsrnl
+-14.9371  A=rl:tochniak  B=ru:нашлюбовь  v=10  rtarzehneutsmthersnsttedaianlshrtfrenntehinenwenhlfiesblenhlendidedadsnoneneennenastissnantnisinedndfersewesrsweeffinsla
+-14.9553  A=de:wirfst  B=ru:шифркрепость  v=01  teswensaargenisreuneineunfnfherennnesseeerndrihdsatsennsnttfeaeehssinddeiinsleeehharherssedesaeindennehtflfindfnestenend
+-14.9553  A=de:odessa  B=ru:шифркрепость  v=11  teswensaargenisreuneineunfnfherennnesseeerndrihdsatsennsnttfeaeehssinddeiinsleeehharherssedesaeindennehtflfindfnestenend
+-14.9588  A=rl:proveriat  B=ru:шифрклад  v=00  negerniedmseslrenggriteeseurnestenenintlercnsfhurartgersenmenederitetnhdlnansiseninterheltltdielndesulnfsdideehaestfddsd
+-14.9632  A=ru:департамент  B=ru:нашключ  v=00  eeitaserehieedemnffanieiefsdnindeddnthmeninreninrserneietrtdranalshieeflclsetedemineuerwewenddnivenzanehrfulnnsisthuener
+-14.9673  A=de:schwingt  B=ru:флотбалтийск  v=01  mrnodenessiekglrdusheructdlfeilaeisfzeeomregdhinmgiutesestnaehlennrerinunninslethinieehenerrneediehalitwerendandidechtwe
+-14.9730  A=de:gescheitert  B=de:dermein  v=01  ueaeenneidennstfehewnaneheremdenieadfrennseiifmnledrndieertieendrrsbanndemdiwaeinghelaenlcftihritssteheuzerweneugederdmn
+-14.9826  A=rl:revnuesh  B=ru:нашродина  v=10  sisnneriortnergehseneeinhemaerrntnsfuttsermtehtinenerdwfhnlalaselienndneeeddernddeihnetnstetensunsznonslwanddesnlsisiesf
+-14.9826  A=de:empfange  B=ru:нашродина  v=00  sisnneriortnergehseneeinhemaerrntnsfuttsermtehtinenerdwfhnlalaselienndneeeddernddeihnetnstetensunsznonslwanddesnlsisiesf
+-14.9849  A=de:beachtet  B=de:eimatkrieg  v=00  diaduartsuenfedustennenwenedendeungnanetlrzirialereihnencugleslwahrderrinnlimediegnismanrareeeharfawederwcnifemslnicufto
+-14.9860  A=ru:большинстве  B=rl:baltflotsoiuz  v=01  fanamnfesaweridtimcumnnwefdiwerelrrinstwwmtnonsitmerstettaimeteneeeseisduhinwrnmdereureiunstrekendestetstenderreuerecdee
+-15.0152  A=de:unheimliche  B=rl:pionerdruzhba  v=10  ntinsgninrummentenlndtreinfhaaresshiefennefrssfnumlreiusieunsenkmnnusneheeeihndundtnepafdteonstenenfvieeinererkwestadasl
+-15.0198  A=rl:prikasalsia  B=ru:нашключ  v=10  ehieseiteraanienedeffmndeediefnisinrdmdntenhneiesninerralsertrtandsethlieeclferwendemeuivenedwennidlnnzranefuheresuisten
