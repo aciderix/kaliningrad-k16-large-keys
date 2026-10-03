@@ -62,6 +62,13 @@ de preuve), HYPOTHÈSE.
 > (p ≈ 0,07). Les deux « solutions » de Cipherbrain (T. Ernst 2017, « Frank » 2021) n'ont jamais été publiées.
 > Voir `experiments/K18_contre_expertise/RESULTS.md`.
 
+> **K19 (2026-10-03)** : les chiffres « d'écolier » à clé fixe sont exclus (permutation de groupes de p lettres,
+> grilles de Verne 4×4–7×7 en recherche exhaustive, transpositions par ligne). Mais le flux garde **un reste d'ordre
+> à courte distance** (six mesures concordantes, dont c près de h/k et une remise en ordre à déplacements ≤ 3,
+> z = +5,3) : un texte de type allemand brassé par tranches d'une vingtaine de lettres, sans clé répétée, puis
+> habillé. Un tel brassage ne se défait pas par les fréquences (le modèle préfère du pseudo-allemand au vrai texte).
+> Voir `experiments/K19_melange_local/RESULTS.md`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

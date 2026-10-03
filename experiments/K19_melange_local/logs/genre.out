@@ -1,0 +1,15 @@
+bottle: G vs prose pool 137.3; f+w 82; n 137; a 39; c 17
+corpus                                     win f+w med  max n med  G>=bot  min G2
+Buch der Lieder                            444      30   45    96       4    44.4
+Plattdeutsche Briefe, Erzählungen und Ge   825      35   62   111     185    49.5
+Harbaugh's Harfe: Gedichte in Pennsylvan   189      38   57    64      54    61.5
+Die Ammen-Uhr: Aus des Knaben Wunderhorn     3      28   32    96       0    82.0
+Ri-Ra-Rutsch                               219      33   53   100      16    50.7
+Bibel (Schlachter 1951)                  10293      28   61   102     218    28.9
+Prosa (21 Bücher)                        28010      31   63    99     221    31.8
+closest windows (two-sample G, df=21; 95% crit ~32.7):
+    28.9 Bibel (Schlachter 1951) :: richtderherrsieheichwilldenfriedenzuihrhinleitenwieeinenstromunddieher
+    31.8 Prosa (21 Bücher) :: nichteinenfreundgabeimmeristfurdeneinsiedlerderfreundderdrittederdritt
+    44.4 Buch der Lieder :: esichtunddurchdielippenkriechengelbewurmerichsehdersohnsetztsichmitsei
+    49.5 Plattdeutsche Briefe, Erzählungen und Ge :: eslingsruckwartsschullahrighangeohrigakloppenwarenbeidenkatholikenande
+    50.7 Ri-Ra-Rutsch :: genweilerkonntkeinvogleinkriegenfriedrichgullwolfundganseeinkindistder

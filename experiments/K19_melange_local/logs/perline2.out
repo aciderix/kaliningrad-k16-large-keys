@@ -1,0 +1,3 @@
+real top: [(np.float64(-0.499), 'decim', 7, False, 20), (np.float64(-0.538), 'ends', 'inside', True, 25), (np.float64(-0.566), 'decim', 2, False, 11), (np.float64(-0.566), 'decim', 5, True, 20)]
+control ends/last: [(np.float64(0.552), 'ends', 'first', True), (np.float64(0.552), 'ends', 'last', False)]
+nulls best: [np.float64(-0.556), np.float64(-0.534), np.float64(-0.455), np.float64(-0.518), np.float64(-0.543), np.float64(-0.458), np.float64(-0.506), np.float64(-0.525), np.float64(-0.524), np.float64(-0.507)]

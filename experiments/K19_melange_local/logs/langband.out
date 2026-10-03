@@ -1,0 +1,16 @@
+model                     z d1-10  z d1-2  (in-order own-language control z d1-10)
+Dutch                       +1.73   +0.98
+English                     +2.39   +0.91
+Finnish                     +1.22   +0.55
+French                      +3.45   +1.48
+German                      +3.35   +2.03
+GermanPoetry                +3.82   +2.32
+Italian                     +0.90   +0.89
+Latin                       +0.87   +0.03
+LowGerman                   +3.77   +2.00
+PennsylvaniaGerman          +3.44   +1.71
+Polish                      +1.83   +2.52
+Portuguese                  +0.31   -0.22
+Russian(de-translit)        +2.09   +1.59
+Russian(sci-translit)       +0.83   +0.63
+Spanish                     +1.16   +0.28

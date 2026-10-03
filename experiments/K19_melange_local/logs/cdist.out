@@ -1,0 +1,13 @@
+bottle c->nearest h/k distances: [1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 7, 7, 8, 8, 9, 15]
+bins [0, 1, 2, 3, 4, 6, 8, 11, 15, 20, 30, 61]
+bottle [0 1 4 3 3 2 3 0 1 0 0]
+chunk  W= 10 loglik= -37.57  median dist=  3.0  frac<=10=0.99
+chunk  W= 20 loglik= -34.74  median dist=  4.0  frac<=10=0.93
+chunk  W= 30 loglik= -34.81  median dist=  4.0  frac<=10=0.87
+chunk  W= 40 loglik= -34.92  median dist=  5.0  frac<=10=0.83
+chunk  W= 60 loglik= -35.32  median dist=  5.0  frac<=10=0.81
+jitter W= 10 loglik= -40.90  median dist=  3.0  frac<=10=1.00
+jitter W= 20 loglik= -34.59  median dist=  4.0  frac<=10=0.93
+jitter W= 40 loglik= -34.78  median dist=  4.0  frac<=10=0.85
+global W=  0 loglik= -36.61  median dist=  6.0  frac<=10=0.73
+bottle frac<=10 = 0.94 ; bottle-shuffle null mean 0.65

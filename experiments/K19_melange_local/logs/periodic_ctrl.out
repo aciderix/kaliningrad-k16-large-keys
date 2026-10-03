@@ -1,0 +1,16 @@
+p= 4 plain  success 3/3  (found,true) [(np.float64(0.5), np.float64(0.5)), (np.float64(0.464), np.float64(0.464)), (np.float64(0.44), np.float64(0.44))]  1.4s
+p= 4 nulls  success 3/3  (found,true) [(np.float64(0.268), np.float64(0.268)), (np.float64(0.219), np.float64(0.219)), (np.float64(0.188), np.float64(0.188))]  1.3s
+p= 7 plain  success 3/3  (found,true) [(np.float64(0.528), np.float64(0.528)), (np.float64(0.468), np.float64(0.468)), (np.float64(0.507), np.float64(0.507))]  1.6s
+p= 7 nulls  success 3/3  (found,true) [(np.float64(0.284), np.float64(0.284)), (np.float64(0.196), np.float64(0.196)), (np.float64(0.26), np.float64(0.26))]  1.7s
+p=12 plain  success 3/3  (found,true) [(np.float64(0.474), np.float64(0.474)), (np.float64(0.492), np.float64(0.492)), (np.float64(0.535), np.float64(0.535))]  2.1s
+p=12 nulls  success 3/3  (found,true) [(np.float64(0.153), np.float64(0.153)), (np.float64(0.268), np.float64(0.268)), (np.float64(0.204), np.float64(0.204))]  2.1s
+p=16 plain  success 3/3  (found,true) [(np.float64(0.46), np.float64(0.46)), (np.float64(0.483), np.float64(0.483)), (np.float64(0.486), np.float64(0.486))]  2.7s
+p=16 nulls  success 3/3  (found,true) [(np.float64(0.187), np.float64(0.187)), (np.float64(0.224), np.float64(0.224)), (np.float64(0.205), np.float64(0.205))]  2.6s
+p=25 plain  success 3/3  (found,true) [(np.float64(0.472), np.float64(0.472)), (np.float64(0.502), np.float64(0.502)), (np.float64(0.503), np.float64(0.503))]  3.5s
+p=25 nulls  success 3/3  (found,true) [(np.float64(0.141), np.float64(0.141)), (np.float64(0.202), np.float64(0.202)), (np.float64(0.25), np.float64(0.25))]  3.5s
+p=36 plain  success 3/3  (found,true) [(np.float64(0.492), np.float64(0.492)), (np.float64(0.479), np.float64(0.479)), (np.float64(0.552), np.float64(0.552))]  4.8s
+p=36 nulls  success 0/3  (found,true) [(np.float64(0.188), np.float64(0.205)), (np.float64(0.135), np.float64(0.153)), (np.float64(0.179), np.float64(0.205))]  5.2s
+p=49 plain  success 0/3  (found,true) [(np.float64(0.39), np.float64(0.445)), (np.float64(0.484), np.float64(0.532)), (np.float64(0.333), np.float64(0.407))]  6.7s
+p=49 nulls  success 0/3  (found,true) [(np.float64(0.13), np.float64(0.195)), (np.float64(0.178), np.float64(0.227)), (np.float64(0.187), np.float64(0.221))]  7.0s
+p=64 plain  success 0/3  (found,true) [(np.float64(0.442), np.float64(0.516)), (np.float64(0.382), np.float64(0.496)), (np.float64(0.388), np.float64(0.487))]  8.6s
+p=64 nulls  success 0/3  (found,true) [(np.float64(0.172), np.float64(0.221)), (np.float64(0.194), np.float64(0.228)), (np.float64(0.245), np.float64(0.301))]  8.0s

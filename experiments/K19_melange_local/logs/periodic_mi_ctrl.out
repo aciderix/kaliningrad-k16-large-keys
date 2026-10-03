@@ -1,0 +1,6 @@
+ctrl p=5 3/3 [(np.float64(0.664), np.float64(0.664)), (np.float64(0.775), np.float64(0.775)), (np.float64(0.731), np.float64(0.731))]
+ctrl p=8 3/3 [(np.float64(0.674), np.float64(0.674)), (np.float64(0.689), np.float64(0.689)), (np.float64(0.664), np.float64(0.664))]
+ctrl p=12 3/3 [(np.float64(0.658), np.float64(0.658)), (np.float64(0.736), np.float64(0.736)), (np.float64(0.679), np.float64(0.679))]
+ctrl p=16 3/3 [(np.float64(0.678), np.float64(0.678)), (np.float64(0.698), np.float64(0.698)), (np.float64(0.701), np.float64(0.701))]
+ctrl p=20 0/3 [(np.float64(0.633), np.float64(0.711)), (np.float64(0.594), np.float64(0.641)), (np.float64(0.643), np.float64(0.685))]
+ctrl p=25 0/3 [(np.float64(0.587), np.float64(0.666)), (np.float64(0.536), np.float64(0.651)), (np.float64(0.539), np.float64(0.612))]

@@ -1,0 +1,6 @@
+n=4: best -0.465 ccw=False colmajor=True off2 rev=True | nulls max -0.453 mean -0.479 | 1s
+   top5 scores [-0.465, -0.467, -0.468, -0.469, -0.469]  decryption: rduferfetfsarescrtssffrefulndudrendlgnerrnusntauulceeeaireikwdlthlteondindvfrehf
+n=5: best -0.421 ccw=False colmajor=False off8 rev=True | nulls max -0.408 mean -0.446 | 5s
+   top5 scores [-0.421, -0.432, -0.434, -0.434, -0.437]  decryption: winufammacrcohneesrmfaanehhadsddfcnenndewnussuuclefesusrhrrrdufetatsfdceurffleluddfsngunnn
+n=6: best -0.373 ccw=True colmajor=False off12 rev=False | nulls max -0.394 mean -0.418 | 141s
+   top5 scores [-0.373, -0.388, -0.393, -0.397, -0.397]  decryption: ralelwunldkctsedatelheedrrneiireuugnffueatdrhesrturcernnlsrdfsferfdusefededhhcraflusndacee

@@ -83,6 +83,11 @@ comme **un mélange mécanique d'un stock fixe de lettres** : transposition d'un
 découpées et tirées, par exemple). Cela défavorise la forme « manuelle » de l'hypothèse B (lettres écrites au fil
 de la plume), sans exclure un tirage mécanique dans un stock fabriqué.
 
+> **Correction (K19, même jour)** : ces tests ne détectent pas les signatures d'une main qui invente des lettres,
+> mais le flux n'est pas pour autant mélangé sur toute sa longueur. K19 mesure un reste d'ordre à courte distance
+> (lettres déplacées à l'intérieur de tranches d'une vingtaine de lettres) ; voir
+> `experiments/K19_melange_local/RESULTS.md`.
+
 Les six blocs sont homogènes (`hetero.py` : χ² toutes lettres p = 0,77 ; f seul p = 0,17 ; 20 000 permutations).
 
 ## 5. Canaux cachés dans la mise en forme : aucun
@@ -98,7 +103,7 @@ cohérent avec K10–K11, pas un code.
 | Modèle | Bouteille | Même optimisation sur des fenêtres réelles | Lecture |
 |---|---|---|---|
 | allemand + nuls choisis parmi f, w, n (`nulls.py`) | corpus propre (11 livres, `K18_CLEAN=1`) : G 126 → 51 en retirant 32 f, 19 w, 48 n | 21/300 fenêtres allemandes aussi loin après la même optimisation (**p ≈ 0,07** ; 0,13 avec le corpus complet, pollué par des passages étrangers) | **seul modèle simple encore à la limite de la compatibilité**, avec 3 paramètres libres et aucun indice indépendant |
-| 4 réécritures gloutonnes de digrammes ou lettres (`rewrite.py`, 35 motifs × 27 remplacements par étape) | `ei→f`, `sch→w`, `au→n`, `ng→n` : G 132 → 62 (p = 0,09) | la même recherche réduit l'écart d'autres langues d'environ 60 % (néerlandais 325 → 125, anglais 354 → 160 ; p ≤ 0,005) | règles sans motif linguistique (personne n'écrit « ei » avec un f) : **ajustement non interprétable** |
+| 4 réécritures gloutonnes de digrammes ou lettres (`rewrite.py`, 35 motifs × 27 remplacements par étape) | `ei→f`, `sch→w`, `au→n`, `ng→n` : G 132 → 62 (p = 0,09) | la même recherche réduit l'écart d'autres langues de 50 à 60 % (néerlandais 325 → 125, anglais 354 → 160, latin 451 → 238, espagnol 499 → 210, finnois 972 → 455) sans les rendre compatibles (p ≤ 0,005) | règles sans motif linguistique (personne n'écrit « ei » avec un f) : **ajustement non interprétable** |
 
 Seule `sch → w` aurait une justification (le ш cursif ressemble à un w), mais elle ne suffit pas. Aucune variante
 dialectale, phonétique ou orthographique simple ne ramène le décompte à l'allemand.
@@ -117,7 +122,8 @@ dialectale, phonétique ou orthographique simple ne ramène le décompte à l'al
 1. **Non déchiffrée.** Aucune lecture, ni allemande ni russe, ne résiste aux contrôles. Les deux « solutions »
    annoncées sur Cipherbrain n'ont jamais été publiées et contredisent des propriétés mesurables (liens entre
    voisines absents, fréquences non aplaties, décompte incompatible avec la Bible synodale).
-2. Ce que l'objet est le plus probablement : un **flux de 979 lettres mélangé mécaniquement** (aucune trace de
+2. Ce que l'objet est le plus probablement (précisé par K19 : mélange **local**, par tranches d'une vingtaine de
+   lettres) : un **flux de 979 lettres mélangé mécaniquement** (aucune trace de
    lettres inventées à la main), dont le décompte n'est celui d'aucune des 11 langues testées, même sous substitution,
    **puis habillé en texte** par une main formée à l'écriture cyrillique (« i » isolé comme mot, apostrophes façon
    signe mou, tracé des lettres ; K10–K11).
@@ -125,7 +131,7 @@ dialectale, phonétique ou orthographique simple ne ramène le décompte à l'al
    - **A″** — transposition à clé complexe d'un clair non standard (par exemple de l'allemand avec ≈ 100 nuls f, w,
      n) ; il faudrait connaître l'orthographe du clair *et* une famille de clés structurée pour chercher la clé ;
    - **B mécanique** — tirage sans message dans un stock de lettres « à l'allemande » fabriqué par l'auteur.
-4. Ce qui pourrait débloquer la question : les **feuilles originales** (la presse de 2015 parle de « plusieurs
-   feuilles » ; seules deux photos circulent ; université Kant, S. Aleshnikov ; musée de Baltiysk), ou la méthode
+4. Ce qui pourrait débloquer la question : les **feuilles originales** (la presse de 2015 parle de deux feuilles —
+   NEWSru, *Strana Kaliningrad*, vérifié en K19 — dont on a les deux photos ; université Kant, S. Aleshnikov ; musée de Baltiysk), ou la méthode
    annoncée par « Frank » ou T. Ernst si elle est un jour publiée — elle pourrait alors être testée ici en quelques
    minutes contre les mesures de K02, K12, K17 et K18.

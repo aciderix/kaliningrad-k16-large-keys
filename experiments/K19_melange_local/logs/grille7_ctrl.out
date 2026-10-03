@@ -1,0 +1,4 @@
+# grille7 7 P_de.txt ctl7.txt — allemand + 10 % de nuls f/w/n, grille 7×7 plantée n° 12400682, décalage 5
+n=7 grilles=16777216 best=0.2972 grille=12400682 offset=5 rev=0 ccw=0 colmajor=0  (clé exacte retrouvée, 1 min 32)
+# bouteille, n=6 (vérification croisée avec grille_real.py) :
+n=6 grilles=262144 best=-0.3735 grille=194233 offset=12 rev=0 ccw=1 colmajor=0

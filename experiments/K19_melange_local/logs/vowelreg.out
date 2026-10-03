@@ -1,0 +1,9 @@
+bottle W=10: z=-0.76 p_low=0.2315
+bottle W=20: z=-1.70 p_low=0.0350
+bottle W=40: z=-1.64 p_low=0.0330
+in order   mean z W=10,20,40: -6.07 -4.42 -3.11
+chunk 20   mean z W=10,20,40: -2.34 -3.11 -2.78
+chunk 40   mean z W=10,20,40: -1.89 -1.82 -1.80
+period 36  mean z W=10,20,40: -2.11 -1.77 -2.34
+columnar13 mean z W=10,20,40: -0.20 +0.30 -0.33
+shuffle    mean z W=10,20,40: -0.65 -0.81 -0.49
