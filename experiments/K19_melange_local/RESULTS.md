@@ -135,6 +135,10 @@ d'une source donnerait un écart ≈ 0 ; minimum observé 28,9). Les chants de P
 
 ## 5. Conclusion
 
+> **Nuance (K20, même jour)** : le reste d'ordre est établi au niveau des paires de lettres ; au niveau des mots,
+> la structure à plusieurs lettres est plus faible que pour un brassage par 20 (repérage de mots Z ≈ +1,2) et la
+> présence de vrais mots n'est ni démontrée ni exclue. Voir `experiments/K20_blocs_et_mots/RESULTS.md`.
+
 1. **Non déchiffrée.** Exclus en plus : permutations périodiques à clé fixe (p ≤ 25 avec nuls, ≤ 36 sans), grilles
    de Verne 4×4 à 7×7, transpositions par ligne à clé commune (colonnes, zigzag, une lettre sur k, alternance des
    extrémités, inversion).

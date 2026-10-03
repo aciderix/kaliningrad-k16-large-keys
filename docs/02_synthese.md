@@ -69,6 +69,10 @@ de preuve), HYPOTHÈSE.
 > habillé. Un tel brassage ne se défait pas par les fréquences (le modèle préfère du pseudo-allemand au vrai texte).
 > Voir `experiments/K19_melange_local/RESULTS.md`.
 
+> **K20 (2026-10-03)** : on travaille sur le **texte entier** (les sections ne sont pas des unités du brassage).
+> Le reste d'ordre est sans sens de lecture et de type germanique au niveau des paires de lettres, mais la présence de
+> **vrais mots** n'est ni démontrée ni exclue (le test de mots réagit autant à du pseudo-allemand). Voir `experiments/K20_blocs_et_mots/RESULTS.md`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

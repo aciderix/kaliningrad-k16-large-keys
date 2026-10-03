@@ -1,0 +1,4 @@
+underlined block-final letters: epennn
+word-final letters (habillage): [('n', 40), ('e', 34), ('t', 16), ('r', 15), ('s', 14), ('f', 10), ('l', 8), ('d', 7)]  share e+n = 0.404 ; stream share e+n = 0.312
+P(>=5 of 6 underlined in {e,n}) if like any stream letter: 0.0130
+P(>=5 of 6 underlined in {e,n}) if like habillage word-final: 0.0430

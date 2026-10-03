@@ -1,0 +1,4 @@
+section starts [166 335 497 666 835]
+pairs straddling the 5 section boundaries (d<=12): z=+0.70
+pairs just before boundaries, same side:          z=+0.28
+straddling random pseudo-boundaries in the real text: z mean +0.39 sd 0.91; real boundaries rank p_low=0.610

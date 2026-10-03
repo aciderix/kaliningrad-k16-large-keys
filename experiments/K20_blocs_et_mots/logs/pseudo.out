@@ -1,0 +1,8 @@
+# pseudo_gen.py (graine 55) : pseudo-allemand de Markov d'ordre 1 et 2 (lettres), + 10 % de nuls f/w/n, brassé par tranches de 20
+# repérage de mots : wordspot_file.py 5 100 <flux> ; paires : twoaxes.py 'ps_*.txt'
+ps_markov1_0 word Z=+3.89   band z(d1-10) = +3.90
+ps_markov1_1 word Z=+5.74   band z(d1-10) = +3.64
+ps_markov1_2 word Z=+2.49   band z(d1-10) = +3.55
+ps_markov2_0 word Z=+3.33   band z(d1-10) = +3.39
+ps_markov2_1 word Z=+4.26   band z(d1-10) = +4.83
+ps_markov2_2 word Z=+2.21   band z(d1-10) = +2.75
