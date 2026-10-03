@@ -53,7 +53,7 @@ Une transposition à clé d'une famille encore non couverte reste possible en pr
 | colonnes à clé, ± substitution | largeurs 5–40 | K03, K07 |
 | double transposition en colonnes | toutes clés de 3 à 9 colonnes | K08 |
 | double transposition, même clé (Übchi) | 10–15 colonnes | K14 |
-| **double transposition à clés-mots** | **≈ 34 000 mots allemands, russes (ordre cyrillique ou latin), prénoms, noms de lieux, expressions ; toutes longueurs ; 16 variantes ; texte entier et par bloc** | **K27** |
+| **double transposition à clés-mots** | **≈ 34 000 mots allemands, russes (ordre cyrillique ou latin), prénoms, noms de lieux, expressions ; toutes longueurs ; 4 variantes de lecture (12 autres en cours) ; texte entier et par bloc** | **K27** |
 | Myszkowski, AMSCO, nihiliste | 5–15 ; 3–12 ; blocs carrés | K13 |
 | grilles tournantes (Fleissner, Verne) | 4×4 à 13×13 | K05, K19, K21 |
 | grille de Cardan fixe commune aux blocs | 25–169 cases | K24 |
