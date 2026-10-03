@@ -83,6 +83,10 @@ de preuve), HYPOTHÈSE.
 > cohérent ; un décodeur mot à mot ne retrouve un contrôle que pour des déplacements de 2 à 4 positions.
 > Voir `experiments/K22_reconstruction/RESULTS.md`.
 
+> **K23 (2026-10-03)** : le reste d'ordre local se trouve entièrement **à l'intérieur des « mots »** de l'habillage
+> et pas entre eux, contrairement à un allemand brassé puis découpé : il vient probablement de la fabrication des mots,
+> pas d'un message. Voir `experiments/K23_signal_dans_les_mots/RESULTS.md`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

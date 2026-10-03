@@ -1,0 +1,9 @@
+# habsig.py (témoin naïf : lettres mélangées, mots conservés) — biaisé par la règle de coupure
+d<=2 meme mot z=+4.11 | mots differents z=-2.70 ; d<=4 +3.46 | -0.64 ; d<=8 +3.54 | +0.28
+# habsig2.py (témoin : flux mélangé redécoupé par la règle de coupure mesurée sur la bouteille, 1 500 tirages), d<=4
+paires dans un même mot   : z=+3.00
+paires entre deux mots    : z=+0.14
+# habsig3.py — contrôles : allemand brassé puis redécoupé par la même règle (4 textes chacun, 400 tirages)
+contrôle jitter 50: dans un mot z = +0.4 +2.1 +1.3 +1.2 | entre mots z = +0.9 +1.1 +1.2 +1.9
+contrôle jitter 25: dans un mot z = +3.6 +1.3 +1.6 +1.3 | entre mots z = +0.8 +1.4 +1.6 +1.4
+contrôle chunk 50: dans un mot z = -0.5 -0.4 +0.2 +2.3 | entre mots z = +0.6 +1.8 +0.4 +2.1
