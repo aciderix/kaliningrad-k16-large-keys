@@ -1,0 +1,3 @@
+gap dispersion (low = cycling)       obs=0.863 null=0.884±0.069 z=-0.30 p_low=0.400 p_high=0.600
+alphabet-adjacent pairs              obs=94.000 null=83.719±8.296 z=+1.24 p_low=0.908 p_high=0.113
+forward alphabet pairs (ab,bc..)     obs=46.000 null=41.530±6.009 z=+0.74 p_low=0.806 p_high=0.239

@@ -1,0 +1,17 @@
+german alphabet size 30 [('e', 16.52), ('n', 10.2), ('i', 7.96), ('r', 7.04), ('s', 6.28), ('t', 5.8), ('a', 5.57), ('h', 5.23), ('d', 4.94), ('u', 3.9), ('l', 3.69), ('c', 3.31), ('g', 3.05), ('m', 2.8), ('o', 2.28), ('b', 1.97), ('w', 1.67), ('f', 1.55), ('k', 1.3), ('z', 1.16), ('v', 0.8), ('p', 0.71), ('ü', 0.63), ('ä', 0.54), ('ß', 0.44), ('ö', 0.29), ('j', 0.24), ('y', 0.08), ('q', 0.03), ('x', 0.02)]
+windows 9174 median 15.3 95% 31.9 max 80.7
+plain                                    n=22 G=  82.3 windows>= 0/9174
+ê ö ü kept                               n=25 G=  44.2 windows>= 76/9174
+all modifiers distinct                   n=34 G= 152.6 windows>= 0/9174
+apostrophes distinct, accents folded     n=31 G=  57.0 windows>= 13/9174
+best 10 of 1024
+  G= 11.8 accents_kept=False distinct=('n', 't', 'r', 's', 'l', 'm') windows>= 6933/9174
+  G= 11.8 accents_kept=True distinct=('n', 't', 'l') windows>= 6913/9174
+  G= 11.9 accents_kept=False distinct=('n', 't', 'r', 's', 'l', 'z') windows>= 6894/9174
+  G= 12.1 accents_kept=False distinct=('n', 't', 'r', 's', 'l') windows>= 6756/9174
+  G= 12.1 accents_kept=False distinct=('n', 't', 'r', 'l', 'm', 'z') windows>= 6710/9174
+  G= 12.2 accents_kept=False distinct=('n', 't', 's', 'l', 'm') windows>= 6638/9174
+  G= 12.3 accents_kept=False distinct=('n', 't', 'r', 'l', 'm') windows>= 6575/9174
+  G= 12.8 accents_kept=False distinct=('n', 't', 'r', 'l', 'z') windows>= 6243/9174
+  G= 13.0 accents_kept=True distinct=('n', 't', 'm') windows>= 6092/9174
+  G= 13.2 accents_kept=True distinct=('n', 't', 's') windows>= 6003/9174

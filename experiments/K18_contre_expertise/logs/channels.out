@@ -1,0 +1,15 @@
+consonants 640 apostrophes 117
+gap distribution (consonants): [(1, 22), (2, 22), (3, 11), (4, 14), (5, 8), (6, 2), (7, 4), (8, 8), (9, 3), (10, 3), (11, 3), (12, 6), (13, 2), (14, 3), (15, 1), (19, 1), (20, 1), (21, 1), (27, 1)]
+n followed by V/C: apostrophe rate {'V': (14, 50), 'C': (28, 86)}
+apostrophe rate by position in word {'inner': (83, 512, 0.162), 'end': (34, 128, 0.266)}
+5bit off 0 qt...bd.ad....adpf.l..hb..hh.h...hqa..p.ql.aph.bbeub.l.x..hb.hiq..chptt..kyh.ach
+5bit off 1 ch...dh.bh....bi.l.x..pd..pp.p...qbbaw.abx.c.p.ddkjd.xap..pd.psb..fqaih..wrp.bfp
+5bit off 2 fp...hp.dp....dr.xap.a.h.aa.a...abddcn.bep.fa..hhvthapc..a.haafd..mbbrp.aoe..dm.
+5bit off 3 m....q..i.....idapc..b.p.bb.b...bdhhf..dk..lb..pqmhpc.f..b.pbblh..zdee..b.j..hz.
+5bit off 4 z...ab..r.....rhc.f..da..dd.d...dhppmx.hv..xd.aabzq.f.l..da.ddxp.athjj..e.t..qt.
+word lengths [6, 8, 12, 3, 7, 4, 6, 8, 4, 7, 2, 4, 4, 7, 9, 6, 8, 2, 5, 5, 3, 9, 5, 3, 8, 5, 3, 3, 3, 7, 4, 4, 4, 6, 9, 7, 2, 5, 3, 6, 2, 4, 5, 4, 7, 7, 5, 6, 5, 9, 2, 3, 8, 8, 3, 4, 5, 3, 10, 6]
+wl as letters fhlcgdfhdgbddgifhbeeciechecccgdddfigbecfbdedggefeibchhcdecjffgcdgahcbfdffcabdceaedhjcfegbddbdichiccedaeefcaeehkggideefafeeedjfeggcdadfghdbbeffdcccgccaccgkddcjcfdhgadffhebegcfdefadcifccfheidheeh
+line initials euuddeseeeurfdgdsieioataa
+line finals   sfffskneaesgnfriunetiuesn
+letters per line [36, 35, 36, 38, 39, 43, 43, 36, 43, 40, 42, 37, 40, 35, 46, 42, 42, 39, 38, 36, 39, 36, 39, 40, 39]
+d't'öhn'fdê  etê  lnenên'lf  möwidgn  örbns'n  hran'ê  sêk  êfht'iesn'n'f  zêusrs  rf'üaf'np_.  död'e  ê  wiê  ê  ênfi  hgênww  üdnalgs'  sêas'gnn  rêt  iöe  fnö  öfenuinrwe  n'aêain_.  wn'êd  iwêrw  

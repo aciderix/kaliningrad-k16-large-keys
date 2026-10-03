@@ -28,13 +28,14 @@ Même protocole que `dagapeyeff/docs/PROTOCOLE.md`. Choix de la cible : `docs/00
 | K15 blocs à clé commune | même clé pour les 6 blocs (routes, colonnes, Übchi, grille tournante), scores additionnés, ± substitution ? | **non** (contrôles 7-10/10 ; un score apparemment élevé — grille tournante MI 0,84 — égalé par les lettres mélangées) ; colonnes+substitution et double par bloc : sans puissance |
 | K16 double transposition, clés 10–20 | double transposition allemande à deux permutations différentes ? | **aucun clair retrouvé** ; la recherche GitHub 15–20 a examiné les 36 paires en environ 6 minutes, mais les contrôles de puissance ne réussissent que 3/10 : résultat négatif non concluant |
 | **K17 profil invariant** (≈ 1 s, sans clé) | le décompte des lettres peut-il être celui d'un texte allemand transposé ? | **non, quelle que soit la clé** : f + w = 82 contre 59 au plus dans 3 259 fenêtres allemandes ; décompte hors de toutes les fenêtres ; pas de substitution (lettres absentes = j q x y, identité 0/100 000). Les recherches K16 ne pouvaient pas aboutir |
+| **K18 contre-expertise** (2026-10-03, exploration calibrée) | photos, « solutions » annoncées (T. Ernst 2017, « Frank » 2021 : Bible synodale), signes comme symboles distincts, 11 langues, lettres inventées à la main ? | **aucun déchiffrement** ; aucun lien entre voisines même avec 34 symboles (lecture dans l'ordre exclue) ; profil trié incompatible avec les 11 langues (p ≤ 0,011), Bible synodale comprise ; **aucune signature de lettres inventées à la main** (ni cyclage ni suites alphabétiques) ⇒ flux mélangé mécaniquement ; seul « allemand + ≈ 100 nuls f/w/n » reste à la limite (p ≈ 0,07) |
 
 Synthèse d'étape : [`docs/02_synthese.md`](docs/02_synthese.md).
 
 ## Dépôt complet et reproductibilité
 
 Ce dépôt rassemble désormais le rapport initial, les transcriptions, les cellules
-K01–K16, leurs préinscriptions, résultats et journaux, ainsi que les outils des
+K01–K18, leurs préinscriptions (K01–K16), résultats et journaux, ainsi que les outils des
 analyses K01–K15 et le solveur K16. Les échanges Claude qui documentent le transfert
 du travail sont dans [`docs/claude-transcripts/`](docs/claude-transcripts/); les
 formes de jetons sont masquées avant publication.
@@ -61,7 +62,7 @@ vérifier, pas une résolution sans contrôle du texte et de la puissance.
 - `data/ciphertext_979.txt` : flux de 979 lettres préparé pour K16.
 - `data/models/qg_de.bin` : modèle de quadrigrammes allemands.
 - `data/heldout/de.txt` : texte indépendant du modèle, réservé aux contrôles.
-- `tools/` : scripts et sources C de K01–K16.
+- `tools/` : scripts et sources C de K01–K16 ; `tools/k18/` pour K18 (corpus : `tools/k18/fetch_corpus.sh`).
 
 Les commandes K16 `solve` et `null` prennent le chemin du fichier chiffré en
 troisième argument. Le chargeur corrigé lit le contenu du fichier; `solve` affiche

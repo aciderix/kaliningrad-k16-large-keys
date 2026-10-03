@@ -55,6 +55,13 @@ de preuve), HYPOTHÈSE.
 > conserve ce décompte : A′ et C sont donc exclues pour de l'allemand ordinaire, sans recherche de clé.
 > Voir `experiments/K17_profil_invariant/RESULTS.md`.
 
+> **K18 (2026-10-03)** : liens entre voisines absents même avec les 34 symboles (n', t', ê… distincts) ⇒ toute
+> lecture dans l'ordre exclue ; profil trié incompatible avec 11 langues (Bible synodale russe comprise, p ≤ 0,011) ;
+> **aucune signature de lettres inventées à la main** (cyclage, suites alphabétiques, évitement des répétitions) ⇒
+> le flux est un mélange mécanique d'un stock de lettres. Seul « allemand + ≈ 100 nuls f, w, n » reste à la limite
+> (p ≈ 0,07). Les deux « solutions » de Cipherbrain (T. Ernst 2017, « Frank » 2021) n'ont jamais été publiées.
+> Voir `experiments/K18_contre_expertise/RESULTS.md`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

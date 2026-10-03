@@ -1,0 +1,2 @@
+bottle: G before 137.3 ; best removal f,w,n = (32, 21, 48) ; G after 56.9
+German windows after same optimisation: median 32.5, 95% 81.5, max 281.2 ; >= bottle: 40/300
