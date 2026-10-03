@@ -49,6 +49,12 @@ de preuve), HYPOTHÈSE.
 | Les 6 blocs comme colonnes d'une transposition (liens entre blocs au même rang, décalage ±30) | exploration, p = 0,30 |
 
 ## 3. Ce qui reste (HYPOTHÈSES)
+
+> **K17 (2026-09-30)** : le décompte des lettres n'est celui d'aucune fenêtre allemande (f + w = 82 contre 59 au plus),
+> et les lettres ne sont pas substituées (lettres absentes = j q x y). Toute transposition, quelle que soit la clé,
+> conserve ce décompte : A′ et C sont donc exclues pour de l'allemand ordinaire, sans recherche de clé.
+> Voir `experiments/K17_profil_invariant/RESULTS.md`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

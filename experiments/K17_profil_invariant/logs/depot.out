@@ -1,0 +1,20 @@
+flux : 979 lettres ; référence allemande : 123957 lettres, 505 fenêtres de 979 (pas 244)
+
+T1  transposition seule (lettres intactes)
+    lettre  flux  attendu  z
+    a        39     57.0  -2.5
+    b         6     17.7  -2.8
+    c        17     31.2  -2.6
+    f        46     15.9  +7.6
+    g        16     34.0  -3.1
+    n       137    100.3  +3.9
+    w        36     16.5  +4.8
+    G flux = 125.7 ; fenêtres allemandes >= flux : 0/505 (max 91.9)
+    f+w flux = 82 ; fenêtres : max 49
+
+T2  transposition + substitution (profil trié)
+    G trié flux = 41.9 ; fenêtres >= flux : 4/505 (max 47.6)
+
+T3  identité des lettres contre étiquetage aléatoire
+    étiquetages aléatoires aussi proches de l'allemand que l'identité : 0/100000
+    lettres absentes du flux : ['j', 'q', 'x', 'y'] ; plus rares en allemand : ['x', 'q', 'y', 'j']
