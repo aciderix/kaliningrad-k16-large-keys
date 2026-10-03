@@ -1,0 +1,12 @@
+s=2 L=201 beam=100 D=5 | letter accuracy 0.51
+ TRUE: bloss mit ja und nein machen ihren eltern schwere unnotige sorgen und versaumen dies nur nebenbei erwahnt ihre geschaftlichen pflichten in einer eigentlich unerhorten weise ich spreche hier im namen ihrer eltern und ihres chefs und bitte
+ DEC : bloss mit und ja ich annehmen erinnert welches er unnotige sorgen und versaumen sind uber einen bewahrten ihre geschaftlichen pflichten einer eigentlich nur einen horte wie ich spreche sie ihrem mann ihrer eltern und ihres chefs und bitte
+ score dec -249.1 | score true -261.2
+s=4 L=201 beam=100 D=7 | letter accuracy 0.14
+ TRUE: bloss mit ja und nein machen ihren eltern schwere unnotige sorgen und versaumen dies nur nebenbei erwahnt ihre geschaftlichen pflichten in einer eigentlich unerhorten weise ich spreche hier im namen ihrer eltern und ihres chefs und bitte
+ DEC : bloss mit den juni nach einem alten herrn schon unterwegs eines gouverneurs den namen die beruhrt haben wir einfach geistlichen pflichten einer eigentlichen nur ohne weiteres ich spreche immer in ihren alten herrn sich fur die besteht und
+ score dec -231.0 | score true -261.2
+s=10 L=201 beam=100 D=13 | letter accuracy 0.10
+ TRUE: bloss mit ja und nein machen ihren eltern schwere unnotige sorgen und versaumen dies nur nebenbei erwahnt ihre geschaftlichen pflichten in einer eigentlich unerhorten weise ich spreche hier im namen ihrer eltern und ihres chefs und bitte
+ DEC : mann nicht bloss den juwelieren meist nach einer strengen hausordnung von seinem bruder einer unbehaglichen wirtschaftlichen freiheit peinliche erinnerungen petrowitsch erschien meine theilnahme seiner fruheren durch die besteht
+ score dec -188.2 | score true -261.2

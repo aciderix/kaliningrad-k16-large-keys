@@ -32,13 +32,14 @@ Même protocole que `dagapeyeff/docs/PROTOCOLE.md`. Choix de la cible : `docs/00
 | **K19 mélange local** (2026-10-03, exploration calibrée) | chiffres « d'écolier » (groupes permutés, grille de Verne 4×4–7×7 exhaustive, transpositions par ligne) ? les lettres sont-elles mélangées sur tout le texte ? | **aucun déchiffrement** ; ces chiffres à clé fixe sont exclus (contrôles 3/3) ; **reste d'ordre à courte distance** mesuré de six façons (bigrammes z = +3,1, c près de h/k p = 0,008, anagrammes par ligne z ≈ +3, déplacements ≤ 3 z = +5,3), reproduit sur la transcription indépendante : un texte de type allemand **brassé par tranches d'une vingtaine de lettres**, sans clé ; un tel anagramme est sous-déterminé (le modèle préfère du pseudo-allemand au vrai texte) |
 | **K20 blocs et mots** (2026-10-03, exploration calibrée) | faut-il travailler par bloc ou sur le texte entier ? le brassage contient-il des mots allemands ? | **texte entier** : le signal local traverse les frontières des sections comme ailleurs ; signal **sans sens de lecture** (pas un message dans l'ordre avec bourrage) ; repérage de mots plus faible que pour de l'allemand brassé par 20–40 (Z ≈ +1,2 contre +2 à +4,6), mais ce test réagit autant à du pseudo-allemand : **vrais mots ni démontrés ni exclus** ; brassage probablement plus large (40–80) |
 | **K21 source et échelle** (2026-10-03, exploration calibrée) | à quelle échelle le texte a-t-il été brassé ? par une grande grille ? quel texte source ? les « bribes de clair » sont-elles réelles ? | **échelle ≈ 25–100 positions** (simulation) ; grilles tournantes à clé unique 8×8–13×13 exclues (contrôles exacts) ; **aucun texte source** dans les 2 386 livres allemands de Gutenberg, 11 192 chants (volksliederarchiv.de) ni les Bibles Luther, Schlachter, synodale (méthode capable de retrouver une source brassée par 60 avec 15 % de nuls) ; les bribes d'allure allemande sont des **artefacts** (autant sur des lignes factices) |
+| **K22 reconstruction** (2026-10-03, contrôles) | sans auteur, original ni source, peut-on reconstituer le texte (mots devinés, décodage mot à mot) ? | **non** : le décodeur mot à mot retrouve un texte déplacé de 2 positions, plus rien au-delà de 4–10 (il préfère alors un allemand fluide mais faux) ; un mot deviné « tient » dans la bouteille aussi souvent que dans des lettres mélangées ; à l'échelle mesurée (≈ 50), la composition locale ne porte que ≈ 0,9 bit par lettre, moins que l'incertitude d'un texte allemand cohérent (≈ 1–1,3) : **le texte n'est pas déterminé** par la bouteille |
 
 Synthèse d'étape : [`docs/02_synthese.md`](docs/02_synthese.md).
 
 ## Dépôt complet et reproductibilité
 
 Ce dépôt rassemble désormais le rapport initial, les transcriptions, les cellules
-K01–K21, leurs préinscriptions (K01–K16), résultats et journaux, ainsi que les outils des
+K01–K22, leurs préinscriptions (K01–K16), résultats et journaux, ainsi que les outils des
 analyses K01–K15 et le solveur K16. Les échanges Claude qui documentent le transfert
 du travail sont dans [`docs/claude-transcripts/`](docs/claude-transcripts/); les
 formes de jetons sont masquées avant publication.
@@ -65,7 +66,7 @@ vérifier, pas une résolution sans contrôle du texte et de la puissance.
 - `data/ciphertext_979.txt` : flux de 979 lettres préparé pour K16.
 - `data/models/qg_de.bin` : modèle de quadrigrammes allemands.
 - `data/heldout/de.txt` : texte indépendant du modèle, réservé aux contrôles.
-- `tools/` : scripts et sources C de K01–K16 ; `tools/k18/` à `tools/k21/` pour K18–K21 (corpus : `tools/k18/fetch_corpus.sh`).
+- `tools/` : scripts et sources C de K01–K16 ; `tools/k18/` à `tools/k22/` pour K18–K22 (corpus : `tools/k18/fetch_corpus.sh`).
 
 Les commandes K16 `solve` et `null` prennent le chemin du fichier chiffré en
 troisième argument. Le chargeur corrigé lit le contenu du fichier; `solve` affiche

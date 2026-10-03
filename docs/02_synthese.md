@@ -78,6 +78,11 @@ de preuve), HYPOTHÈSE.
 > les « bribes de clair » produites par les réarrangements sont des artefacts (autant sur des lignes factices).
 > Voir `experiments/K21_source_et_echelle/RESULTS.md`.
 
+> **K22 (2026-10-03)** : sans information extérieure, le message n'est pas reconstituable : à l'échelle de brassage
+> mesurée, la composition locale porte ≈ 0,9 bit par lettre au mieux, moins que l'incertitude d'un texte allemand
+> cohérent ; un décodeur mot à mot ne retrouve un contrôle que pour des déplacements de 2 à 4 positions.
+> Voir `experiments/K22_reconstruction/RESULTS.md`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.
