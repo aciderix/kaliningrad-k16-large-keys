@@ -33,3 +33,20 @@ flux chiffré dont l'auteur a retouché les mots, ou pseudo-texte sans message.
 
 Réserves : un seul test, quatre contrôles par cas, dispersion importante ; à confirmer par d'autres mesures (par
 exemple la position des paires dans le mot, ou des mots de longueurs différentes).
+
+## Complément : toutes les distances (`habsig4.py`)
+
+| distances | dans un mot | entre deux mots |
+|---|---:|---:|
+| 1–4 | +3,0 | +0,2 |
+| 5–10 | +0,9 | +1,7 |
+| 11–20 | +1,1 | +0,7 |
+| 21–40 | — | +1,5 |
+
+Paires c–h/k à ±10 : excès dans le même mot (8 contre 4,4 ; z = +1,8) et entre mots (17 contre 12,8 ; z = +1,2).
+Paires voisines selon la position dans le mot : début +1,2, milieu +1,5, fin −0,3.
+
+Lecture corrigée : le signal **à très courte distance** (1–4) vient entièrement des mots de l'habillage ; il reste
+**entre les mots**, aux distances 5–40, un signal faible (≈ 2 écarts-types en combinant les bandes, qui ne sont pas
+indépendantes). L'habillage explique donc la plus grande partie du « reste d'ordre » de K19, mais pas forcément tout :
+un faible ordre local du flux d'origine (échelle ≈ 5–40) reste possible, à un niveau qui ne permet aucune lecture.
