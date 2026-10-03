@@ -87,6 +87,11 @@ de preuve), HYPOTHÈSE.
 > et pas entre eux, contrairement à un allemand brassé puis découpé : il vient probablement de la fabrication des mots,
 > pas d'un message. Voir `experiments/K23_signal_dans_les_mots/RESULTS.md`.
 
+> **K24–K25 (2026-10-03)** : aucune grille à trous fixe commune aux blocs ne cache d'allemand (K24). Comparé à
+> 97 langues (K25), le décompte reste plus proche de l'allemand que de toute autre langue sans être compatible ; avec
+> une substitution en plus de la transposition, 16 langues sur 97 passent le test du profil trié, qui ne peut donc pas
+> identifier la langue (nuance de K18). Voir `experiments/K24_grille_fixe/` et `experiments/K25_cent_langues/`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

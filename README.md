@@ -35,13 +35,14 @@ Même protocole que `dagapeyeff/docs/PROTOCOLE.md`. Choix de la cible : `docs/00
 | **K22 reconstruction** (2026-10-03, contrôles) | sans auteur, original ni source, peut-on reconstituer le texte (mots devinés, décodage mot à mot) ? | **non** : le décodeur mot à mot retrouve un texte déplacé de 2 positions, plus rien au-delà de 4–10 (il préfère alors un allemand fluide mais faux) ; un mot deviné « tient » dans la bouteille aussi souvent que dans des lettres mélangées ; à l'échelle mesurée (≈ 50), la composition locale ne porte que ≈ 0,9 bit par lettre, moins que l'incertitude d'un texte allemand cohérent (≈ 1–1,3) : **le texte n'est pas déterminé** par la bouteille |
 | **K23 signal dans les mots** (2026-10-03) | le reste d'ordre local vient-il d'un message brassé ou de l'habillage ? | signal **entièrement dans les « mots »** (z = +3,0) et **absent entre les mots** (+0,1), alors qu'un allemand brassé puis découpé le montre des deux côtés : le reste d'ordre est probablement un **produit de l'habillage** ; entre les mots il ne reste qu'une trace faible (z = +2,2, p ≈ 0,016), à peine plus compatible avec un brassage local qu'avec un mélange complet |
 | **K24 grille fixe** (2026-10-03) | message dans les trous d'une grille fixe (Cardan non tournante), cases restantes remplies au hasard ? | **non** pour une même grille sur tous les blocs (25 à 169 cases, 25–60 % de trous ; recherche exacte, contrôles +0,51 à +0,61 contre bouteille au niveau des mélanges) |
+| **K25 cent langues** (2026-10-03) | le décompte correspond-il à une autre langue que les 11 de K18 (97 langues et dialectes, dont baltes, slaves, scandinaves, bas-allemand, yiddish) ? | **non sans substitution** (l'allemand et ses voisins restent les plus proches, aucune langue compatible) ; **avec substitution, 16 langues sur 97 passent** le profil trié : ce test ne peut pas identifier la langue |
 
 Synthèse d'étape : [`docs/02_synthese.md`](docs/02_synthese.md).
 
 ## Dépôt complet et reproductibilité
 
 Ce dépôt rassemble désormais le rapport initial, les transcriptions, les cellules
-K01–K24, leurs préinscriptions (K01–K16), résultats et journaux, ainsi que les outils des
+K01–K25, leurs préinscriptions (K01–K16), résultats et journaux, ainsi que les outils des
 analyses K01–K15 et le solveur K16. Les échanges Claude qui documentent le transfert
 du travail sont dans [`docs/claude-transcripts/`](docs/claude-transcripts/); les
 formes de jetons sont masquées avant publication.
