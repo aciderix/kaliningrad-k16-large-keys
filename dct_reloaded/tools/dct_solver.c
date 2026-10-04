@@ -341,6 +341,49 @@ int main(int argc, char **argv) {
         putchar('\n');
         return 0;
     }
+    if (!strcmp(argv[1], "stream")) {
+        /* stream : model cipher keys.txt wmin wmax top — attaque par dictionnaire en flux (des millions de clés).
+           Une clé par ligne (lettres a–z) ; K2 = clé (rang alphabétique, ex aequo de gauche à droite, convention 0) ;
+           w2 = longueur de la clé dans [wmin,wmax] ; w1 parcourt [wmin,wmax], w1 ≠ w2 et pgcd(w1,w2) = 1.
+           Sortie : histogramme des IDP et les « top » meilleurs (clé, w1, IDP). */
+        int c[2048], n = load_letters_file(argv[3], c, 2048); FILE *fd = fopen(argv[4], "r");
+        if (n < 4 || !fd) { fprintf(stderr, "stream: model cipher keys wmin wmax top\n"); return 1; }
+        int wmin = atoi(argv[5]), wmax = atoi(argv[6]), top = atoi(argv[7]);
+        typedef struct { double s; int w1; char k[64]; } H; H *best = calloc(top, sizeof(H)); int nb = 0; double bmin = -1e9;
+        long hist[200] = {0}, cnt = 0, nkeys = 0; enum { CH = 65536 }; static char buf[CH][64]; int m;
+        do {
+            m = 0; char line[512];
+            while (m < CH && fgets(line, sizeof line, fd)) { int L = 0; for (char *x = line; *x && L < 63; x++) { char ch = *x | 32; if (ch >= 'a' && ch <= 'z') buf[m][L++] = ch; } buf[m][L] = 0; if (L >= wmin && L <= wmax) m++; }
+            nkeys += m;
+            #pragma omp parallel for schedule(dynamic, 256)
+            for (int q = 0; q < m; q++) {
+                int L = strlen(buf[q]), rank[64], ord[64], t[2048];
+                for (int i = 0; i < L; i++) { rank[i] = 0; for (int j = 0; j < L; j++) if (buf[q][j] < buf[q][i] || (buf[q][j] == buf[q][i] && j < i)) rank[i]++; }
+                for (int i = 0; i < L; i++) ord[rank[i]] = i;
+                undo(c, n, L, ord, t);
+                for (int w1 = wmin; w1 <= wmax; w1++) {
+                    int a = w1, b = L; while (b) { int r = a % b; a = b; b = r; } if (w1 == L || a != 1) continue;
+                    double sc = idp(t, n, w1); int hb = (int)(sc * 400) + 40; if (hb < 0) hb = 0; if (hb > 199) hb = 199;
+                    #pragma omp atomic
+                    hist[hb]++;
+                    #pragma omp atomic
+                    cnt++;
+                    if (sc > bmin || nb < top) {
+                        #pragma omp critical(stream_best)
+                        { if (nb < top) { best[nb].s = sc; best[nb].w1 = w1; strcpy(best[nb].k, buf[q]); nb++; if (nb == top) { bmin = 1e9; for (int i = 0; i < nb; i++) if (best[i].s < bmin) bmin = best[i].s; } }
+                          else if (sc > bmin) { int mi = 0; for (int i = 1; i < nb; i++) if (best[i].s < best[mi].s) mi = i;
+                                 best[mi].s = sc; best[mi].w1 = w1; strcpy(best[mi].k, buf[q]); bmin = 1e9; for (int i = 0; i < nb; i++) if (best[i].s < bmin) bmin = best[i].s; } }
+                    }
+                }
+            }
+        } while (m == CH);
+        fclose(fd);
+        for (int i = 0; i < nb; i++) for (int j = i + 1; j < nb; j++) if (best[j].s > best[i].s) { H x = best[i]; best[i] = best[j]; best[j] = x; }
+        printf("clés=%ld essais=%ld\nhistogramme IDP (pas 0,0025) :", nkeys, cnt);
+        for (int i = 0; i < 200; i++) if (hist[i]) printf(" %.4f:%ld", (i - 40) / 400.0, hist[i]); printf("\n");
+        for (int i = 0; i < nb; i++) printf("%.5f w1=%d w2=%d %s\n", best[i].s, best[i].w1, (int)strlen(best[i].k), best[i].k);
+        return 0;
+    }
     if (!strcmp(argv[1], "withk2")) {
         /* withk2 : model cipher "phrase K2" w1 R1 I1 seed — K2 donnée par une phrase, K1 par recuit (quadrigrammes). */
         int c[2048], n = load_letters_file(argv[3], c, 2048); int L = 0, key[64]; char *x = argv[4];
