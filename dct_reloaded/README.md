@@ -37,6 +37,7 @@ peut-être.
 | Cellule | Question | Résultat |
 |---|---|---|
 | [D01 étalonnage 2007](experiments/D01_calibration_2007/RESULTS.md) | notre chaîne casse-t-elle le défi de 2007 (21×23) ? | recuit aveugle : non ; **dictionnaire de phrases (IDP) : oui**, K2 = « preponderance of evidence », clair retrouvé |
+| [D02 Wikiquote, partie 1](experiments/D02_wikiquote_part1/RESULTS.md) (pré-inscrit) | K2 de la partie 1 est-elle un début de phrase de Wikiquote ? | débuts en mots entiers (8,5 M) : **non** ; phrases coupées à 20–27 lettres (37 M) : en cours |
 
 ## Outils
 - `tools/dct_solver.c` (dérivé de `kaliningrad/tools/k16_double_ct2.c`, IDP de CrypTool 2) :
