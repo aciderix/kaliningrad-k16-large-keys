@@ -52,5 +52,6 @@ jobs:
       - name: Rank
         run: |
           grep -v '^#' .github/scan/bdt-calib.env | grep '='
-          { echo '# Calibration'; echo; echo '```'; cat out/shard-*.out | grep '^calib' | sort -t= -k3 -n | sort -t= -k2 -n -s; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
-          cat out/shard-*.out | grep '^calib' | sort
+          { echo '# Résultats'; echo; echo '```'; cat out/shard-*.out | grep -E '^(calib|conv=|w1=|w=)' | sort -t= -k4 -g -r | head -80; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          cat out/shard-*.out | grep -E '^(calib|conv=|w1=|w=)' | sort | head -1000
+          grep -h -A2 'K1 quadrigrammes' out/shard-*.out | head -100 || true

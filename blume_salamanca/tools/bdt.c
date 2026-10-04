@@ -376,6 +376,37 @@ static double lag_anneal(const int *const *C, const int *ns, int nm, int w1, int
     return bs;
 }
 
+/* Étape K1 commune aux conventions faciles : P = F_K1(J) ; recuit aux quadrigrammes sur T1 (+ T2). */
+static double k1stage_fwd(const int *J1, const int *J2, int n1, int n2, int w1, int restarts, long iters, int *bk1) {
+    double bq = -1e18; int P1[MAXN], P2[MAXN];
+    for (int r = 0; r < restarts; r++) { int k[MAXW], q[MAXW]; randperm(k, w1); double cur = -1e18;
+        for (long it = 0; it < iters; it++) { double T = 0.3 * pow(0.005 / 0.3, (double)it / iters);
+            memcpy(q, k, sizeof(int) * w1); if (it) mutate1(q, w1); fwdT(J1, n1, w1, q, P1); double v = quad(P1, n1);
+            if (n2) { fwdT(J2, n2, w1, q, P2); v = (v * (n1 - 3) + quad(P2, n2) * (n2 - 3)) / (n1 + n2 - 6); }
+            if (v >= cur || rnd01() < exp((v - cur) / T)) { cur = v; memcpy(k, q, sizeof(int) * w1); if (cur > bq) { bq = cur; memcpy(bk1, k, sizeof(int) * w1); } } } }
+    return bq;
+}
+static int gcdi(int a, int b) { while (b) { int t = a % b; a = b; b = t; } return a; }
+/* colonnes-puis-lignes : rotations relatives des cycles c → c + w1 (mod w2) quand pgcd(w1, w2) > 1 ; garde la meilleure par K1 */
+static void cr_rotations(const int *C1, const int *C2, int n1, int n2, int w1, int w2, int *k) {
+    int g = gcdi(w1, w2), m = w2 / g; if (g == 1) return;
+    int cyc[MAXW][MAXW], seg_of[MAXW], vis[MAXW] = {0}, nc = 0;
+    for (int j = 0; j < w2; j++) seg_of[k[j]] = j;
+    for (int c0 = 0; c0 < w2; c0++) if (!vis[c0]) { int c = c0; for (int i = 0; i < m; i++) { cyc[nc][i] = c; vis[c] = 1; c = (c + w1) % w2; } nc++; }
+    long combos = 1; for (int t = 1; t < nc; t++) { combos *= m; if (combos > 400) { combos = 400; break; } }
+    double bestq = -1e18; int bestk[MAXW]; memcpy(bestk, k, sizeof(int) * w2);
+    for (long cb = 0; cb < combos; cb++) {
+        int rot[MAXW] = {0}; long x = cb; for (int t = 1; t < nc; t++) { rot[t] = (combos == 400 && nc > 3) ? rint_(m) : (int)(x % m); x /= m; }
+        int ns_of[MAXW], kn[MAXW];
+        for (int t = 0; t < nc; t++) for (int i = 0; i < m; i++) ns_of[cyc[t][i]] = seg_of[cyc[t][(i + rot[t]) % m]];
+        for (int c = 0; c < w2; c++) kn[ns_of[c]] = c;
+        int J1[MAXN], J2[MAXN], k1[MAXW]; undo(C1, n1, w2, kn, J1); if (n2) undo(C2, n2, w2, kn, J2);
+        double q = k1stage_fwd(J1, J2, n1, n2, w1, 2, 40000, k1);
+        if (q > bestq) { bestq = q; memcpy(bestk, kn, sizeof(int) * w2); }
+    }
+    memcpy(k, bestk, sizeof(int) * w2);
+}
+
 static int load_letters_file(const char *path, int *out, int max) {
     FILE *f = fopen(path, "r"); if (!f) return -1; int n = 0, ch;
     while ((ch = fgetc(f)) != EOF && n < max) { if (ch >= 'a' && ch <= 'z') out[n++] = ch - 'a'; else if (ch >= 'A' && ch <= 'Z') out[n++] = ch - 'A'; }
@@ -765,14 +796,9 @@ int main(int argc, char **argv) {
             if (CONV == 2) { CONV = 1; lag_polish(Cs, ns, nm, w1, w2, bk); CONV = 2; }   /* finition à la note exacte */
             printf("conv=%d w1=%d w2=%d  z=%.1f  K2", CONV, w1, w2, z); for (int j = 0; j < w2; j++) printf(" %d", bk[j]); printf("\n");
             if (z >= zmin) {
+                if (CONV == 2) cr_rotations(C1, C2, n1, n2, w1, w2, bk);
                 static int J1[MAXN], J2[MAXN]; if (CONV == 0) { fwdT(C1, n1, w2, bk, J1); if (n2) fwdT(C2, n2, w2, bk, J2); } else {  /* conv 1 et 2 */ undo(C1, n1, w2, bk, J1); if (n2) undo(C2, n2, w2, bk, J2); }
-                /* P = F_K1(J) : on cherche K1 par quadrigrammes ; k1score attend undo(), donc on note F_K1 via une clé inversée à la volée */
-                double bq = -1e18; int bk1[MAXW], P1[MAXN], P2[MAXN];
-                for (int r = 0; r < 8; r++) { int k[MAXW], q[MAXW]; randperm(k, w1); double cur = -1e18;
-                    for (long it = 0; it < 200000; it++) { double T = 0.3 * pow(0.005 / 0.3, (double)it / 200000);
-                        memcpy(q, k, sizeof(int) * w1); if (it) mutate1(q, w1); fwdT(J1, n1, w1, q, P1); double v = quad(P1, n1);
-                        if (n2) { fwdT(J2, n2, w1, q, P2); v = (v * (n1 - 3) + quad(P2, n2) * (n2 - 3)) / (n1 + n2 - 6); }
-                        if (v >= cur || rnd01() < exp((v - cur) / T)) { cur = v; memcpy(k, q, sizeof(int) * w1); if (cur > bq) { bq = cur; memcpy(bk1, k, sizeof(int) * w1); } } } }
+                int bk1[MAXW], P1[MAXN], P2[MAXN]; double bq = k1stage_fwd(J1, J2, n1, n2, w1, 8, 200000, bk1);
                 fwdT(J1, n1, w1, bk1, P1); printf("   K1 quadrigrammes %.3f\n   T1 ", bq); for (int i = 0; i < n1; i++) putchar('a' + P1[i]);
                 if (n2) { fwdT(J2, n2, w1, bk1, P2); printf("\n   T2 "); for (int i = 0; i < n2; i++) putchar('a' + P2[i]); } printf("\n");
             }

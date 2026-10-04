@@ -35,3 +35,10 @@ relatives à l'étape K1. Non lancé sur BLUME (convention la moins probable).
 ## Plan B05b (lancé avant résultat)
 Lignes-puis-colonnes sur BLUME : w1 = 11–30 × w2 = 11–30, 8 recuits × 200 k par paire (GitHub Actions, workflow
 `bdt-scan`, `.github/scan/bdt.env`). Candidat si z(T1) ≥ 12 → étape K1 → retenu seulement si T1 et T2 sont lisibles.
+
+## Inversée : bilan de la première passe et contrôles à grandes largeurs
+BLUME, 900 paires (w1, w2 = 11–40), 8 recuits × 100 k : z max **13,7** ; l'étape K1 (z ≥ 12) s'est déclenchée 18 fois,
+meilleur clair −12,94 (illisible ; un vrai clair donne ≈ −9,7). Contrôles plantés : 15 × 35 trouvé (z = 19,0, −9,64) ;
+38 × 30 presque (z = 15,3, −10,83, clair partiellement lisible) ; 31 × 36 manqué (z = 12,2). La couverture des très
+grandes largeurs est donc partielle → **B05c** : même recherche avec 64 recuits × 300 k (GitHub Actions, workflow
+`bdt-calib`, `.github/scan/bdt-calib.env`), étape K1 si z ≥ 14.
