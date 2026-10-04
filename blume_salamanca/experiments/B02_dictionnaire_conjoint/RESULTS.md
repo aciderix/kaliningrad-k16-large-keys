@@ -20,4 +20,4 @@ Rien n'est dit des autres sources de phrases.
 64 053 dates en toutes lettres (1936–1937, de/es/fr/en) : z max 5,4.
 
 **Variante « ex aequo de droite à gauche » (`BDT_TIES=1`), locale.** 730 clés thématiques : aucun z > 4,5 ;
-64 053 dates : z max 5,0. (Bibles, œuvres et Wikiquote dans cette numérotation : B02c sur Actions.)
+64 053 dates : z max 5,0. (Bibles, œuvres, Wikiquote et Gutenberg complet dans les deux numérotations : B07, GPU, rien.)

@@ -18,4 +18,22 @@ validation : boucle infinie au dernier tour de la chaîne gloutonne (cycle refer
 
 **Production (`run_dict.py`, seuil pré-inscrit z ≥ 9)** : (1) Bibles de/es + 33 œuvres (comme B02, ≈ 10,4 M clés) ;
 (2) Wikiquote de/es (débuts, troncatures, fenêtres) ; (3) les 3 290 livres Gutenberg allemands et espagnols (mots
-entiers). Résultats : à compléter.
+entiers). Résultats ci-dessous.
+
+## Production : rien (4 octobre 2026, ≈ 4 h de notebook)
+Contrôle planté au début du notebook : « dennmeinvol » retrouvé à z = 24,1 (meilleure fausse clé 5,1).
+
+| source | clés | essais (w1 × variante + clé unique) | histogramme z > 4 | meilleur z |
+|---|---:|---:|---|---:|
+| Bibles de/es + 33 œuvres | 10,39 M | 436 M | [4,5) : 25 084 ; [5,6) : 481 ; [6,7) : 5 | 6,35 |
+| Wikiquote de/es | 15,32 M | 643 M | [4,5) : 37 127 ; [5,6) : 663 ; [6,7) : 7 | 6,71 |
+| Gutenberg de/es complet (3 290 livres) | 93,45 M | 3 925 M | [4,5) : 225 857 ; [5,6) : 4 362 ; [6,7) : 48 | 6,93 |
+
+Rien au-delà de 7 sur ≈ 5 milliards d'essais : c'est la queue attendue du bruit (le maximum de N essais gaussiens
+est ≈ √(2 ln N) ≈ 6,7). Meilleures clés : « alasaladelecturasalioalpatio » (w1 = 13, w2 = 28, variante 1),
+« krankheittuberkulose », « forexamplecodehttpswwwwikidata » : du bruit. Gutenberg : 93,4 M de clés à ≈ 28 000 clés
+par livre (mesuré sur 100 livres) ≈ 3 300 livres, donc la liste entière a bien été lue.
+
+**Conclusion (seuil z ≥ 9).** Aucune phrase-clé (mots entiers, 11–30 lettres) des Bibles, des 33 œuvres, de Wikiquote
+de/es ni des livres Gutenberg allemands et espagnols n'est K2 (w1 = 11–30) ou clé unique, dans aucune des deux
+numérotations. Sorties : `logs/`.
