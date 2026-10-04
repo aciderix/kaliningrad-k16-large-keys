@@ -30,3 +30,8 @@ phrases espagnoles et allemandes (Wikiquote es/de, expressions courantes, devise
 ## Données
 `data/telegram1_615.txt`, `data/telegram2_160.txt` : transcriptions de D. Bourdeau (`ct1.txt`, `ct2.txt`), document
 historique de 1937 ; recopiées avec mention de la source.
+
+## Cellules
+| Cellule | Question | Résultat |
+|---|---|---|
+| [B01 phrases Wikiquote es/de](experiments/B01_phrases_wikiquote/PREREGISTRATION.md) (pré-inscrit) | K2 est-elle le début d'une phrase espagnole ou allemande de Wikiquote ? | en attente de calcul |

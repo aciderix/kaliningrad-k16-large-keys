@@ -25,7 +25,7 @@ static unsigned long long seed_for(unsigned long long x) {
     x = (x ^ (x >> 27)) * 0x94d049bb133111ebULL; x ^= x >> 31; return x ? x : 1;
 }
 static int rint_(int n) { return (int)(rnd() % (unsigned long long)n); }
-static double T2A = 0.05, T2B = 0.002;
+static double T2A = 0.05, T2B = 0.002; static int OFFMAX = -1;   /* DCT_OFFMAX : décalages d'alignement limités (criblage rapide) */
 static double rnd01(void) { return (rnd() >> 11) * (1.0 / 9007199254740992.0); }
 #define D 3
 
@@ -89,6 +89,7 @@ static double idp(const int *t, int n, int w1) {
             int s1 = MINE[c1] - full + 1, s2 = MINE[c2] - full + 1, o1 = MAXE[c1] - MINE[c1], o2 = MAXE[c2] - MINE[c2];
             for (int pass = 0; pass < 2; pass++) {
                 int omax = pass == 0 ? o2 : o1;
+                if (OFFMAX >= 0 && omax > OFFMAX) omax = OFFMAX;
                 for (int off = pass; off <= omax; off++) {
                     int p1 = s1 + (pass ? off : 0), p2 = s2 + (pass ? 0 : off); double s = 0; int a = p1, b = p2;
                     if (a < 0 || b < 0 || a + full > n || b + full > n) continue;
@@ -315,6 +316,7 @@ static int load_letters_file(const char *path, int *out, int max) {
 
 int main(int argc, char **argv) {
     if (argc < 4) return 1;
+    if (getenv("DCT_OFFMAX")) OFFMAX = atoi(getenv("DCT_OFFMAX"));
     if (getenv("K14_T2A")) T2A = atof(getenv("K14_T2A")); if (getenv("K14_T2B")) T2B = atof(getenv("K14_T2B"));
     QG = malloc(sizeof(float) * 456976); FILE *fp = fopen(argv[2], "rb");
     if (!fp || fread(QG, sizeof(float), 456976, fp) != 456976) { fprintf(stderr, "qg ?\n"); return 1; } fclose(fp);
@@ -345,7 +347,8 @@ int main(int argc, char **argv) {
         /* stream : model cipher keys.txt wmin wmax top — attaque par dictionnaire en flux (des millions de clés).
            Une clé par ligne (lettres a–z) ; K2 = clé (rang alphabétique, ex aequo de gauche à droite, convention 0) ;
            w2 = longueur de la clé dans [wmin,wmax] ; w1 parcourt [wmin,wmax], w1 ≠ w2 et pgcd(w1,w2) = 1.
-           Sortie : histogramme des IDP et les « top » meilleurs (clé, w1, IDP). */
+           Sortie : histogramme des IDP et les « top » meilleurs (clé, w1, IDP).
+           Options : DCT_W1=a,b (plage de w1 distincte), DCT_ANYW=1 (pas de contrainte pgcd/≠), DCT_OFFMAX=k. */
         int c[2048], n = load_letters_file(argv[3], c, 2048); FILE *fd = fopen(argv[4], "r");
         if (n < 4 || !fd) { fprintf(stderr, "stream: model cipher keys wmin wmax top\n"); return 1; }
         int wmin = atoi(argv[5]), wmax = atoi(argv[6]), top = atoi(argv[7]);
@@ -361,8 +364,10 @@ int main(int argc, char **argv) {
                 for (int i = 0; i < L; i++) { rank[i] = 0; for (int j = 0; j < L; j++) if (buf[q][j] < buf[q][i] || (buf[q][j] == buf[q][i] && j < i)) rank[i]++; }
                 for (int i = 0; i < L; i++) ord[rank[i]] = i;
                 undo(c, n, L, ord, t);
-                for (int w1 = wmin; w1 <= wmax; w1++) {
-                    int a = w1, b = L; while (b) { int r = a % b; a = b; b = r; } if (w1 == L || a != 1) continue;
+                int w1lo = wmin, w1hi = wmax; if (getenv("DCT_W1")) sscanf(getenv("DCT_W1"), "%d,%d", &w1lo, &w1hi);
+                int anyw = getenv("DCT_ANYW") != NULL;
+                for (int w1 = w1lo; w1 <= w1hi; w1++) {
+                    int a = w1, b = L; while (b) { int r = a % b; a = b; b = r; } if (!anyw && (w1 == L || a != 1)) continue;
                     double sc = idp(t, n, w1); int hb = (int)(sc * 400) + 40; if (hb < 0) hb = 0; if (hb > 199) hb = 199;
                     #pragma omp atomic
                     hist[hb]++;
