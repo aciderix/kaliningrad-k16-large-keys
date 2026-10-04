@@ -105,6 +105,12 @@ de preuve), HYPOTHÈSE.
 > les mots « russes » (gon'it') sont au niveau du hasard. Reste non testable : une grille tournante différente par
 > bloc avec ≈ 10 % de nuls. Voir `experiments/K29_suggestions/RESULTS.md`.
 
+> **K30 (2026-10-04, pré-inscrit)** : avec un modèle 6-grammes tolérant aux nuls, une grille tournante différente
+> par bloc avec 10 % de nuls est retrouvée 19 fois sur 24 (contre 4/24 aux quadrigrammes) ; les quatre blocs carrés
+> de la bouteille restent au niveau de leurs lettres mélangées : **exclue**. Il ne reste plus de famille de
+> transposition classique identifiée comme non testable, hormis les clés quelconques très longues (K16) et les
+> grilles sur blocs non carrés. Voir `experiments/K30_modele_fort/RESULTS.md`.
+
 - **A′ — allemand (d'un style particulier) mélangé par une transposition à clé plus complexe** (double transposition, grille à
   trous non standard…), espaces et apostrophes ajoutés pour « faire langue ». Pour : absence de contacts et de répétitions,
   profil allemand, ö/ü, blocs réguliers. Contre : excès de f et w jamais vu en allemand ordinaire.

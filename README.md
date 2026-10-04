@@ -40,6 +40,7 @@ Même protocole que `dagapeyeff/docs/PROTOCOLE.md`. Choix de la cible : `docs/00
 | **K27 clés-mots** (2026-10-03, pré-inscrit) | double transposition dont les clés sont des mots (allemands, russes en ordre cyrillique ou latin, prénoms, lieux, expressions), toutes longueurs, 16 variantes de lecture, texte entier et par bloc ? | **non** : ≈ 34 000 clés, 3,2 × 10¹⁰ paires × variantes ; contrôles plantés (allemand + 10 % de nuls) 10/10 ; bouteille au mieux −14,6 contre ≈ −11 pour un clair : aucun déchiffrement |
 | **K28 « eimat » et pistes rapides** (2026-10-03) | « eimat »/« Heimat » comme clé ? page lue en colonnes ? signes de l'habillage = nuls ? | **non** pour les trois (au niveau des mélanges) ; outil `tools/k28/verifier.py` pour tester toute solution proposée |
 | **K29 suggestions externes** (2026-10-03) | nuls/séparateurs F-W-N, nombres en toutes lettres, sch→w, carrés magiques 13×13 (La Loubère), apostrophes = ь, mots russes (« gon'it' »), ê ? | **aucune ne tient** : W séparateur de mots, nombres, sch→w, ê = ä ou э ne rendent pas le décompte allemand ; **toutes les marches affines 13×13 et 12×12 (La Loubère comprise) exclues** (contrôles avec nuls 12/12) ; apostrophes ≠ ь (−80 unités log) ; mots russes au niveau du hasard ; feuilles réglées, pas quadrillées. **Point juste** : grilles tournantes à clé différente par bloc avec ≈ 10 % de nuls non testables (puissance 2/12–4/12) |
+| **K30 modèle fort** (2026-10-04, pré-inscrit) | grille tournante **différente pour chaque bloc carré**, avec ≈ 10 % de nuls (la famille déclarée non testable en K29) ? | **non** : avec un modèle 6-grammes tolérant aux nuls, la puissance passe de 1–3/12 à **10/12 et 9/12** ; les 4 blocs carrés (S2, S4, S5, S6) restent au niveau de leurs lettres mélangées (−2,84 à −2,92 contre −2,05 à −2,80 pour les contrôles) |
 
 Synthèse d'étape : [`docs/02_synthese.md`](docs/02_synthese.md). **Bilan d'ensemble (tout ce qui a été tenté, ce qui reste,
 comment vérifier une proposition) : [`docs/03_bilan.md`](docs/03_bilan.md).**
@@ -47,7 +48,7 @@ comment vérifier une proposition) : [`docs/03_bilan.md`](docs/03_bilan.md).**
 ## Dépôt complet et reproductibilité
 
 Ce dépôt rassemble désormais le rapport initial, les transcriptions, les cellules
-K01–K29, leurs préinscriptions (K01–K16, K27), résultats et journaux, ainsi que les outils des
+K01–K30, leurs préinscriptions (K01–K16, K27, K30), résultats et journaux, ainsi que les outils des
 analyses K01–K15 et le solveur K16. Les échanges Claude qui documentent le transfert
 du travail sont dans [`docs/claude-transcripts/`](docs/claude-transcripts/); les
 formes de jetons sont masquées avant publication.
@@ -74,7 +75,7 @@ vérifier, pas une résolution sans contrôle du texte et de la puissance.
 - `data/ciphertext_979.txt` : flux de 979 lettres préparé pour K16.
 - `data/models/qg_de.bin` : modèle de quadrigrammes allemands.
 - `data/heldout/de.txt` : texte indépendant du modèle, réservé aux contrôles.
-- `tools/` : scripts et sources C de K01–K16 ; `tools/k18/` à `tools/k29/` pour K18–K29 (corpus : `tools/k18/fetch_corpus.sh`).
+- `tools/` : scripts et sources C de K01–K16 ; `tools/k18/` à `tools/k30/` pour K18–K30 (corpus : `tools/k18/fetch_corpus.sh`).
 
 Les commandes K16 `solve` et `null` prennent le chemin du fichier chiffré en
 troisième argument. Le chargeur corrigé lit le contenu du fichier; `solve` affiche
