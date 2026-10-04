@@ -31,3 +31,7 @@ Note tolérante aux bornes (`lagscan2 … 2`, puis finition exacte) : contrôle 
 lisible seulement. Cause structurelle : si pgcd(w1, w2) = g > 1, les liens c → c + w1 (mod w2) forment g cycles de
 colonnes indépendants, dont la position relative n'est pas fixée par l'écart w1 ; il faut énumérer les rotations
 relatives à l'étape K1. Non lancé sur BLUME (convention la moins probable).
+
+## Plan B05b (lancé avant résultat)
+Lignes-puis-colonnes sur BLUME : w1 = 11–30 × w2 = 11–30, 8 recuits × 200 k par paire (GitHub Actions, workflow
+`bdt-scan`, `.github/scan/bdt.env`). Candidat si z(T1) ≥ 12 → étape K1 → retenu seulement si T1 et T2 sont lisibles.
