@@ -62,7 +62,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Compile solver
-        run: gcc -std=c11 -O3 -march=native -flto -fopenmp -o k16 tools/k16_double_ct2.c -lm
+        run: gcc -std=c11 -O3 -march=native -flto -fopenmp -o k16 kaliningrad/tools/k16_double_ct2.c -lm
 
       - name: Search this pair on the real 979-letter ciphertext
         env:
@@ -72,7 +72,7 @@ jobs:
         run: |
           mkdir -p results
           set -o pipefail
-          ./k16 solvepair data/models/qg_de.bin data/ciphertext_979.txt \
+          ./k16 solvepair kaliningrad/data/models/qg_de.bin kaliningrad/data/ciphertext_979.txt \
             "$W1" "$W2" 12 200000 5 20000 "$((RUN_SEED * 100 + W1 * 10 + W2))" \
             | tee "results/pair-$W1-$W2.log"
 
