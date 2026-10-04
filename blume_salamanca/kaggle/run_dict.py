@@ -10,6 +10,16 @@ sh('git clone -q --depth 1 -b claude/trusting-cerf-i26igv https://github.com/aci
 os.chdir('repo/blume_salamanca')
 sh('nvcc -O3 -gencode arch=compute_60,code=sm_60 -gencode arch=compute_75,code=sm_75 -o bdt_gpu tools/bdt_gpu.cu')
 SCAN = './bdt_gpu data/models/qg_es.bin data/telegram1_615.txt data/telegram2_160.txt {keys} 11 30 11 30 2 4.5 60'
+NGPU = int(subprocess.run('nvidia-smi -L | wc -l', shell=True, capture_output=True, text=True).stdout.strip() or 1)
+def scan(keys, out):
+    """Répartit les clés une ligne sur deux entre les GPU et lance un processus par GPU ; sorties concaténées."""
+    parts = [f'{keys}.part{g}' for g in range(NGPU)]
+    fs = [open(p, 'w') for p in parts]
+    for i, l in enumerate(open(keys)): fs[i % NGPU].write(l)
+    for f in fs: f.close()
+    procs = [subprocess.Popen(f'CUDA_VISIBLE_DEVICES={g} ' + SCAN.format(keys=parts[g]) + f' > {out}.gpu{g}', shell=True) for g in range(NGPU)]
+    for p in procs: p.wait()
+    sh(f'cat {out}.gpu* > {out}; cat {out}')
 sh('./bdt_gpu data/models/qg_es.bin data/controls/pc1.txt data/controls/pc2.txt data/controls/ctl_keys_20k.txt 11 30 11 30 2 4.5 3 | tee ' + W + '/controle.txt')
 os.makedirs('src', exist_ok=True)
 def get(url, out):
@@ -24,13 +34,13 @@ for i in ids: get(f'https://gutenberg.pglaf.org/cache/epub/{i}/pg{i}.txt', f'src
 for b in ['GerBoLut', 'GerElb1905', 'SpaRV', 'SpaRV1865']:
     get(f'https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/txt/{b}.txt', f'src/b02/{b}.txt')
 sh('python3 tools/keys_texts.py 11 30 keys_b02.txt src/b02/*')
-sh(SCAN.format(keys='keys_b02.txt') + ' | tee ' + W + '/b07_bibles_oeuvres.txt')
+scan('keys_b02.txt', W + '/b07_bibles_oeuvres.txt')
 # 3) Wikiquote de/es
 for l in ['de', 'es']:
     get(f'https://dumps.wikimedia.org/{l}wikiquote/latest/{l}wikiquote-latest-pages-articles.xml.bz2', f'src/{l}wq.xml.bz2')
     sh(f'python3 ../common/phrasekeys.py src/{l}wq.xml.bz2 11 30 prefix,trunc,windows 0 1 keys_wq_{l}.txt')
 sh('cat keys_wq_de.txt keys_wq_es.txt > keys_wq.txt')
-sh(SCAN.format(keys='keys_wq.txt') + ' | tee ' + W + '/b07_wikiquote.txt')
+scan('keys_wq.txt', W + '/b07_wikiquote.txt')
 # 4) Gutenberg complet de/es (mots entiers)
 os.makedirs('src/pg', exist_ok=True)
 books = [l.strip() for l in open('data/pg_ids_de_es.txt') if l.strip()]
@@ -39,5 +49,5 @@ for k, i in enumerate(books):
     get(f'https://gutenberg.pglaf.org/cache/epub/{i}/pg{i}.txt', f'src/pg/pg{i}.txt')
     if k % 200 == 0: print(k, 'livres', int(time.time() - t0), 's', flush=True)
 sh('KEYS_TRUNC=0 KEYS_DEDUP=file python3 tools/keys_texts.py 11 30 keys_pg.txt src/pg/*')
-sh(SCAN.format(keys='keys_pg.txt') + ' | tee ' + W + '/b07_gutenberg_complet.txt')
+scan('keys_pg.txt', W + '/b07_gutenberg_complet.txt')
 print('FIN', flush=True)
