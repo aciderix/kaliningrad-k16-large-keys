@@ -1,0 +1,74 @@
+name: Phrase-key scan (double transposition)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/trusting-cerf-i26igv]
+    paths: [.github/scan/job.env]
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: Shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read job
+        run: grep -v '^#' .github/scan/job.env | grep '=' >> "$GITHUB_ENV"
+      - name: Compile solver
+        run: gcc -O3 -march=native -fopenmp -o dctsolve dct_reloaded/tools/dct_solver.c -lm
+      - name: Download dump
+        run: |
+          for i in 1 2 3 4 5; do curl -sSL --retry 3 -o dump.xml.bz2 "$DUMP" && break; sleep $((i * 20)); done
+          ls -la dump.xml.bz2
+      - name: Build this shard's keys
+        run: python3 common/phrasekeys.py dump.xml.bz2 "$LO" "$HI" "$MODES" ${{ matrix.shard }} 20 keys.txt
+      - name: Scan
+        run: |
+          mkdir -p out
+          cd "$WORKDIR"
+          env $DCT_ENV OMP_NUM_THREADS=$(nproc) ../dctsolve stream "$MODEL" "$CIPHER" ../keys.txt "$LO" "$HI" 30 \
+            > ../out/shard-${{ matrix.shard }}.out
+          head -2 ../out/shard-${{ matrix.shard }}.out | cut -c1-200; tail -5 ../out/shard-${{ matrix.shard }}.out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shard-${{ matrix.shard }}
+          path: out/
+          retention-days: 30
+
+  merge:
+    name: Merge
+    if: always()
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: shard-*
+          path: out
+          merge-multiple: true
+      - name: Rank
+        run: |
+          grep -v '^#' .github/scan/job.env | grep '='
+          python3 - <<'PY'
+          import glob, re, os
+          rows = []; keys = 0; tries = 0; done = 0
+          for f in glob.glob('out/shard-*.out'):
+              t = open(f).read(); m = re.search(r'clés=(\d+) essais=(\d+)', t)
+              if m: keys += int(m.group(1)); tries += int(m.group(2)); done += 1
+              rows += [(float(a), b) for a, b in re.findall(r'^([0-9.]+) (w1=.*)$', t, re.M)]
+          rows.sort(reverse=True)
+          lines = ['# Phrase-key scan', '', f'Shards: {done}/20 ; keys: {keys:,} ; key × width trials: {tries:,}', '',
+                   '| IDP | widths and key |', '|---:|---|'] + [f'| {s:.5f} | `{r}` |' for s, r in rows[:30]]
+          open(os.environ['GITHUB_STEP_SUMMARY'], 'w').write('\n'.join(lines) + '\n'); print('\n'.join(lines))
+          PY

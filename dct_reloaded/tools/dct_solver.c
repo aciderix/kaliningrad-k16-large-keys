@@ -75,7 +75,7 @@ static double chain_score(double m[64][64], int d) {
     }
     return sum / d;
 }
-static double idp(const int *t, int n, int w1) {
+static double idp_ref(const int *t, int n, int w1) {
     if (CURW != w1 || CURN != n) colends(n, w1);
     static _Thread_local double m[64][64]; int full = n / w1;
     for (int c1 = 0; c1 < w1; c1++) for (int c2 = 0; c2 < w1; c2++) {
@@ -105,6 +105,55 @@ static double idp(const int *t, int n, int w1) {
     return chain_score(m, w1);
 }
 
+/* Version rapide de l'IDP (DCT_FAST=1) : flottants, table de bigrammes aplatie, lettres pré-multipliées, et
+   chaîne gloutonne en O(d² log d) (paires triées une fois, union-find contre les cycles) au lieu de O(d³). */
+static float BGF[676]; static int FAST = 0;
+typedef struct { float v; short a, b; } Pair;
+static int pair_cmp(const void *x, const void *y) { float a = ((const Pair *)x)->v, b = ((const Pair *)y)->v; return a < b ? 1 : a > b ? -1 : 0; }
+static int uf_find(int *p, int x) { while (p[x] != x) { p[x] = p[p[x]]; x = p[x]; } return x; }
+static double idp_fast(const int *t, int n, int w1) {
+    if (CURW != w1 || CURN != n) colends(n, w1);
+    int full = n / w1; static _Thread_local short ta[2048]; static _Thread_local unsigned char tb[2048];
+    for (int i = 0; i < n; i++) { ta[i] = (short)(t[i] * 26); tb[i] = (unsigned char)t[i]; }
+    static _Thread_local Pair pr[64 * 64]; int np = 0;
+    for (int c1 = 0; c1 < w1; c1++) for (int c2 = 0; c2 < w1; c2++) {
+        if (c1 == c2) continue;
+        float best = -1e30f;
+        if (n % w1 == 0) {
+            int p1 = MINE[c1], p2 = MINE[c2]; float s = 0;
+            for (int l = 0; l < full; l++) s += BGF[ta[p1 - l] + tb[p2 - l]];
+            best = s;
+        } else {
+            int s1 = MINE[c1] - full + 1, s2 = MINE[c2] - full + 1, o1 = MAXE[c1] - MINE[c1], o2 = MAXE[c2] - MINE[c2];
+            for (int pass = 0; pass < 2; pass++) {
+                int omax = pass == 0 ? o2 : o1;
+                if (OFFMAX >= 0 && omax > OFFMAX) omax = OFFMAX;
+                for (int off = pass; off <= omax; off++) {
+                    int a = s1 + (pass ? off : 0), b = s2 + (pass ? 0 : off);
+                    if (a < 0 || b < 0 || a + full > n || b + full > n) continue;
+                    const short *A = ta + a; const unsigned char *B = tb + b; float s = 0;
+                    for (int i = 0; i < full; i++) s += BGF[A[i] + B[i]];
+                    if (s > best) best = s;
+                    int q1 = a + full, q2 = b + full, k = 0;
+                    while (q1 <= MAXE[c1] && q2 <= MAXE[c2]) { s += BGF[ta[q1] + tb[q2]] - BGF[ta[a + k] + tb[b + k]]; k++; q1++; q2++; if (s > best) best = s; }
+                }
+            }
+        }
+        pr[np].v = best / full; pr[np].a = (short)c1; pr[np].b = (short)c2; np++;
+    }
+    qsort(pr, np, sizeof(Pair), pair_cmp);
+    int left[64], right[64], uf[64], links = 0; double sum = 0;
+    for (int i = 0; i < w1; i++) { left[i] = right[i] = -1; uf[i] = i; }
+    for (int k = 0; k < np && links < w1; k++) {
+        int a = pr[k].a, b = pr[k].b;
+        if (right[a] != -1 || left[b] != -1) continue;
+        int ra = uf_find(uf, a), rb = uf_find(uf, b);
+        if (ra == rb && links != w1 - 1) continue;
+        right[a] = b; left[b] = a; uf[ra] = rb; sum += pr[k].v; links++;
+    }
+    return sum / w1;
+}
+static double idp(const int *t, int n, int w1) { return FAST ? idp_fast(t, n, w1) : idp_ref(t, n, w1); }
 static void randperm(int *p, int w) { for (int i = 0; i < w; i++) p[i] = i; for (int i = w - 1; i > 0; i--) { int j = rint_(i + 1), x = p[i]; p[i] = p[j]; p[j] = x; } }
 static void mutate(int *k, int w) {
     int a = rint_(w), b = rint_(w); if (a == b) return;
@@ -326,6 +375,8 @@ int main(int argc, char **argv) {
         for (int a = 0; a < 26; a++) for (int b = 0; b < 26; b++) { double e = exp(BG[a][b]); U[a] += e; V[b] += e; tot += e; }
         for (int a = 0; a < 26; a++) for (int b = 0; b < 26; b++) BG[a][b] = BG[a][b] - log(U[a] / tot) - log(V[b] / tot) - log(tot);
     }
+    for (int a = 0; a < 26; a++) for (int b = 0; b < 26; b++) BGF[a * 26 + b] = (float)BG[a][b];
+    FAST = getenv("DCT_FAST") != NULL;
     if (!strcmp(argv[1], "solvepair")) {
         if (argc < 11) { fprintf(stderr, "solvepair: model cipher w1 w2 R2 I2 R1 I1 seed\n"); return 1; }
         int c[2048], n = load_letters_file(argv[3], c, 2048);

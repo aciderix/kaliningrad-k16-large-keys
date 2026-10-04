@@ -24,3 +24,9 @@ elles), vraie K2 glissée parmi 200 000 leurres : **5/5 en tête**, IDP vraie 0,
 - **Déchiffrement** : pour un candidat, recherche de K1 par recuit (`withk2`, 8 × 50 000) donnant une note de
   quadrigrammes ≥ −10,5 **et** un texte anglais lisible. Les 34 premières lettres sont alors la solution demandée.
 - Sinon : K2 n'est le début d'aucune phrase de Wikiquote (au sens des deux bases), avec une puissance de 5/5.
+
+## Avenant (2026-10-04, avant tout résultat de ces bases)
+Base supplémentaire « windows » : toute suite de mots entiers de 20 à 27 lettres, n'importe où dans la phrase.
+Les bases « trunc » et « windows » sont calculées sur GitHub Actions (workflow `phrase-scan`, 20 machines, clés
+générées par `common/phrasekeys.py`, réparties sans doublon par crc32 mod 20). Même note, mêmes largeurs, même
+critère (IDP ≥ 0,30 puis K1 lisible).
