@@ -53,3 +53,9 @@ GitHub Actions, run 37193090815, 900 paires (w1, w2 = 11–40), 64 recuits × 30
 w2. L'étape K1 (z ≥ 14) s'est déclenchée 2 fois : clairs −13,37 et −13,06, illisibles (vrai clair ≈ −9,7).
 Journal : `logs/B05c_rev_w11-40_deep.out`. Avec 8 × plus de recuits que la première passe (où 15 × 35 était trouvé
 et 38 × 30 presque), l'inversée est exclue pour w1, w2 ≤ ≈ 30 ; au-delà, couverture probable mais non garantie.
+
+## B05b — Lignes-puis-colonnes, BLUME : rien
+GitHub Actions, run 37207708813, 400 paires (w1, w2 = 11–30), 8 recuits × 200 k par paire. z(T1) max **9,4**
+(w1 = 14, w2 = 27), sous le seuil 12 ; l'étape K1 ne s'est jamais déclenchée. Journal : `logs/B05b_rc_w11-30.out`.
+Couverture : le contrôle 18 × 19 est trouvé avec 4 recuits (z = 18,4), le contrôle 23 × 24 ne l'est pas : la
+convention est exclue de façon fiable pour w1, w2 ≤ ≈ 20, partiellement au-delà.
