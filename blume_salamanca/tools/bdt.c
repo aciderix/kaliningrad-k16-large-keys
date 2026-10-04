@@ -581,6 +581,29 @@ int main(int argc, char **argv) {
         }
         return 0;
     }
+    if (!strcmp(argv[1], "samescan")) {   /* samescan qg c1 c2|- wa wb R iters graine : clé unique (K1 = K2), recherche réelle */
+        static int C1[MAXN], C2[MAXN]; int n1 = load_letters_file(argv[3], C1, MAXN), n2 = strcmp(argv[4], "-") ? load_letters_file(argv[4], C2, MAXN) : 0;
+        int a = atoi(argv[5]), b = atoi(argv[6]), R = atoi(argv[7]); long I = atol(argv[8]); unsigned long long seed = strtoull(argv[9], 0, 10);
+        if (getenv("BDT_MV")) sscanf(getenv("BDT_MV"), "%d,%d,%d,%d,%d,%d,%d", MV, MV + 1, MV + 2, MV + 3, MV + 4, MV + 5, MV + 6);
+        int shard = 0, nshard = 1, idx = -1; if (getenv("BDT_SHARD")) sscanf(getenv("BDT_SHARD"), "%d/%d", &shard, &nshard);
+        const int *Cs[2] = {C1, C2}; int ns[2] = {n1, n2}, nm = n2 ? 2 : 1;
+        for (int w = a; w <= b; w++) {
+            if (++idx % nshard != shard) continue;
+            rs = seed * 7919ULL + w; int kk[MAXW]; double s = 0, ss = 0;
+            for (int r = 0; r < 500; r++) { randperm(kk, w); double v = same_score(Cs, ns, nm, w, kk); s += v; ss += v * v; }
+            double mu = s / 500, sd = sqrt(ss / 500 - mu * mu), best = -1e18; int bk[MAXW];
+            #pragma omp parallel for schedule(dynamic)
+            for (int r = 0; r < R; r++) { rs = (seed * 1000003ULL + (unsigned long long)r * 7777 + w) * 0x9e3779b97f4a7c15ULL + 1; int bb[MAXW];
+                double v = same_anneal(Cs, ns, nm, w, I, 0.3, 0.005, bb);
+                #pragma omp critical
+                if (v > best) { best = v; memcpy(bk, bb, sizeof(int) * w); } }
+            printf("w=%d  meilleur %.3f  z=%.1f  K", w, best, (best - mu) / sd); for (int j = 0; j < w; j++) printf(" %d", bk[j]);
+            int t[MAXN], p[MAXN]; undo(C1, n1, w, bk, t); undo(t, n1, w, bk, p); printf("\n   T1 "); for (int i = 0; i < 120; i++) putchar('a' + p[i]);
+            if (n2) { undo(C2, n2, w, bk, t); undo(t, n2, w, bk, p); printf("\n   T2 "); for (int i = 0; i < 80; i++) putchar('a' + p[i]); }
+            printf("\n"); fflush(stdout);
+        }
+        return 0;
+    }
     if (!strcmp(argv[1], "probe")) {
         static int txt[2000000]; int N = load_letters_file(argv[3], txt, 2000000);
         int n1 = atoi(argv[4]), n2 = atoi(argv[5]), w1 = atoi(argv[6]), w2 = atoi(argv[7]);

@@ -28,9 +28,8 @@ jobs:
       - name: Scan
         run: |
           mkdir -p out; cd blume_salamanca; nproc
-          env $BDT_ENV BDT_SHARD=${{ matrix.shard }}/20 OMP_NUM_THREADS=$(nproc) ../bdt scan data/models/qg_es.bin \
-            "$C1" "$C2" $W1A $W1B $W2A $W2B $R $ITERS $SEED $T0 $T1 > ../out/shard-${{ matrix.shard }}.out
-          sort -t= -k4 -g -r ../out/shard-${{ matrix.shard }}.out | head -5 | cut -c1-200
+          env $BDT_ENV BDT_SHARD=${{ matrix.shard }}/20 OMP_NUM_THREADS=$(nproc) ../bdt $CMD > ../out/shard-${{ matrix.shard }}.out
+          cut -c1-200 ../out/shard-${{ matrix.shard }}.out | head -40
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -60,6 +59,8 @@ jobs:
               for l in open(f):
                   m = re.match(r'w1=(\d+) w2=(\d+)\s+z\(T1\)=(-?[0-9.]+) z\(T2\)=(-?[0-9.]+)', l)
                   if m: rows.append((float(m.group(3)), float(m.group(4)), int(m.group(1)), int(m.group(2)), l.strip()))
+                  m = re.match(r'w=(\d+)\s+meilleur (-?[0-9.]+)\s+z=(-?[0-9.]+)', l)
+                  if m: rows.append((float(m.group(3)), 0.0, int(m.group(1)), int(m.group(1)), l.strip()))
                   elif l.startswith('   '): extra.append(l.rstrip())
           rows.sort(reverse=True)
           lines = ['# BLUME annealing scan', '', f'Width pairs done: {len(rows)}', '', '| z(T1) | z(T2) | w1 | w2 |', '|---:|---:|---:|---:|']
