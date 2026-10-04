@@ -153,17 +153,19 @@ static void randperm(int *p, int w) { for (int i = 0; i < w; i++) p[i] = i; for 
 
 /* ---- Recherche de K2 : recuit sur l'IDP conjointe des messages (mêmes clés). ---- */
 typedef struct { const int *c; int n; Geo g; double wt; } Msg;
-static int JOINT = 0;   /* BDT_JOINT=1 : matrice d'appariement commune (sommes des rangées des deux messages) */
+static int JOINT = 0, RCMODE = 0;   /* BDT_RC=1 : convention lignes-puis-colonnes, I = F_K2(C) */
+static void fwdT(const int *x, int n, int w, const int *k, int *out);
+static void undoK2(const int *c, int n, int w, const int *k, int *t) { if (RCMODE) fwdT(c, n, w, k, t); else undo(c, n, w, k, t); }   /* BDT_JOINT=1 : matrice d'appariement commune (sommes des rangées des deux messages) */
 static double fitness(const Msg *m, int nm, int w2, const int *k) {
     int t[MAXN]; double s = 0;
     if (JOINT && nm == 2) {
         float a[MAXW][MAXW], b[MAXW][MAXW]; int w1 = m[0].g.w; double den = m[0].g.full + m[1].wt * m[1].g.full;
-        undo(m[0].c, m[0].n, w2, k, t); pair_matrix_raw(t, &m[0].g, a, 1);
-        undo(m[1].c, m[1].n, w2, k, t); pair_matrix_raw(t, &m[1].g, b, 1);
+        undoK2(m[0].c, m[0].n, w2, k, t); pair_matrix_raw(t, &m[0].g, a, 1);
+        undoK2(m[1].c, m[1].n, w2, k, t); pair_matrix_raw(t, &m[1].g, b, 1);
         for (int i = 0; i < w1; i++) for (int j = 0; j < w1; j++) a[i][j] = (float)((a[i][j] + m[1].wt * b[i][j]) / den);
         return chain_score(a, w1);
     }
-    for (int i = 0; i < nm; i++) { undo(m[i].c, m[i].n, w2, k, t); s += m[i].wt * idp(t, &m[i].g); }
+    for (int i = 0; i < nm; i++) { undoK2(m[i].c, m[i].n, w2, k, t); s += m[i].wt * idp(t, &m[i].g); }
     return s;
 }
 static int MV[7] = {40, 55, 70, 85, 92, 96, 100};   /* seuils cumulés : même longueur, quelconque, glissement, blocs, bloc glissé, pivot */
@@ -322,6 +324,58 @@ static double same_anneal(const int *const *C, const int *ns, int nm, int w, lon
     return bs;
 }
 
+/* ---- Conventions « faciles » (BDT : lagscan2) ----
+   F_K = colonne directe (écrire en lignes, lire les colonnes dans l'ordre de K) ; G_K = F_K⁻¹ (écrire en colonnes, lire en lignes).
+   inversée (G∘G) : C = G_K2(G_K1(P))  ⇒  J = F_K2(C) = G_K1(P)
+   mixte colonnes-puis-lignes : C = F_K2(G_K1(P))  ⇒  J = F_K2⁻¹(C) = G_K1(P)
+   Dans les deux cas J = G_K1(P) : les voisins du clair sont à l'écart w1 dans J, quel que soit K1, et P = F_K1(J). */
+static void fwdT(const int *x, int n, int w, const int *k, int *out) { int pos[MAXN]; mapping(n, w, k, pos); for (int i = 0; i < n; i++) out[pos[i]] = x[i]; }
+static double LT0 = 2.0, LT1 = 0.05; static int CONV = 0;   /* 0 : inversée (J = F_K2(C)) ; 1 : mixte colonnes-puis-lignes (J = F_K2⁻¹(C)) */
+static double lagfit_cr(const int *const *C, const int *ns, int nm, int w1, int w2, const int *k) {
+    /* convention colonnes-puis-lignes, tolérante aux bornes : segments de C d'après K2, lien colonne c → c + w1 (mod w2)
+       avec décalage de rangée ρ = ⌊(c + w1)/w2⌋, meilleur de ρ−1, ρ, ρ+1 */
+    double s = 0;
+    for (int q = 0; q < nm; q++) {
+        int n = ns[q], h = n / w2, r = n % w2, start[MAXW], len[MAXW], pos = 0;
+        for (int j = 0; j < w2; j++) { int col = k[j]; start[col] = pos; len[col] = h + (col < r); pos += len[col]; }
+        for (int c = 0; c < w2; c++) {
+            int c2 = (c + w1) % w2, rho = (c + w1) / w2; double best = -1e18;
+            for (int d = -1; d <= 1; d++) { double t = 0; int cnt = 0, sh = rho + d;
+                for (int R = 0; R < len[c]; R++) { int R2 = R + sh; if (R2 < 0 || R2 >= len[c2]) continue; t += BG[C[q][start[c] + R] * 26 + C[q][start[c2] + R2]]; cnt++; }
+                if (cnt && t > best) best = t; }
+            if (best > -1e17) s += best;
+        }
+    }
+    return s;
+}
+static double lagfit(const int *const *C, const int *ns, int nm, int w1, int w2, const int *k) {
+    if (CONV == 2) return lagfit_cr(C, ns, nm, w1, w2, k);
+    double s = 0; int J[MAXN];
+    for (int q = 0; q < nm; q++) { if (CONV == 0) fwdT(C[q], ns[q], w2, k, J); else undo(C[q], ns[q], w2, k, J);
+        for (int i = 0; i + w1 < ns[q]; i++) s += BG[J[i] * 26 + J[i + w1]]; }
+    return s;
+}
+static double lag_polish(const int *const *C, const int *ns, int nm, int w1, int w2, int *k) {
+    int q[MAXW], bq[MAXW]; double cur = lagfit(C, ns, nm, w1, w2, k);
+    for (int pass = 0; pass < 200; pass++) { double best = cur; int found = 0;
+        for (int a = 0; a < w2; a++) for (int b = a + 1; b < w2; b++) { memcpy(q, k, sizeof(int) * w2); int x = q[a]; q[a] = q[b]; q[b] = x; double v = lagfit(C, ns, nm, w1, w2, q); if (v > best) { best = v; memcpy(bq, q, sizeof(int) * w2); found = 1; } }
+        for (int a = 0; a < w2; a++) for (int b = 0; b < w2; b++) if (a != b) { memcpy(q, k, sizeof(int) * w2); int v0 = q[a];
+            if (a < b) memmove(q + a, q + a + 1, sizeof(int) * (b - a)); else memmove(q + b + 1, q + b, sizeof(int) * (a - b)); q[b] = v0;
+            double v = lagfit(C, ns, nm, w1, w2, q); if (v > best) { best = v; memcpy(bq, q, sizeof(int) * w2); found = 1; } }
+        if (!found) break; cur = best; memcpy(k, bq, sizeof(int) * w2); }
+    return cur;
+}
+
+static double lag_anneal(const int *const *C, const int *ns, int nm, int w1, int w2, long iters, double T0, double T1, int *best) {
+    int k[MAXW], q[MAXW]; randperm(k, w2); double cur = lagfit(C, ns, nm, w1, w2, k), bs = cur; memcpy(best, k, sizeof(int) * w2);
+    for (long it = 0; it < iters; it++) {
+        double T = T0 * pow(T1 / T0, (double)it / iters);
+        memcpy(q, k, sizeof(int) * w2); move(q, w2, ns[0]); double v = lagfit(C, ns, nm, w1, w2, q);
+        if (v >= cur || rnd01() < exp((v - cur) / T)) { cur = v; memcpy(k, q, sizeof(int) * w2); if (cur > bs) { bs = cur; memcpy(best, k, sizeof(int) * w2); } }
+    }
+    return bs;
+}
+
 static int load_letters_file(const char *path, int *out, int max) {
     FILE *f = fopen(path, "r"); if (!f) return -1; int n = 0, ch;
     while ((ch = fgetc(f)) != EOF && n < max) { if (ch >= 'a' && ch <= 'z') out[n++] = ch - 'a'; else if (ch >= 'A' && ch <= 'Z') out[n++] = ch - 'A'; }
@@ -361,7 +415,7 @@ static void perturb(int *k, int w, int n, int nswap, int samelen) {
 
 int main(int argc, char **argv) {
     if (argc < 3) { fprintf(stderr, "usage : voir l'en-tête\n"); return 1; }
-    JOINT = getenv("BDT_JOINT") != NULL; ILS = getenv("BDT_ILS") ? atol(getenv("BDT_ILS")) : 0; FIT = getenv("BDT_FIT") ? atoi(getenv("BDT_FIT")) : 0; KTOP = getenv("BDT_K") ? atoi(getenv("BDT_K")) : 6;
+    JOINT = getenv("BDT_JOINT") != NULL; RCMODE = getenv("BDT_RC") != NULL; ILS = getenv("BDT_ILS") ? atol(getenv("BDT_ILS")) : 0; FIT = getenv("BDT_FIT") ? atoi(getenv("BDT_FIT")) : 0; KTOP = getenv("BDT_K") ? atoi(getenv("BDT_K")) : 6;
     ALT = getenv("BDT_ALT") != NULL; if (getenv("BDT_ALTIN")) ALT_IN = atol(getenv("BDT_ALTIN")); if (getenv("BDT_ALTOUT")) ALT_OUT = atoi(getenv("BDT_ALTOUT"));
     load_model(argv[2]);
     if (!strcmp(argv[1], "lagcal")) {   /* lagcal qg texte n w1min w1max w2min w2max plants graine : z max des plantés */
@@ -447,8 +501,8 @@ int main(int argc, char **argv) {
             /* distribution des clés aléatoires (T1 seul et T2 seul) pour normaliser */
             rs = (seed * 7919ULL + w1 * 131 + w2) * 0x9e3779b97f4a7c15ULL + 3; int kk[MAXW], t[MAXN];
             double s1 = 0, q1 = 0, s2 = 0, q2 = 0; int NR = 300;
-            for (int r = 0; r < NR; r++) { randperm(kk, w2); undo(C1, n1, w2, kk, t); double v = idp(t, &m[0].g); s1 += v; q1 += v * v;
-                if (n2) { undo(C2, n2, w2, kk, t); double u = idp(t, &m[1].g); s2 += u; q2 += u * u; } }
+            for (int r = 0; r < NR; r++) { randperm(kk, w2); undoK2(C1, n1, w2, kk, t); double v = idp(t, &m[0].g); s1 += v; q1 += v * v;
+                if (n2) { undoK2(C2, n2, w2, kk, t); double u = idp(t, &m[1].g); s2 += u; q2 += u * u; } }
             double mu1 = s1 / NR, sd1 = sqrt(q1 / NR - mu1 * mu1), mu2 = n2 ? s2 / NR : 0, sd2 = n2 ? sqrt(q2 / NR - mu2 * mu2) + 1e-12 : 1;
             double best = -1e18; int bk[MAXW];
             #pragma omp parallel for schedule(dynamic)
@@ -458,8 +512,8 @@ int main(int argc, char **argv) {
                 #pragma omp critical
                 if (v > best) { best = v; memcpy(bk, b, sizeof(int) * w2); }
             }
-            undo(C1, n1, w2, bk, t); double z1 = (idp(t, &m[0].g) - mu1) / sd1, z2 = 0; static int I1[MAXN], I2[MAXN]; memcpy(I1, t, sizeof(int) * n1);
-            if (n2) { undo(C2, n2, w2, bk, I2); z2 = (idp(I2, &m[1].g) - mu2) / sd2; }
+            undoK2(C1, n1, w2, bk, t); double z1 = (idp(t, &m[0].g) - mu1) / sd1, z2 = 0; static int I1[MAXN], I2[MAXN]; memcpy(I1, t, sizeof(int) * n1);
+            if (n2) { undoK2(C2, n2, w2, bk, I2); z2 = (idp(I2, &m[1].g) - mu2) / sd2; }
             printf("w1=%d w2=%d  z(T1)=%.1f z(T2)=%.1f  K2", w1, w2, z1, z2); for (int j = 0; j < w2; j++) printf(" %d", bk[j]); printf("\n");
             if (z1 >= zmin) {
                 const int *Is[2] = {I1, I2}; int ns[2] = {n1, n2}, k1[MAXW], out[MAXN];
@@ -634,6 +688,95 @@ int main(int argc, char **argv) {
                     double v = anneal_ils(m, nm, w2, I, 0.02, 0.002, b); ok += v >= tru - 1e-9; tot++; }
             }
             printf("calib w1=%d w2=%d : %d/%d\n", w1, w2, ok, tot); fflush(stdout);
+        }
+        return 0;
+    }
+    if (!strcmp(argv[1], "consensus")) {   /* consensus qg texte n w1 w2 R iters graine : fréquence des vraies paires de K1 dans les chaînes */
+        static int txt[2000000]; int N = load_letters_file(argv[3], txt, 2000000);
+        int n = atoi(argv[4]), w1 = atoi(argv[5]), w2 = atoi(argv[6]), R = atoi(argv[7]); long I = atol(argv[8]); unsigned long long seed = strtoull(argv[9], 0, 10);
+        if (getenv("BDT_MV")) sscanf(getenv("BDT_MV"), "%d,%d,%d,%d,%d,%d,%d", MV, MV + 1, MV + 2, MV + 3, MV + 4, MV + 5, MV + 6);
+        rs = seed * 2654435761ULL + 7; int o = rint_(N - n); static int P[MAXN], C[MAXN]; int k1[MAXW], k2[MAXW], inv1[MAXW];
+        memcpy(P, txt + o, sizeof(int) * n); randperm(k1, w1); randperm(k2, w2); encrypt2(P, n, w1, k1, w2, k2, C);
+        for (int r = 0; r < w1; r++) inv1[k1[r]] = r;
+        int truer[MAXW]; for (int a = 0; a < w1; a++) { int j = k1[a]; truer[a] = j + 1 < w1 ? inv1[j + 1] : -1; }
+        Msg m[1]; m[0].c = C; m[0].n = n; geo_init(&m[0].g, n, w1); m[0].wt = 1;
+        static int cnt[MAXW][MAXW]; int hits = 0, links = 0;
+        #pragma omp parallel for schedule(dynamic) reduction(+:hits, links)
+        for (int r = 0; r < R; r++) {
+            rs = (seed * 1000003ULL + r) * 0x9e3779b97f4a7c15ULL + 1; int b[MAXW], t[MAXN], right[MAXW]; float mat[MAXW][MAXW];
+            anneal(m, 1, w2, I, 0.02, 0.002, b); undo(C, n, w2, b, t); pair_matrix_raw(t, &m[0].g, mat, 0); chain_links(mat, w1, right);
+            for (int a = 0; a < w1; a++) if (right[a] >= 0) { links++; if (right[a] == truer[a]) hits++;
+                #pragma omp atomic
+                cnt[a][right[a]]++; }
+        }
+        printf("liens %d, vrais %d (%.1f%% ; hasard %.1f%%)\n", links, hits, 100.0 * hits / links, 100.0 / (w1 - 1));
+        int top_true = 0; for (int a = 0; a < w1; a++) { if (truer[a] < 0) continue; int bb = -1; for (int b = 0; b < w1; b++) if (bb < 0 || cnt[a][b] > cnt[a][bb]) bb = b; top_true += bb == truer[a]; }
+        printf("vote majoritaire : %d/%d vrais voisins\n", top_true, w1 - 1); return 0;
+    }
+    if (!strcmp(argv[1], "exh")) {   /* exh qg chiffré w1a w1b w2a w2b top : toutes les K2 (w2 ≤ 10), IDP, puis K1 aux quadrigrammes sur les meilleures */
+        static int C[MAXN]; int n = load_letters_file(argv[3], C, MAXN), a1 = atoi(argv[4]), b1 = atoi(argv[5]), a2 = atoi(argv[6]), b2 = atoi(argv[7]), top = atoi(argv[8]);
+        for (int w2 = a2; w2 <= b2; w2++) for (int w1 = a1; w1 <= b1; w1++) {
+            Geo g; geo_init(&g, n, w1); int kk[MAXW], t[MAXN]; double s = 0, ss = 0; rs = 99 + w1 * 31 + w2;
+            for (int r = 0; r < 300; r++) { randperm(kk, w2); undo(C, n, w2, kk, t); double v = idp(t, &g); s += v; ss += v * v; }
+            double mu = s / 300, sd = sqrt(ss / 300 - mu * mu);
+            /* énumération par rang lexicographique, répartie entre fils */
+            long tot = 1; for (int i = 2; i <= w2; i++) tot *= i;
+            typedef struct { double v; int k[MAXW]; } Cand; Cand best[64]; int nb = 0;
+            #pragma omp parallel
+            {
+                Cand loc[64]; int nl = 0; int tt[MAXN];
+                #pragma omp for schedule(dynamic, 4096)
+                for (long idx = 0; idx < tot; idx++) {
+                    int k[MAXW], used[MAXW] = {0}; long x = idx, f = tot;
+                    for (int i = 0; i < w2; i++) { f /= (w2 - i); int d = (int)(x / f); x %= f; int c = -1; while (d >= 0) { c++; if (!used[c]) d--; } used[c] = 1; k[i] = c; }
+                    undo(C, n, w2, k, tt); double v = idp(tt, &g);
+                    if (nl < top || v > loc[nl - 1].v) { int j = nl < top ? nl++ : nl - 1; while (j > 0 && loc[j - 1].v < v) { loc[j] = loc[j - 1]; j--; } loc[j].v = v; memcpy(loc[j].k, k, sizeof(int) * w2); }
+                }
+                #pragma omp critical
+                for (int i = 0; i < nl; i++) { double v = loc[i].v; if (nb < top || v > best[nb - 1].v) { int j = nb < top ? nb++ : nb - 1; while (j > 0 && best[j - 1].v < v) { best[j] = best[j - 1]; j--; } best[j] = loc[i]; } }
+            }
+            double bq = -1e9; int bi = -1, bk1[MAXW], out[MAXN];
+            for (int i = 0; i < nb; i++) { undo(C, n, w2, best[i].k, t); const int *Is[1] = {t}; int ns[1] = {n}, k1[MAXW];
+                double q = solve_k1(Is, ns, 1, w1, 4, 60000, k1); if (q > bq) { bq = q; bi = i; memcpy(bk1, k1, sizeof(int) * w1); k1score(Is, ns, 1, w1, k1, out); } }
+            printf("w1=%d w2=%d  IDP z max %.1f  meilleur clair (quadrigrammes) %.3f : ", w1, w2, (best[0].v - mu) / sd, bq);
+            for (int i = 0; i < n && i < 90; i++) putchar('a' + out[i]); printf("\n"); fflush(stdout);
+        }
+        return 0;
+    }
+    if (!strcmp(argv[1], "lagscan2")) {   /* lagscan2 qg c1 c2|- conv w1a w1b w2a w2b R iters graine : conventions faciles */
+        static int C1[MAXN], C2[MAXN]; int n1 = load_letters_file(argv[3], C1, MAXN), n2 = strcmp(argv[4], "-") ? load_letters_file(argv[4], C2, MAXN) : 0;
+        if (getenv("BDT_LT")) sscanf(getenv("BDT_LT"), "%lf,%lf", &LT0, &LT1);
+        CONV = atoi(argv[5]); int a1 = atoi(argv[6]), b1 = atoi(argv[7]), a2 = atoi(argv[8]), b2 = atoi(argv[9]), R = atoi(argv[10]); long I = atol(argv[11]);
+        unsigned long long seed = strtoull(argv[12], 0, 10); double zmin = getenv("BDT_ZK1") ? atof(getenv("BDT_ZK1")) : 8;
+        if (getenv("BDT_MV")) sscanf(getenv("BDT_MV"), "%d,%d,%d,%d,%d,%d,%d", MV, MV + 1, MV + 2, MV + 3, MV + 4, MV + 5, MV + 6);
+        int shard = 0, nshard = 1, idx = -1; if (getenv("BDT_SHARD")) sscanf(getenv("BDT_SHARD"), "%d/%d", &shard, &nshard);
+        const int *Cs[2] = {C1, C2}; int ns[2] = {n1, n2}, nm = n2 ? 2 : 1;
+        for (int w2 = a2; w2 <= b2; w2++) for (int w1 = a1; w1 <= b1; w1++) {
+            if (++idx % nshard != shard) continue;
+            rs = seed * 7919ULL + w1 * 131 + w2; int kk[MAXW]; double s = 0, ss = 0;
+            for (int r = 0; r < 300; r++) { randperm(kk, w2); double v = lagfit(Cs, ns, nm, w1, w2, kk); s += v; ss += v * v; }
+            double mu = s / 300, sd = sqrt(ss / 300 - mu * mu), best = -1e18; int bk[MAXW];
+            #pragma omp parallel for schedule(dynamic)
+            for (int r = 0; r < R; r++) { rs = (seed * 1000003ULL + (unsigned long long)r * 7777 + w1 * 131 + w2) * 0x9e3779b97f4a7c15ULL + 1; int bb[MAXW];
+                double v = lag_anneal(Cs, ns, nm, w1, w2, I, LT0, LT1, bb);
+                #pragma omp critical
+                if (v > best) { best = v; memcpy(bk, bb, sizeof(int) * w2); } }
+            double z = (best - mu) / sd;
+            if (CONV == 2) { CONV = 1; lag_polish(Cs, ns, nm, w1, w2, bk); CONV = 2; }   /* finition à la note exacte */
+            printf("conv=%d w1=%d w2=%d  z=%.1f  K2", CONV, w1, w2, z); for (int j = 0; j < w2; j++) printf(" %d", bk[j]); printf("\n");
+            if (z >= zmin) {
+                static int J1[MAXN], J2[MAXN]; if (CONV == 0) { fwdT(C1, n1, w2, bk, J1); if (n2) fwdT(C2, n2, w2, bk, J2); } else {  /* conv 1 et 2 */ undo(C1, n1, w2, bk, J1); if (n2) undo(C2, n2, w2, bk, J2); }
+                /* P = F_K1(J) : on cherche K1 par quadrigrammes ; k1score attend undo(), donc on note F_K1 via une clé inversée à la volée */
+                double bq = -1e18; int bk1[MAXW], P1[MAXN], P2[MAXN];
+                for (int r = 0; r < 8; r++) { int k[MAXW], q[MAXW]; randperm(k, w1); double cur = -1e18;
+                    for (long it = 0; it < 200000; it++) { double T = 0.3 * pow(0.005 / 0.3, (double)it / 200000);
+                        memcpy(q, k, sizeof(int) * w1); if (it) mutate1(q, w1); fwdT(J1, n1, w1, q, P1); double v = quad(P1, n1);
+                        if (n2) { fwdT(J2, n2, w1, q, P2); v = (v * (n1 - 3) + quad(P2, n2) * (n2 - 3)) / (n1 + n2 - 6); }
+                        if (v >= cur || rnd01() < exp((v - cur) / T)) { cur = v; memcpy(k, q, sizeof(int) * w1); if (cur > bq) { bq = cur; memcpy(bk1, k, sizeof(int) * w1); } } } }
+                fwdT(J1, n1, w1, bk1, P1); printf("   K1 quadrigrammes %.3f\n   T1 ", bq); for (int i = 0; i < n1; i++) putchar('a' + P1[i]);
+                if (n2) { fwdT(J2, n2, w1, bk1, P2); printf("\n   T2 "); for (int i = 0; i < n2; i++) putchar('a' + P2[i]); } printf("\n");
+            }
+            fflush(stdout);
         }
         return 0;
     }
