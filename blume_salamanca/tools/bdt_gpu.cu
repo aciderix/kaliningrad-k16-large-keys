@@ -87,7 +87,7 @@ __global__ void idpKernel(const unsigned char *perms, const unsigned char *w2s, 
         }
         if (tid == 0 && ri[0] != 0x7fffffff && rv[0] > -1e29f) {
             int b1 = ri[0] / d, b2 = ri[0] % d; sum += rv[0]; right_[b1] = b2; left[b2] = b1;
-            int h = head[b1]; int x = b2; while (x != -1) { head[x] = h; x = right_[x]; }
+            if (it != d) { int h = head[b1]; int x = b2; while (x != -1) { head[x] = h; x = right_[x]; } }   /* au dernier tour la chaîne se referme : pas de mise à jour */
         }
         __syncthreads();
     }
@@ -186,6 +186,7 @@ int main(int argc, char **argv) {
         double s = 0, ss = 0; for (int r = 0; r < R; r++) { s += rs[r]; ss += rs[r] * rs[r]; } smu[w2] = (float)(s / R); ssd[w2] = (float)sqrt(ss / R - (s / R) * (s / R));
     }
     CK(cudaMemcpyToSymbol(cMu, mu, sizeof mu)); CK(cudaMemcpyToSymbol(cSd, sd, sizeof sd)); CK(cudaMemcpyToSymbol(cSMu, smu, sizeof smu)); CK(cudaMemcpyToSymbol(cSSd, ssd, sizeof ssd));
+    fprintf(stderr, "lignes de base faites\n");
     // balayage
     FILE *fk = fopen(argv[4], "r"); if (!fk) { fprintf(stderr, "clés ?\n"); return 1; }
     std::vector<std::string> batch, allkeys; char line[512]; long nkeys = 0, ntrials = 0; cudaEvent_t e0, e1; cudaEventCreate(&e0); cudaEventCreate(&e1); cudaEventRecord(e0);
@@ -201,6 +202,7 @@ int main(int argc, char **argv) {
         std::vector<Hit> h(nh); if (nh) CK(cudaMemcpy(h.data(), dH, nh * sizeof(Hit), cudaMemcpyDeviceToHost));
         for (auto &x : h) { x.var = (char)(x.key % nvar); keepKeys.push_back(batch[x.key / nvar]); x.key = (int)keepKeys.size() - 1; keep.push_back(x); }
         nkeys += nb; ntrials += (long)nk * (nW1 + 1); batch.clear();
+        if ((nkeys / nb) % 16 == 0) fprintf(stderr, "%ld clés\n", nkeys);
         if (keep.size() > 200000) { std::sort(keep.begin(), keep.end(), [](const Hit &a, const Hit &b) { return a.z > b.z; }); keep.resize(50000); }
     };
     while (fgets(line, sizeof line, fk)) {
