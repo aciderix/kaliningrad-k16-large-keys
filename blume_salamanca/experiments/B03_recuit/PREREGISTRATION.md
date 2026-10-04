@@ -23,3 +23,12 @@ itérations (mouvements 70/10/10/5/3/1/1 %, T 0,02 → 0,002, finition), note = 
 Calibration simultanée (workflow `bdt-calib`) : mêmes réglages, 2 plantés × 16 recuits par paire → taux de succès
 par recuit p(w1, w2) ; la couverture de la paire est 1 − (1 − p)^32, rapportée telle quelle.
 Seuil : candidat si z(T1) ≥ 12 → étape K1 automatique ; retenu seulement si T1 et T2 sont de l'espagnol lisible.
+
+## B06 — Rectangle de K1 complet, w1 = 15 (pré-inscrit avant lancement)
+**Hypothèse.** 615 = 15 × 41 : si l'expéditeur a complété le premier rectangle (T1 contient 6 X), w1 = 15 ; l'IDP y
+est exacte (aucun décalage d'alignement) et deux fois plus rapide.
+**Calibration (plantés, T1+T2, 1 M d'itérations par recuit).** w2 = 16 : 1/16 ; 17 : 2/16 ; 18 : 1/16 ; 20 : 0/16
+(contre 0/12 à 16 × 17 sans rectangle complet).
+**Calcul.** w2 = 16–35, 256 recuits × 1 M par largeur (GitHub Actions, une largeur par machine). Couverture attendue :
+quasi certaine pour w2 ≤ 18 (p ≈ 6 % par recuit), partielle au-delà.
+**Décision.** Candidat si z(T1) ≥ 12 ; retenu seulement si l'étape K1 donne T1 et T2 lisibles.
