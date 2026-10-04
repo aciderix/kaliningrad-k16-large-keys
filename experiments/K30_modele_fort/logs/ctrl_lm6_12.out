@@ -1,0 +1,13 @@
+bloc  0 q=12 v=4 score=-2.175 vrai=-2.175 contacts=143/143
+bloc  1 q=12 v=2 score=-2.257 vrai=-2.257 contacts=143/143
+bloc  2 q=12 v=7 score=-2.258 vrai=-2.318 contacts=135/143
+bloc  3 q=12 v=1 score=-2.501 vrai=-2.449 contacts=122/143
+bloc  4 q=12 v=0 score=-2.155 vrai=-2.178 contacts=142/143
+bloc  5 q=12 v=0 score=-2.796 vrai=-2.766 contacts=54/143
+bloc  6 q=12 v=7 score=-2.416 vrai=-2.383 contacts=142/143
+bloc  7 q=12 v=4 score=-2.461 vrai=-2.512 contacts=111/143
+bloc  8 q=12 v=7 score=-2.154 vrai=-2.154 contacts=143/143
+bloc  9 q=12 v=0 score=-2.047 vrai=-2.047 contacts=143/143
+bloc 10 q=12 v=3 score=-2.183 vrai=-2.189 contacts=142/143
+bloc 11 q=12 v=7 score=-2.147 vrai=-2.163 contacts=142/143
+SUCCES 9/12 (q=12, bruit=0.10, R=6, I=100000)
