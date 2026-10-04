@@ -1,0 +1,90 @@
+name: BLUME phrase-key dictionary scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/trusting-cerf-i26igv]
+    paths: [.github/scan/bdt-dict.env]
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: Shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read job
+        run: grep -v '^#' .github/scan/bdt-dict.env | grep '=' >> "$GITHUB_ENV"
+      - name: Compile solver
+        run: gcc -O3 -march=native -fopenmp -o bdt blume_salamanca/tools/bdt.c -lm
+      - name: Download sources and build this shard's keys
+        run: |
+          mkdir -p src
+          for id in $GUTENBERG_IDS; do
+            for i in 1 2 3; do curl -sSL --retry 3 -o src/pg$id.txt "https://www.gutenberg.org/cache/epub/$id/pg$id.txt" && break; sleep $((i * 15)); done
+          done
+          for u in $URLS; do
+            for i in 1 2 3; do curl -sSL --retry 3 -o "src/$(basename "$u")" "$u" && break; sleep $((i * 15)); done
+          done
+          ls -la src | head -60
+          python3 blume_salamanca/tools/keys_texts.py "$LO" "$HI" all.txt src/*
+          if [ -n "$WIKIQUOTE" ]; then
+            for d in $WIKIQUOTE; do
+              curl -sSL --retry 3 -o wq.xml.bz2 "$d"
+              python3 common/phrasekeys.py wq.xml.bz2 "$LO" "$HI" "$WQ_MODES" ${{ matrix.shard }} 20 wq_keys.txt
+              cat wq_keys.txt >> shard_wq.txt
+            done
+          fi
+          awk -v s=${{ matrix.shard }} 'NR % 20 == s' all.txt > keys.txt
+          [ -f shard_wq.txt ] && cat shard_wq.txt >> keys.txt
+          wc -l all.txt keys.txt
+      - name: Scan
+        run: |
+          mkdir -p out; cd blume_salamanca
+          env $BDT_ENV OMP_NUM_THREADS=$(nproc) ../bdt dict data/models/qg_es.bin data/telegram1_615.txt data/telegram2_160.txt \
+            ../keys.txt $W1A $W1B $LO $HI 40 > ../out/shard-${{ matrix.shard }}.out
+          head -8 ../out/shard-${{ matrix.shard }}.out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dict-shard-${{ matrix.shard }}
+          path: out/
+          retention-days: 30
+
+  merge:
+    name: Merge
+    if: always()
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: dict-shard-*
+          path: out
+          merge-multiple: true
+      - name: Rank
+        run: |
+          grep -v '^#' .github/scan/bdt-dict.env | grep '=' | cut -c1-200
+          python3 - <<'PY'
+          import glob, re, os
+          rows = []; keys = 0; tries = 0; done = 0; hist = {}
+          for f in glob.glob('out/shard-*.out'):
+              t = open(f).read(); m = re.search(r'clés=(\d+) essais=(\d+)', t)
+              if m: keys += int(m.group(1)); tries += int(m.group(2)); done += 1
+              for a, b in re.findall(r'\[(\d+),\d+\):(\d+)', t): hist[int(a)] = hist.get(int(a), 0) + int(b)
+              rows += [(float(a), b) for a, b in re.findall(r'^(-?[0-9.]+) ((?:IDP|CLE_UNIQUE) .*)$', t, re.M)]
+          rows.sort(reverse=True)
+          lines = ['# BLUME phrase-key scan', '', f'Shards: {done}/20 ; keys: {keys:,} ; trials: {tries:,}', '',
+                   'z histogram (z > 4.5): ' + ' '.join(f'[{k},{k+1}):{hist[k]}' for k in sorted(hist)), '',
+                   '| z(T1) | kind, widths, z(T2), key |', '|---:|---|'] + [f'| {s:.2f} | `{r}` |' for s, r in rows[:40]]
+          open(os.environ['GITHUB_STEP_SUMMARY'], 'w').write('\n'.join(lines) + '\n'); print('\n'.join(lines))
+          PY
