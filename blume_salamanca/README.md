@@ -34,4 +34,4 @@ historique de 1937 ; recopiées avec mention de la source.
 ## Cellules
 | Cellule | Question | Résultat |
 |---|---|---|
-| [B01 phrases Wikiquote es/de](experiments/B01_phrases_wikiquote/PREREGISTRATION.md) (pré-inscrit) | K2 est-elle le début d'une phrase espagnole ou allemande de Wikiquote ? | en attente de calcul |
+| [B01 phrases Wikiquote es/de](experiments/B01_phrases_wikiquote/RESULTS.md) (pré-inscrit) | K2 est-elle le début d'une phrase espagnole ou allemande de Wikiquote ? | **non** : 5,4 M clés, IDP max 0,185 (seuil 0,28 ; contrôles 0,35–0,36) |
