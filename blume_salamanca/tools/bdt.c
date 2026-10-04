@@ -153,7 +153,8 @@ static void randperm(int *p, int w) { for (int i = 0; i < w; i++) p[i] = i; for 
 
 /* ---- Recherche de K2 : recuit sur l'IDP conjointe des messages (mêmes clés). ---- */
 typedef struct { const int *c; int n; Geo g; double wt; } Msg;
-static int JOINT = 0, RCMODE = 0;   /* BDT_RC=1 : convention lignes-puis-colonnes, I = F_K2(C) */
+static int JOINT = 0, RCMODE = 0, TIES = 0;   /* BDT_TIES=1 : ex aequo numérotés de droite à gauche */
+static int JOINT_UNUSED = 0;   /* BDT_RC=1 : convention lignes-puis-colonnes, I = F_K2(C) */
 static void fwdT(const int *x, int n, int w, const int *k, int *out);
 static void undoK2(const int *c, int n, int w, const int *k, int *t) { if (RCMODE) fwdT(c, n, w, k, t); else undo(c, n, w, k, t); }   /* BDT_JOINT=1 : matrice d'appariement commune (sommes des rangées des deux messages) */
 static double fitness(const Msg *m, int nm, int w2, const int *k) {
@@ -446,7 +447,7 @@ static void perturb(int *k, int w, int n, int nswap, int samelen) {
 
 int main(int argc, char **argv) {
     if (argc < 3) { fprintf(stderr, "usage : voir l'en-tête\n"); return 1; }
-    JOINT = getenv("BDT_JOINT") != NULL; RCMODE = getenv("BDT_RC") != NULL; ILS = getenv("BDT_ILS") ? atol(getenv("BDT_ILS")) : 0; FIT = getenv("BDT_FIT") ? atoi(getenv("BDT_FIT")) : 0; KTOP = getenv("BDT_K") ? atoi(getenv("BDT_K")) : 6;
+    JOINT = getenv("BDT_JOINT") != NULL; RCMODE = getenv("BDT_RC") != NULL; TIES = getenv("BDT_TIES") != NULL; (void)JOINT_UNUSED; ILS = getenv("BDT_ILS") ? atol(getenv("BDT_ILS")) : 0; FIT = getenv("BDT_FIT") ? atoi(getenv("BDT_FIT")) : 0; KTOP = getenv("BDT_K") ? atoi(getenv("BDT_K")) : 6;
     ALT = getenv("BDT_ALT") != NULL; if (getenv("BDT_ALTIN")) ALT_IN = atol(getenv("BDT_ALTIN")); if (getenv("BDT_ALTOUT")) ALT_OUT = atoi(getenv("BDT_ALTOUT"));
     load_model(argv[2]);
     if (!strcmp(argv[1], "lagcal")) {   /* lagcal qg texte n w1min w1max w2min w2max plants graine : z max des plantés */
@@ -643,7 +644,7 @@ int main(int argc, char **argv) {
             #pragma omp parallel for schedule(dynamic, 64)
             for (int i = 0; i < nb; i++) {
                 int w2 = (int)strlen(batch[i]), k2[MAXW], t[MAXN];
-                for (int r = 0, j = 0; r < 26; r++) for (int c = 0; c < w2; c++) if (batch[i][c] - 'a' == r) k2[j++] = c;
+                for (int r = 0, j = 0; r < 26; r++) for (int cc = 0; cc < w2; cc++) { int c = TIES ? w2 - 1 - cc : cc; if (batch[i][c] - 'a' == r) k2[j++] = c; }
                 undo(C1, n1, w2, k2, t);
                 Hit loc[40]; int nl = 0;
                 for (int w1 = a1; w1 <= b1; w1++) { double z = (idp(t, &G1[w1]) - MU[w1][w2]) / SD[w1][w2];
@@ -660,7 +661,7 @@ int main(int argc, char **argv) {
         printf("clés=%ld essais=%ld  z>4.5 : ", nk, ntr); for (int b = 0; b < 8; b++) printf("[%d,%d):%.0f ", b + 4, b + 5, hist[b]); printf("\n");
         for (int i = 0; i < nh && i < top; i++) {
             double z2 = 0;
-            if (n2 && H[i].kind == 0) { int w2 = H[i].w2, k2[MAXW], t[MAXN], kk[MAXW]; for (int r = 0, j = 0; r < 26; r++) for (int c = 0; c < w2; c++) if (H[i].key[c] - 'a' == r) k2[j++] = c;
+            if (n2 && H[i].kind == 0) { int w2 = H[i].w2, k2[MAXW], t[MAXN], kk[MAXW]; for (int r = 0, j = 0; r < 26; r++) for (int cc = 0; cc < w2; cc++) { int c = TIES ? w2 - 1 - cc : cc; if (H[i].key[c] - 'a' == r) k2[j++] = c; }
                 double s = 0, ss = 0; for (int r = 0; r < 200; r++) { randperm(kk, w2); undo(C2, n2, w2, kk, t); double v = idp(t, &G2[H[i].w1]); s += v; ss += v * v; }
                 undo(C2, n2, w2, k2, t); z2 = (idp(t, &G2[H[i].w1]) - s / 200) / sqrt(ss / 200 - (s / 200) * (s / 200)); }
             printf("%.2f %s w1=%d w2=%d z(T2)=%.1f %s\n", H[i].z, H[i].kind ? "CLE_UNIQUE" : "IDP", H[i].w1, H[i].w2, z2, H[i].key);

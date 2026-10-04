@@ -27,3 +27,8 @@ et en espagnol (887) du catalogue du 4 octobre 2026 (`data/pg_ids_de_es.txt`, mi
 coupées aux mots seulement (débuts de phrase et de ligne de 11 à 30 lettres), et aux citations Wikiquote allemandes et
 espagnoles (débuts de phrase et fenêtres de mots). Largeurs w1 = 11–27 (pour tenir dans 6 h par machine).
 Contrôle de la variante « mots seulement » : identique au mode dict déjà contrôlé (seule la génération change).
+
+## Amendement B02c (avant calcul) : numérotation « ex aequo de droite à gauche »
+Contrôle planté (K2 = « dariefderkonigisraelsa » numérotée ex aequo de droite à gauche, K1 = « vondibongad ») : le mode
+standard la manque (z max 4,9), la variante `BDT_TIES=1` la retrouve (**z = 22,4**). Même seuil (z ≥ 9). Sources :
+celles de B02 + Wikiquote de/es (débuts de phrase et fenêtres de mots).
