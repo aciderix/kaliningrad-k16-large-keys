@@ -44,3 +44,15 @@ Succès sur 32 recuits (journal : `logs/B03b_calibration_grid.out`) :
 Lecture : w2 = 11 est couvert partout ; w2 = 12–13 pour w1 ≤ 22 ; w2 = 14–15 seulement pour w1 ≤ 15 (et 22).
 w1 = 15 (rectangle complet) et w1 = 22 sont nettement plus faciles. Le balayage B03b (annulé faute de place dans la
 file) est relancé avec 64 recuits par paire au lieu de 32 : manque ≤ 2 % là où le taux est ≥ 2/32.
+
+## B03b — Deux clés, convention directe, w2 = 11 à 15 × w1 = 11 à 30 : rien
+GitHub Actions, run 37207708796, 64 recuits × 300 k par paire, étape K1 si z(T1) ≥ 12. **98 paires sur 100** :
+la machine de w1 = 30 a atteint le délai de 340 min après w2 = 11–13 ; **30 × 14 et 30 × 15 ne sont pas faits**
+(cases à 0/32 dans la calibration, donc non couvertes de toute façon). z(T1) max **7,2** (w1 = 11, w2 = 15), puis
+6,9 (19 × 13) et 6,6 (12 × 12) ; une vraie paire donne z ≈ 20. L'étape K1 ne s'est jamais déclenchée.
+Journal : `logs/B03b_scan_w2_11-15.out`.
+
+**Couverture** (probabilité de trouver la vraie paire = 1 − (1 − p)⁶⁴, p = taux de succès par recuit de la
+calibration) : ≥ 98 % pour toutes les paires où p ≥ 2/32, soit w2 = 11 partout, w2 = 12–13 pour presque tout
+w1 ≤ 22, w2 = 14–15 pour w1 ≤ 15 et w1 = 22. Non couvert (p ≤ 1/32) : surtout w2 = 14–15 avec w1 ≥ 16 et
+w2 = 12–13 avec w1 ≥ 23 (voir la grille ci-dessus).
