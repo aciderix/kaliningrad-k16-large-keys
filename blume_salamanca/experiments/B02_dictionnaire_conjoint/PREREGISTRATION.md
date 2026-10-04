@@ -20,3 +20,10 @@ l'étape K1 (recuit quadrigrammes) donne un clair espagnol lisible pour T1 **et*
 « aucune clé de ces sources », sans autre conclusion sur le système.
 
 **Calcul.** GitHub Actions (`.github/workflows/bdt-dict.yml`, 20 machines), environ 10,5 M de clés.
+
+## Amendement B02b (avant calcul)
+Même méthode et même seuil (z ≥ 9, puis lecture de T1 et T2), étendus à tous les livres Gutenberg en allemand (2 404)
+et en espagnol (887) du catalogue du 4 octobre 2026 (`data/pg_ids_de_es.txt`, miroir gutenberg.pglaf.org), clés
+coupées aux mots seulement (débuts de phrase et de ligne de 11 à 30 lettres), et aux citations Wikiquote allemandes et
+espagnoles (débuts de phrase et fenêtres de mots). Largeurs w1 = 11–27 (pour tenir dans 6 h par machine).
+Contrôle de la variante « mots seulement » : identique au mode dict déjà contrôlé (seule la génération change).

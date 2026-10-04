@@ -4,7 +4,9 @@ allemands en ae/oe/ue, ß en ss ; accents et ñ espagnols retirés. Usage :
 python3 keys_texts.py lo hi sortie.txt fichier1 [fichier2 ...]   (lignes ; '[c:v] texte' des bibles accepté)
 Les livres Gutenberg (en-tête « *** START ») sont aussi découpés en phrases ; les lignes restent des unités (vers)."""
 import sys, re, unicodedata
+import os
 lo, hi, out = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3]
+TRUNC = os.environ.get('KEYS_TRUNC', '1') != '0'   # KEYS_TRUNC=0 : coupes aux mots seulement
 def norm(s):
     s = s.lower().replace('ä', 'ae').replace('ö', 'oe').replace('ü', 'ue').replace('ß', 'ss')
     s = unicodedata.normalize('NFD', s); s = ''.join(c for c in s if unicodedata.category(c) != 'Mn')
@@ -23,7 +25,7 @@ with open(out, 'w') as fo:
             if not line or line.startswith('#'): continue
             words = [re.sub('[^a-z]', '', w) for w in norm(line).split()]; words = [w for w in words if w]
             letters = ''.join(words)
-            cand = set(letters[:L] for L in range(lo, min(hi, len(letters)) + 1))
+            cand = set(letters[:L] for L in range(lo, min(hi, len(letters)) + 1)) if TRUNC else set()
             acc = ''
             for w in words:
                 acc += w

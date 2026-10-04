@@ -28,6 +28,12 @@ jobs:
       - name: Download sources and build this shard's keys
         run: |
           mkdir -p src
+          if [ -n "$BOOK_LIST" ]; then   # une part des livres par machine (index mod 20), depuis le miroir pglaf
+            awk -v s=${{ matrix.shard }} 'NR % 20 == s' "$BOOK_LIST" > my_books.txt; wc -l my_books.txt
+            while read id; do
+              for i in 1 2 3; do curl -sSL --retry 2 -m 120 -o src/pg$id.txt "https://gutenberg.pglaf.org/cache/epub/$id/pg$id.txt" && break; sleep $((i * 5)); done
+            done < my_books.txt
+          fi
           for id in $GUTENBERG_IDS; do
             for i in 1 2 3; do curl -sSL --retry 3 -o src/pg$id.txt "https://www.gutenberg.org/cache/epub/$id/pg$id.txt" && break; sleep $((i * 15)); done
           done
@@ -35,7 +41,7 @@ jobs:
             for i in 1 2 3; do curl -sSL --retry 3 -o "src/$(basename "$u")" "$u" && break; sleep $((i * 15)); done
           done
           ls -la src | head -60
-          python3 blume_salamanca/tools/keys_texts.py "$LO" "$HI" all.txt src/*
+          if ls src/* > /dev/null 2>&1; then python3 blume_salamanca/tools/keys_texts.py "$LO" "$HI" all.txt src/*; else : > all.txt; fi
           if [ -n "$WIKIQUOTE" ]; then
             for d in $WIKIQUOTE; do
               curl -sSL --retry 3 -o wq.xml.bz2 "$d"
@@ -43,7 +49,7 @@ jobs:
               cat wq_keys.txt >> shard_wq.txt
             done
           fi
-          awk -v s=${{ matrix.shard }} 'NR % 20 == s' all.txt > keys.txt
+          if [ -n "$BOOK_LIST" ]; then cp all.txt keys.txt; else awk -v s=${{ matrix.shard }} 'NR % 20 == s' all.txt > keys.txt; fi
           [ -f shard_wq.txt ] && cat shard_wq.txt >> keys.txt
           wc -l all.txt keys.txt
       - name: Scan
