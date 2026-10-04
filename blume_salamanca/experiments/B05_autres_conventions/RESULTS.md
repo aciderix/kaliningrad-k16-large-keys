@@ -46,3 +46,10 @@ grandes largeurs est donc partielle → **B05c** : même recherche avec 64 recui
 ## Calibration w1 = 15 (pour B06) et fin des contrôles de l'inversée
 Inversée, contrôle 38 × 30 : z = 15,3, clair −10,83 (partiel) ; voir ci-dessus. Recuit en convention directe avec
 rectangle de K1 complet (w1 = 15), T1+T2, 1 M d'itérations : w2 = 16 : 1/16 ; 17 : 2/16 ; 18 : 1/16 ; 20 : 0/16.
+
+## B05c — Inversée, recherche approfondie : rien
+GitHub Actions, run 37193090815, 900 paires (w1, w2 = 11–40), 64 recuits × 300 k par paire. z max **14,0**
+(w1 = 26 et 13, w2 = 40) ; les 12 meilleures paires ont toutes w2 ≥ 35 : c'est le plafond du bruit, qui monte avec
+w2. L'étape K1 (z ≥ 14) s'est déclenchée 2 fois : clairs −13,37 et −13,06, illisibles (vrai clair ≈ −9,7).
+Journal : `logs/B05c_rev_w11-40_deep.out`. Avec 8 × plus de recuits que la première passe (où 15 × 35 était trouvé
+et 38 × 30 presque), l'inversée est exclue pour w1, w2 ≤ ≈ 30 ; au-delà, couverture probable mais non garantie.
