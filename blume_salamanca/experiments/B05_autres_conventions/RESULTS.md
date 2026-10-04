@@ -42,3 +42,7 @@ meilleur clair −12,94 (illisible ; un vrai clair donne ≈ −9,7). Contrôles
 38 × 30 presque (z = 15,3, −10,83, clair partiellement lisible) ; 31 × 36 manqué (z = 12,2). La couverture des très
 grandes largeurs est donc partielle → **B05c** : même recherche avec 64 recuits × 300 k (GitHub Actions, workflow
 `bdt-calib`, `.github/scan/bdt-calib.env`), étape K1 si z ≥ 14.
+
+## Calibration w1 = 15 (pour B06) et fin des contrôles de l'inversée
+Inversée, contrôle 38 × 30 : z = 15,3, clair −10,83 (partiel) ; voir ci-dessus. Recuit en convention directe avec
+rectangle de K1 complet (w1 = 15), T1+T2, 1 M d'itérations : w2 = 16 : 1/16 ; 17 : 2/16 ; 18 : 1/16 ; 20 : 0/16.
