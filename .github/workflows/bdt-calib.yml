@@ -1,0 +1,56 @@
+name: BLUME annealing calibration (planted controls)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/trusting-cerf-i26igv]
+    paths: [.github/scan/bdt-calib.env]
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: Shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read job
+        run: grep -v '^#' .github/scan/bdt-calib.env | grep '=' >> "$GITHUB_ENV"
+      - name: Compile solver
+        run: gcc -O3 -march=native -fopenmp -o bdt blume_salamanca/tools/bdt.c -lm
+      - name: Scan
+        run: |
+          mkdir -p out; cd blume_salamanca; nproc
+          env $BDT_ENV BDT_SHARD=${{ matrix.shard }}/20 OMP_NUM_THREADS=$(nproc) ../bdt $CMD > ../out/shard-${{ matrix.shard }}.out
+          cut -c1-200 ../out/shard-${{ matrix.shard }}.out | head -40
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: calib-shard-${{ matrix.shard }}
+          path: out/
+          retention-days: 30
+
+  merge:
+    name: Merge
+    if: always()
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: calib-shard-*
+          path: out
+          merge-multiple: true
+      - name: Rank
+        run: |
+          grep -v '^#' .github/scan/bdt-calib.env | grep '='
+          { echo '# Calibration'; echo; echo '```'; cat out/shard-*.out | grep '^calib' | sort -t= -k3 -n | sort -t= -k2 -n -s; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          cat out/shard-*.out | grep '^calib' | sort

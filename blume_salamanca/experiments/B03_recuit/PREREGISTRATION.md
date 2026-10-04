@@ -17,3 +17,9 @@ attendue : quasi certaine pour w ≤ 18, partielle pour w = 19–21, faible au-d
 **Méthode.** `tools/bdt.c scan` : recuit de K2 noté par l'IDP de T1 (bigrammes PMI), puis finition ; au-dessus du
 seuil, recuit de K1 aux quadrigrammes sur T1 et T2. Paramètres fixés après la calibration (taux de succès par
 recuit selon w1, w2), consignés ici avant le lancement.
+
+**Paramètres B03b (fixés avant lancement).** Paires w1 = 11–30 × w2 = 11–15 ; par paire 32 recuits × 300 k
+itérations (mouvements 70/10/10/5/3/1/1 %, T 0,02 → 0,002, finition), note = IDP(T1) + 0,5 IDP(T2) (bigrammes PMI).
+Calibration simultanée (workflow `bdt-calib`) : mêmes réglages, 2 plantés × 16 recuits par paire → taux de succès
+par recuit p(w1, w2) ; la couverture de la paire est 1 − (1 − p)^32, rapportée telle quelle.
+Seuil : candidat si z(T1) ≥ 12 → étape K1 automatique ; retenu seulement si T1 et T2 sont de l'espagnol lisible.

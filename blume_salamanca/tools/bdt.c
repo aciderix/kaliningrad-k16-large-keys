@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 #define MAXN 1024
 #define MAXW 64
@@ -601,6 +602,38 @@ int main(int argc, char **argv) {
             int t[MAXN], p[MAXN]; undo(C1, n1, w, bk, t); undo(t, n1, w, bk, p); printf("\n   T1 "); for (int i = 0; i < 120; i++) putchar('a' + p[i]);
             if (n2) { undo(C2, n2, w, bk, t); undo(t, n2, w, bk, p); printf("\n   T2 "); for (int i = 0; i < 80; i++) putchar('a' + p[i]); }
             printf("\n"); fflush(stdout);
+        }
+        return 0;
+    }
+    if (!strcmp(argv[1], "bench")) {   /* bench qg c1 w1 w2 : µs par évaluation IDP */
+        static int C1[MAXN]; int n1 = load_letters_file(argv[3], C1, MAXN), w1 = atoi(argv[4]), w2 = atoi(argv[5]), kk[MAXW], t[MAXN];
+        Geo g; geo_init(&g, n1, w1); double acc = 0; struct timespec a, b; clock_gettime(CLOCK_MONOTONIC, &a);
+        for (int r = 0; r < 3000; r++) { randperm(kk, w2); undo(C1, n1, w2, kk, t); acc += idp(t, &g); }
+        clock_gettime(CLOCK_MONOTONIC, &b); printf("w1=%d w2=%d : %.1f µs/éval (%g)\n", w1, w2, ((b.tv_sec - a.tv_sec) * 1e9 + (b.tv_nsec - a.tv_nsec)) / 3000 / 1e3, acc); return 0;
+    }
+    if (!strcmp(argv[1], "ctrlgrid")) {   /* ctrlgrid qg texte n1 n2 w1a w1b w2a w2b plantés R iters graine : succès par paire */
+        static int txt[2000000]; int N = load_letters_file(argv[3], txt, 2000000);
+        int n1 = atoi(argv[4]), n2 = atoi(argv[5]), a1 = atoi(argv[6]), b1 = atoi(argv[7]), a2 = atoi(argv[8]), b2 = atoi(argv[9]), NP = atoi(argv[10]), R = atoi(argv[11]);
+        long I = atol(argv[12]); unsigned long long seed = strtoull(argv[13], 0, 10); double wt2 = getenv("BDT_W2") ? atof(getenv("BDT_W2")) : 0.5;
+        if (getenv("BDT_MV")) sscanf(getenv("BDT_MV"), "%d,%d,%d,%d,%d,%d,%d", MV, MV + 1, MV + 2, MV + 3, MV + 4, MV + 5, MV + 6);
+        int shard = 0, nshard = 1, idx = -1; if (getenv("BDT_SHARD")) sscanf(getenv("BDT_SHARD"), "%d/%d", &shard, &nshard);
+        for (int w2 = a2; w2 <= b2; w2++) for (int w1 = a1; w1 <= b1; w1++) {
+            if (++idx % nshard != shard) continue;
+            int ok = 0, tot = 0;
+            for (int pl = 0; pl < NP; pl++) {
+                rs = (seed * 31 + pl * 977 + w1 * 131 + w2) * 2654435761ULL + 7;
+                int o1 = rint_(N - n1 - n2 - 10000), o2 = o1 + n1 + rint_(5000);
+                static int P1[MAXN], P2[MAXN], C1[MAXN], C2[MAXN]; int k1[MAXW], k2[MAXW];
+                memcpy(P1, txt + o1, sizeof(int) * n1); memcpy(P2, txt + o2, sizeof(int) * n2); randperm(k1, w1); randperm(k2, w2);
+                encrypt2(P1, n1, w1, k1, w2, k2, C1); if (n2) encrypt2(P2, n2, w1, k1, w2, k2, C2);
+                Msg m[2]; int nm = n2 ? 2 : 1;
+                m[0].c = C1; m[0].n = n1; geo_init(&m[0].g, n1, w1); m[0].wt = 1; if (n2) { m[1].c = C2; m[1].n = n2; geo_init(&m[1].g, n2, w1); m[1].wt = wt2; }
+                double tru = fitness(m, nm, w2, k2);
+                #pragma omp parallel for schedule(dynamic) reduction(+:ok, tot)
+                for (int r = 0; r < R; r++) { rs = (seed * 1000003ULL + pl * 7919 + r) * 0x9e3779b97f4a7c15ULL + 1; int b[MAXW];
+                    double v = anneal_ils(m, nm, w2, I, 0.02, 0.002, b); ok += v >= tru - 1e-9; tot++; }
+            }
+            printf("calib w1=%d w2=%d : %d/%d\n", w1, w2, ok, tot); fflush(stdout);
         }
         return 0;
     }
