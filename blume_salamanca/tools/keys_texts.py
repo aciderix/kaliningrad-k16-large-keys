@@ -11,9 +11,11 @@ def norm(s):
     s = s.lower().replace('ä', 'ae').replace('ö', 'oe').replace('ü', 'ue').replace('ß', 'ss')
     s = unicodedata.normalize('NFD', s); s = ''.join(c for c in s if unicodedata.category(c) != 'Mn')
     return s
+PERFILE = os.environ.get('KEYS_DEDUP') == 'file'   # dédoublonnage par fichier seulement (gros corpus, mémoire bornée)
 seen = set(); n = 0
 with open(out, 'w') as fo:
     for fn in sys.argv[4:]:
+        if PERFILE: seen = set()
         raw = open(fn, encoding='utf-8', errors='ignore').read()
         a, b = raw.find('*** START'), raw.find('*** END')
         units = raw.splitlines()
